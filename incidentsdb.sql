@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 25, 2019 at 09:42 AM
+-- Generation Time: May 25, 2019 at 10:47 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -29,6 +29,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `area` (
   `AreaId` int(11) NOT NULL,
   `Area_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
+--
+
+CREATE TABLE `department` (
+  `DepartmentId` int(11) NOT NULL,
+  `Department_name` varchar(100) NOT NULL,
+  `Photo` blob NOT NULL,
+  `Authorization_username` varchar(70) NOT NULL,
+  `Authorization_password` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -66,6 +80,25 @@ CREATE TABLE `incidents` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `incident_warnings`
+--
+
+CREATE TABLE `incident_warnings` (
+  `IncidentWarningId` int(11) NOT NULL,
+  `DepartmentId` int(11) NOT NULL,
+  `IncidentDetails` text NOT NULL,
+  `Category` varchar(70) NOT NULL,
+  `Incident_datetime` datetime NOT NULL,
+  `AreaId` int(11) NOT NULL,
+  `Longitude` double NOT NULL,
+  `Latitiude` double NOT NULL,
+  `Severity` enum('Urgent','High','Normal','Low') NOT NULL,
+  `Incident_warning_headline` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notifications`
 --
 
@@ -74,6 +107,25 @@ CREATE TABLE `notifications` (
   `Type` varchar(70) NOT NULL,
   `Notifcation_message` text NOT NULL,
   `Notification_datetime` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `organization_in_area`
+--
+
+CREATE TABLE `organization_in_area` (
+  `OrganizationId` int(11) NOT NULL,
+  `Organization_name` varchar(50) NOT NULL,
+  `Organization_Description` text NOT NULL,
+  `Help_category` varchar(100) NOT NULL,
+  `Organization_area` varchar(100) NOT NULL,
+  `AreaId` int(11) NOT NULL,
+  `Organization_longitude` double NOT NULL,
+  `Organization_latitiude` double NOT NULL,
+  `Organization_email` varchar(100) NOT NULL,
+  `Organization_phone_contact` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -150,6 +202,12 @@ ALTER TABLE `area`
   ADD PRIMARY KEY (`AreaId`);
 
 --
+-- Indexes for table `department`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`DepartmentId`);
+
+--
 -- Indexes for table `extra_incident_photos`
 --
 ALTER TABLE `extra_incident_photos`
@@ -162,10 +220,22 @@ ALTER TABLE `incidents`
   ADD PRIMARY KEY (`IncidentId`);
 
 --
+-- Indexes for table `incident_warnings`
+--
+ALTER TABLE `incident_warnings`
+  ADD PRIMARY KEY (`IncidentWarningId`);
+
+--
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`NotificationId`);
+
+--
+-- Indexes for table `organization_in_area`
+--
+ALTER TABLE `organization_in_area`
+  ADD PRIMARY KEY (`OrganizationId`);
 
 --
 -- Indexes for table `user`
@@ -208,15 +278,30 @@ ALTER TABLE `voted_incidents`
 ALTER TABLE `area`
   MODIFY `AreaId` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `department`
+--
+ALTER TABLE `department`
+  MODIFY `DepartmentId` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `incidents`
 --
 ALTER TABLE `incidents`
   MODIFY `IncidentId` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `incident_warnings`
+--
+ALTER TABLE `incident_warnings`
+  MODIFY `IncidentWarningId` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
   MODIFY `NotificationId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `organization_in_area`
+--
+ALTER TABLE `organization_in_area`
+  MODIFY `OrganizationId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
