@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 25, 2019 at 09:14 AM
+-- Generation Time: May 25, 2019 at 09:42 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -34,6 +34,17 @@ CREATE TABLE `area` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `extra_incident_photos`
+--
+
+CREATE TABLE `extra_incident_photos` (
+  `IncidentId` int(11) NOT NULL,
+  `Incident_photo` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `incidents`
 --
 
@@ -47,7 +58,7 @@ CREATE TABLE `incidents` (
   `Incident_datetime` datetime NOT NULL,
   `Longitude` double NOT NULL,
   `Latitude` double NOT NULL,
-  `Photo` text,
+  `Incident_photo` blob,
   `Number_of_upvotes` int(11) NOT NULL,
   `Number_of_downvotes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -76,7 +87,7 @@ CREATE TABLE `user` (
   `Username` varchar(30) NOT NULL,
   `Email` varchar(30) NOT NULL,
   `Password` varchar(30) NOT NULL,
-  `Photo_url` text NOT NULL,
+  `User_photo` blob NOT NULL,
   `Home_address` text NOT NULL,
   `Longitude` double NOT NULL,
   `Latitude` double NOT NULL,
@@ -137,6 +148,12 @@ CREATE TABLE `voted_incidents` (
 --
 ALTER TABLE `area`
   ADD PRIMARY KEY (`AreaId`);
+
+--
+-- Indexes for table `extra_incident_photos`
+--
+ALTER TABLE `extra_incident_photos`
+  ADD PRIMARY KEY (`IncidentId`);
 
 --
 -- Indexes for table `incidents`
