@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 25, 2019 at 10:47 AM
+-- Generation Time: May 26, 2019 at 06:42 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -72,6 +72,7 @@ CREATE TABLE `incidents` (
   `Incident_datetime` datetime NOT NULL,
   `Longitude` double NOT NULL,
   `Latitude` double NOT NULL,
+  `AreaId` int(11) NOT NULL,
   `Incident_photo` blob,
   `Number_of_upvotes` int(11) NOT NULL,
   `Number_of_downvotes` int(11) NOT NULL
