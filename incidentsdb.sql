@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 27, 2019 at 11:54 PM
+-- Generation Time: May 28, 2019 at 08:51 AM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -28,8 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `area` (
   `AreaId` int(11) NOT NULL,
-  `Area_name` text NOT NULL
+  `Area_name` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `area`
+--
+
+INSERT INTO `area` (`AreaId`, `Area_name`) VALUES
+(1, 'Zamalek'),
+(2, 'Al Haram'),
+(3, 'Al Omraneyah');
 
 -- --------------------------------------------------------
 
@@ -353,7 +362,7 @@ ALTER TABLE `voted_incidents`
 -- AUTO_INCREMENT for table `area`
 --
 ALTER TABLE `area`
-  MODIFY `AreaId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `AreaId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `department`
 --
