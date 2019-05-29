@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 28, 2019 at 08:51 AM
+-- Generation Time: May 29, 2019 at 08:27 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -86,6 +86,116 @@ CREATE TABLE `incidents` (
   `Number_of_upvotes` int(11) NOT NULL,
   `Number_of_downvotes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `incidents`
+--
+
+INSERT INTO `incidents` (`IncidentId`, `UserId`, `Incident_name`, `Description`, `Category`, `Severity`, `Incident_datetime`, `Longitude`, `Latitude`, `AreaId`, `Incident_photo`, `Number_of_upvotes`, `Number_of_downvotes`) VALUES
+(1, 32, 'Assault', NULL, 'Assault', 'High', '2019-12-05 12:39:16', 31.21909075986, 30.056582141259, 1, NULL, 7, 3),
+(2, 5, 'Assault', NULL, 'Assault', 'Urgent', '2018-12-03 12:39:16', 31.126242183351, 30.017965481496, 2, NULL, 7, 10),
+(3, 1, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'Normal', '2019-03-03 07:37:40', 31.119047655478, 30.004672493205, 2, NULL, 5, 4),
+(4, 7, 'Power Outage', NULL, 'Power Outage', 'Urgent', '2019-01-02 20:55:46', 31.117022101898, 30.011694134746, 2, NULL, 6, 4),
+(5, 46, 'Too much Grabage Here', NULL, 'Grabage', 'Low', '2019-02-12 17:47:37', 31.161111032308, 30.000426141469, 3, NULL, 8, 2),
+(6, 28, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Urgent', '2019-03-01 01:13:46', 31.218845700996, 30.056415069628, 1, NULL, 10, 6),
+(7, 43, 'Harrasement', NULL, 'Harrasement', 'Low', '2019-02-06 01:02:14', 31.123900955443, 30.00458563618, 2, NULL, 1, 2),
+(8, 63, 'Sewer Leakage', NULL, 'Sewer Leakage', 'Normal', '2019-03-22 09:07:29', 31.219232137596, 30.056510135808, 1, NULL, 9, 4),
+(9, 53, 'Assault', NULL, 'Assault', 'Low', '2019-04-04 12:44:00', 31.171190321445, 29.994301533969, 3, NULL, 2, 7),
+(10, 67, 'Too much Grabage Here', NULL, 'Grabage', 'Normal', '2019-03-14 09:24:11', 31.128212083605, 30.013186673849, 2, NULL, 2, 2),
+(11, 55, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'Urgent', '2019-04-25 08:06:23', 31.169106070066, 29.998033288584, 3, NULL, 9, 2),
+(12, 14, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Low', '2019-04-01 19:08:58', 31.159010827491, 29.993883808919, 3, NULL, 2, 6),
+(13, 26, 'Missing Pet', NULL, 'Missing Pet', 'Urgent', '2019-01-18 05:36:38', 31.218928926245, 30.056583380312, 1, NULL, 10, 6),
+(14, 59, 'Missing Person', NULL, 'Missing Person', 'Urgent', '2019-01-05 22:24:58', 31.219184856006, 30.056312976639, 1, NULL, 7, 7),
+(15, 26, 'Missing Pet', NULL, 'Missing Pet', 'Urgent', '2019-01-17 23:32:36', 31.219010213393, 30.056581991315, 1, NULL, 9, 9),
+(16, 51, 'Building is on Fire! , Beware', NULL, 'Fire', 'Urgent', '2019-01-07 00:58:38', 31.172579580879, 29.995268010215, 3, NULL, 9, 6),
+(17, 59, 'Building is on Fire! , Beware', NULL, 'Fire', 'Normal', '2019-02-14 20:08:57', 31.219074154337, 30.056717316915, 1, NULL, 1, 9),
+(18, 45, 'Harrasement', NULL, 'Harrasement', 'High', '2019-03-11 15:33:00', 31.121988161743, 30.006805271061, 2, NULL, 3, 6),
+(19, 66, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'High', '2019-04-22 03:37:23', 31.170613857895, 29.989172594178, 3, NULL, 9, 5),
+(20, 65, 'Robbery, be alert!', NULL, 'Robbery', 'Urgent', '2019-01-23 06:46:21', 31.219259585919, 30.056683394635, 1, NULL, 2, 1),
+(21, 30, 'Sewer Leakage', NULL, 'Sewer Leakage', 'High', '2019-04-08 21:31:44', 31.11615511947, 30.007823378394, 2, NULL, 9, 8),
+(22, 52, 'Power Outage', NULL, 'Power Outage', 'Urgent', '2019-01-29 21:15:39', 31.161223558908, 29.993923989349, 3, NULL, 2, 10),
+(23, 63, 'Missing Pet', NULL, 'Missing Pet', 'Low', '2019-03-05 02:44:34', 31.161070098794, 29.987724444514, 3, NULL, 2, 6),
+(24, 25, 'Water Outage', NULL, 'Water Outage', 'High', '2019-01-20 01:06:34', 31.126344968712, 30.010265696602, 2, NULL, 2, 7),
+(25, 30, 'theft', NULL, 'theft', 'Normal', '2019-01-16 17:38:30', 31.114482339454, 30.009342285435, 2, NULL, 5, 9),
+(26, 26, 'Power Outage', NULL, 'Power Outage', 'High', '2019-01-20 11:42:09', 31.128699742057, 30.00676078701, 2, NULL, 2, 3),
+(27, 47, 'Building is on Fire! , Beware', NULL, 'Fire', 'High', '2019-02-21 22:33:19', 31.21903953191, 30.056470461632, 1, NULL, 9, 3),
+(28, 32, 'Power Outage', NULL, 'Power Outage', 'Low', '2019-01-23 13:24:16', 31.124323315538, 30.016557511735, 2, NULL, 9, 2),
+(29, 51, 'Sewer Leakage', NULL, 'Sewer Leakage', 'Urgent', '2019-01-15 20:15:26', 31.218932108244, 30.056396168469, 1, NULL, 6, 9),
+(30, 23, 'Too much Grabage Here', NULL, 'Grabage', 'Urgent', '2019-01-12 14:14:08', 31.16191863518, 29.991157590348, 3, NULL, 2, 10),
+(31, 6, 'Water Outage', NULL, 'Water Outage', 'Urgent', '2019-01-30 00:52:10', 31.163892590879, 29.986859338802, 3, NULL, 6, 1),
+(32, 20, 'Too much Grabage Here', NULL, 'Grabage', 'High', '2019-01-21 22:18:43', 31.219298511682, 30.056552475831, 1, NULL, 9, 8),
+(33, 69, 'Water Outage', NULL, 'Water Outage', 'Low', '2019-02-28 07:11:17', 31.122634942704, 30.008048660084, 2, NULL, 10, 5),
+(34, 1, 'Missing Person', NULL, 'Missing Person', 'Normal', '2019-04-03 09:02:29', 31.126000425029, 30.009430787184, 2, NULL, 2, 10),
+(35, 31, 'theft', NULL, 'theft', 'Normal', '2019-01-03 03:46:06', 31.116642978042, 30.004374646105, 2, NULL, 2, 8),
+(36, 26, 'theft', NULL, 'theft', 'Urgent', '2019-02-06 15:31:00', 31.169547227615, 29.997876730999, 3, NULL, 6, 6),
+(37, 38, 'Missing Pet', NULL, 'Missing Pet', 'Urgent', '2019-04-06 07:34:17', 31.122383361659, 30.009375618, 2, NULL, 6, 3),
+(38, 47, 'Water Outage', NULL, 'Water Outage', 'Normal', '2019-03-18 11:35:38', 31.169249558471, 29.996837015179, 3, NULL, 6, 1),
+(39, 2, 'Sewer Leakage', NULL, 'Sewer Leakage', 'High', '2019-01-14 16:15:53', 31.163416704385, 29.997451587731, 3, NULL, 4, 6),
+(40, 2, 'Building is on Fire! , Beware', NULL, 'Fire', 'Low', '2019-03-12 04:02:19', 31.164359783694, 29.985421067737, 3, NULL, 6, 7),
+(41, 65, 'Harrasement', NULL, 'Harrasement', 'Low', '2019-03-29 10:38:58', 31.117677640337, 30.012345433958, 2, NULL, 4, 6),
+(42, 10, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'High', '2019-01-27 02:30:29', 31.163007064732, 29.989620101768, 3, NULL, 7, 7),
+(43, 28, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'Low', '2019-03-13 03:38:22', 31.1217844912, 30.012580821857, 2, NULL, 2, 8),
+(44, 48, 'Sewer Leakage', NULL, 'Sewer Leakage', 'High', '2019-04-27 11:45:00', 31.219102253971, 30.056674088239, 1, NULL, 3, 8),
+(45, 30, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'High', '2019-04-30 18:13:04', 31.218882924542, 30.056363525044, 1, NULL, 5, 7),
+(46, 1, 'Missing Person', NULL, 'Missing Person', 'Normal', '2019-01-28 21:07:56', 31.122606834795, 30.00797737902, 2, NULL, 10, 1),
+(47, 35, 'Harrasement', NULL, 'Harrasement', 'High', '2019-03-29 09:36:33', 31.219208841745, 30.056618581423, 1, NULL, 1, 3),
+(48, 32, 'Water Outage', NULL, 'Water Outage', 'High', '2019-01-30 03:57:15', 31.123989909651, 30.013808004352, 2, NULL, 4, 2),
+(49, 45, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Low', '2019-02-21 11:22:42', 31.219172327436, 30.056364791184, 1, NULL, 1, 2),
+(50, 61, 'theft', NULL, 'theft', 'Normal', '2019-02-24 22:31:21', 31.21933893409, 30.056439593011, 1, NULL, 8, 2),
+(51, 12, 'Missing Person', NULL, 'Missing Person', 'Normal', '2019-01-09 13:45:21', 31.119488993606, 30.01806502838, 2, NULL, 9, 5),
+(52, 48, 'theft', NULL, 'theft', 'Urgent', '2019-01-18 01:26:03', 31.129215396992, 30.014805124539, 2, NULL, 2, 4),
+(53, 13, 'Missing Person', NULL, 'Missing Person', 'Normal', '2019-03-31 05:02:12', 31.219352124667, 30.056451978859, 1, NULL, 4, 10),
+(54, 7, 'Power Outage', NULL, 'Power Outage', 'High', '2019-03-22 19:15:15', 31.124632553313, 30.006115134781, 2, NULL, 1, 10),
+(55, 30, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Normal', '2019-04-21 21:22:28', 31.17409072182, 29.99865985179, 3, NULL, 9, 2),
+(56, 19, 'Too much Grabage Here', NULL, 'Grabage', 'High', '2019-02-04 16:23:56', 31.167091359559, 29.99805638215, 3, NULL, 7, 4),
+(57, 65, 'Missing Pet', NULL, 'Missing Pet', 'Low', '2019-02-24 20:11:32', 31.12677494767, 30.013142900044, 2, NULL, 7, 3),
+(58, 11, 'Power Outage', NULL, 'Power Outage', 'High', '2019-01-09 19:58:22', 31.121571385395, 30.013318814048, 2, NULL, 8, 1),
+(59, 57, 'Too much Grabage Here', NULL, 'Grabage', 'Urgent', '2019-01-07 15:30:00', 31.162483753074, 30.00155464928, 3, NULL, 3, 2),
+(60, 14, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Urgent', '2019-04-14 02:02:53', 31.219210438289, 30.056678557638, 1, NULL, 9, 8),
+(61, 3, 'Sewer Leakage', NULL, 'Sewer Leakage', 'Low', '2019-02-08 19:06:53', 31.167284784188, 29.994598414426, 3, NULL, 2, 10),
+(62, 13, 'Water Outage', NULL, 'Water Outage', 'Urgent', '2019-01-27 16:52:07', 31.12268602488, 30.018964082563, 2, NULL, 3, 7),
+(63, 65, 'Robbery, be alert!', NULL, 'Robbery', 'Low', '2019-01-29 07:22:30', 31.161292232803, 29.994859284629, 3, NULL, 8, 5),
+(64, 69, 'Missing Person', NULL, 'Missing Person', 'Urgent', '2019-03-20 19:11:48', 31.169222031379, 29.985840680936, 3, NULL, 7, 1),
+(65, 10, 'Power Outage', NULL, 'Power Outage', 'Low', '2019-02-03 00:27:48', 31.128902127253, 30.009270877943, 2, NULL, 6, 2),
+(66, 46, 'Robbery, be alert!', NULL, 'Robbery', 'Low', '2019-02-14 17:01:11', 31.160903580862, 29.989783006085, 3, NULL, 9, 8),
+(67, 49, 'Robbery, be alert!', NULL, 'Robbery', 'High', '2019-03-31 02:07:22', 31.123509958336, 30.008190074308, 2, NULL, 1, 10),
+(68, 62, 'theft', NULL, 'theft', 'Normal', '2019-03-27 13:59:15', 31.219087871878, 30.056541358818, 1, NULL, 5, 5),
+(69, 42, 'Robbery, be alert!', NULL, 'Robbery', 'Normal', '2019-02-27 21:11:06', 31.219120559006, 30.056358746155, 1, NULL, 9, 10),
+(70, 34, 'Water Outage', NULL, 'Water Outage', 'Normal', '2019-01-17 01:40:58', 31.121376101553, 30.015156158067, 2, NULL, 6, 1),
+(71, 6, 'Robbery, be alert!', NULL, 'Robbery', 'Low', '2019-01-21 16:40:41', 31.119233579775, 30.003792656945, 2, NULL, 4, 5),
+(72, 54, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Low', '2019-03-12 02:35:03', 31.218933902938, 30.056678864123, 1, NULL, 5, 5),
+(73, 65, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'Low', '2019-02-28 15:27:22', 31.169781126944, 29.996993761151, 3, NULL, 5, 1),
+(74, 19, 'Harrasement', NULL, 'Harrasement', 'Urgent', '2019-04-26 15:36:17', 31.166500084625, 29.993429604436, 3, NULL, 8, 2),
+(75, 41, 'Sewer Leakage', NULL, 'Sewer Leakage', 'Low', '2019-03-11 21:43:05', 31.165317655943, 29.998384980998, 3, NULL, 2, 9),
+(76, 52, 'Too much Grabage Here', NULL, 'Grabage', 'Normal', '2019-03-12 01:08:39', 31.170127763277, 30.000640847636, 3, NULL, 4, 1),
+(77, 55, 'Harrasement', NULL, 'Harrasement', 'Low', '2019-04-07 04:25:58', 31.165366308801, 30.00122550034, 3, NULL, 4, 10),
+(78, 63, 'Robbery, be alert!', NULL, 'Robbery', 'High', '2019-03-16 04:48:32', 31.219217994837, 30.056457412385, 1, NULL, 10, 6),
+(79, 26, 'Stray Dogs', NULL, 'Stray Dogs', 'Urgent', '2019-02-06 12:24:05', 31.168279065913, 29.997965653174, 3, NULL, 6, 4),
+(80, 53, 'theft', NULL, 'theft', 'High', '2019-01-07 16:56:39', 31.219170937205, 30.056739678291, 1, NULL, 2, 2),
+(81, 47, 'Assault', NULL, 'Assault', 'Normal', '2019-02-26 20:48:48', 31.219249542679, 30.056273346357, 1, NULL, 6, 1),
+(82, 18, 'Missing Person', NULL, 'Missing Person', 'Low', '2019-04-16 00:20:02', 31.120233821332, 30.017125028545, 2, NULL, 4, 1),
+(83, 67, 'theft', NULL, 'theft', 'Normal', '2019-01-20 14:31:56', 31.164914438307, 30.002348455338, 3, NULL, 4, 8),
+(84, 18, 'Assault', NULL, 'Assault', 'High', '2019-04-20 18:32:29', 31.1151772042, 30.007359785903, 2, NULL, 6, 3),
+(85, 12, 'Water Outage', NULL, 'Water Outage', 'Normal', '2019-04-08 09:49:35', 31.219108903743, 30.056593043232, 1, NULL, 4, 8),
+(86, 46, 'Power Outage', NULL, 'Power Outage', 'Low', '2019-04-02 04:02:59', 31.116829964664, 30.018052290169, 2, NULL, 10, 6),
+(87, 12, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Low', '2019-04-13 07:21:34', 31.116843856698, 30.013475060065, 2, NULL, 4, 3),
+(88, 56, 'Building is on Fire! , Beware', NULL, 'Fire', 'Low', '2019-04-29 03:36:44', 31.120092004653, 30.019150831041, 2, NULL, 8, 9),
+(89, 39, 'Harrasement', NULL, 'Harrasement', 'Urgent', '2019-02-13 00:56:01', 31.219166294792, 30.056510960566, 1, NULL, 10, 5),
+(90, 58, 'Water Outage', NULL, 'Water Outage', 'Normal', '2019-02-10 05:45:54', 31.219111386976, 30.056236943463, 1, NULL, 3, 10),
+(91, 27, 'Robbery, be alert!', NULL, 'Robbery', 'Low', '2019-03-02 23:43:27', 31.173963439257, 29.991754977904, 3, NULL, 6, 8),
+(92, 3, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Low', '2019-02-03 02:29:15', 31.219288617631, 30.056381292037, 1, NULL, 9, 6),
+(93, 12, 'Assault', NULL, 'Assault', 'Urgent', '2019-03-23 23:02:49', 31.12131770149, 30.010518121432, 2, NULL, 9, 6),
+(94, 4, 'Robbery, be alert!', NULL, 'Robbery', 'Urgent', '2019-03-07 10:54:05', 31.21932096033, 30.056412801733, 1, NULL, 10, 10),
+(95, 64, 'Too many unauthorized means of transportation', NULL, 'unauthorized means of transportation', 'Low', '2019-02-24 21:15:51', 31.164122607636, 29.992577334675, 3, NULL, 6, 2),
+(96, 50, 'Building is on Fire! , Beware', NULL, 'Fire', 'High', '2019-04-27 20:15:11', 31.165065746536, 30.00093503793, 3, NULL, 3, 9),
+(97, 51, 'Too much Grabage Here', NULL, 'Grabage', 'Normal', '2019-03-25 01:29:43', 31.125230283413, 30.01158393024, 2, NULL, 2, 3),
+(98, 9, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'High', '2019-04-27 09:10:04', 31.219134835365, 30.056594846674, 1, NULL, 7, 3),
+(99, 12, 'Too much Grabage Here', NULL, 'Grabage', 'Normal', '2019-01-26 18:31:56', 31.121100456739, 30.018737475403, 2, NULL, 6, 3),
+(100, 55, 'Assault', NULL, 'Assault', 'Normal', '2019-03-06 16:20:55', 31.167118504565, 29.987393673522, 3, NULL, 6, 10),
+(101, 26, 'Too much Grabage Here', NULL, 'Grabage', 'Urgent', '2019-01-13 00:19:08', 31.21888012628, 30.056519737011, 1, NULL, 7, 3),
+(102, 68, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'Low', '2019-03-14 11:58:54', 31.16315406799, 29.995722751232, 3, NULL, 2, 4),
+(103, 12, 'Missing Pet', NULL, 'Missing Pet', 'Low', '2019-01-29 11:52:53', 31.113054645914, 30.011285508947, 2, NULL, 9, 8),
+(104, 42, 'Water Outage', NULL, 'Water Outage', 'Urgent', '2019-01-31 16:06:19', 31.114653664757, 30.012441958082, 2, NULL, 7, 10);
 
 -- --------------------------------------------------------
 
@@ -372,7 +482,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `incidents`
 --
 ALTER TABLE `incidents`
-  MODIFY `IncidentId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IncidentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 --
 -- AUTO_INCREMENT for table `incident_warnings`
 --
