@@ -92,7 +92,7 @@
    		//echo $coord[0]." ".$coord[1]."\n";
 		//echo " ";
 	$geolocation = $coord[0].','.$coord[1];
-	$request = 'https://eu1.locationiq.com/v1/reverse.php?key=SUPERSECRETKEYOMGG&lat='.$coord[0].'&lon='.$coord[1].'&format=json'; 
+	$request = 'https://eu1.locationiq.com/v1/reverse.php?key=5a2c9efdcaf700&lat='.$coord[0].'&lon='.$coord[1].'&format=json'; 
 
 	$file_contents = file_get_contents($request);
 	$json_decode = json_decode($file_contents);
