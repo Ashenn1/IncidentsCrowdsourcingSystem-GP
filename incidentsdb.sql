@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `area`
 --
 
+
+DROP TABLE IF EXISTS `area`;
+
 CREATE TABLE `area` (
   `AreaId` int(11) NOT NULL,
   `Area_name` varchar(70) NOT NULL
@@ -46,6 +49,8 @@ INSERT INTO `area` (`AreaId`, `Area_name`) VALUES
 -- Table structure for table `department`
 --
 
+DROP TABLE IF EXISTS `department`;
+
 CREATE TABLE `department` (
   `DepartmentId` int(11) NOT NULL,
   `Department_name` varchar(100) NOT NULL,
@@ -60,6 +65,8 @@ CREATE TABLE `department` (
 -- Table structure for table `extra_incident_photos`
 --
 
+DROP TABLE IF EXISTS `extra_incident_photos`;
+
 CREATE TABLE `extra_incident_photos` (
   `IncidentId` int(11) NOT NULL,
   `Incident_photo` blob NOT NULL
@@ -70,6 +77,8 @@ CREATE TABLE `extra_incident_photos` (
 --
 -- Table structure for table `incidents`
 --
+
+DROP TABLE IF EXISTS `incidents`;
 
 CREATE TABLE `incidents` (
   `IncidentId` int(11) NOT NULL,
@@ -242,6 +251,9 @@ INSERT INTO `incidents` (`IncidentId`, `UserId`, `Incident_name`, `Description`,
 -- Table structure for table `incident_warnings`
 --
 
+DROP TABLE IF EXISTS `incident_warnings`;
+
+
 CREATE TABLE `incident_warnings` (
   `IncidentWarningId` int(11) NOT NULL,
   `DepartmentId` int(11) NOT NULL,
@@ -261,6 +273,9 @@ CREATE TABLE `incident_warnings` (
 -- Table structure for table `notifications`
 --
 
+DROP TABLE IF EXISTS `notifications`;
+
+
 CREATE TABLE `notifications` (
   `NotificationId` int(11) NOT NULL,
   `Type` varchar(70) NOT NULL,
@@ -273,6 +288,9 @@ CREATE TABLE `notifications` (
 --
 -- Table structure for table `organization_in_area`
 --
+
+DROP TABLE IF EXISTS `organization_in_area`;
+
 
 CREATE TABLE `organization_in_area` (
   `OrganizationId` int(11) NOT NULL,
@@ -292,6 +310,9 @@ CREATE TABLE `organization_in_area` (
 --
 -- Table structure for table `user`
 --
+
+DROP TABLE IF EXISTS `user`;
+
 
 CREATE TABLE `user` (
   `UserId` int(11) NOT NULL,
@@ -417,6 +438,9 @@ INSERT INTO `user` (`UserId`, `Username`, `Email`, `Password`, `User_photo`, `Ho
 -- Table structure for table `user_follow_area`
 --
 
+DROP TABLE IF EXISTS `user_follow_area`;
+
+
 CREATE TABLE `user_follow_area` (
   `UserId` int(11) NOT NULL,
   `AreaId` int(11) NOT NULL
@@ -427,6 +451,9 @@ CREATE TABLE `user_follow_area` (
 --
 -- Table structure for table `user_follow_incident`
 --
+
+DROP TABLE IF EXISTS `user_follow_incident`;
+
 
 CREATE TABLE `user_follow_incident` (
   `UserId` int(11) NOT NULL,
@@ -439,6 +466,9 @@ CREATE TABLE `user_follow_incident` (
 -- Table structure for table `user_notifications`
 --
 
+DROP TABLE IF EXISTS `user_notifications`;
+
+
 CREATE TABLE `user_notifications` (
   `UserId` int(11) NOT NULL,
   `NotificationId` int(11) NOT NULL
@@ -449,6 +479,9 @@ CREATE TABLE `user_notifications` (
 --
 -- Table structure for table `voted_incidents`
 --
+
+DROP TABLE IF EXISTS `voted_incidents`;
+
 
 CREATE TABLE `voted_incidents` (
   `UserId` int(11) NOT NULL,
