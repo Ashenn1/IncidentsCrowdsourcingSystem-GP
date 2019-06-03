@@ -13,6 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 /*
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,28 +29,30 @@ import com.google.firebase.auth.FirebaseAuth;
 */
 
 public class SignInActivity extends AppCompatActivity {
-/*
+
+    private static final String KEY_STATUS = "status";
+    private static final String KEY_MESSAGE = "message";
+    private static final String KEY_USERNAME = "Username";
+    private static final String KEY_EMAIL = "Email";
+    private static final String KEY_PASSWORD = "Password";
+    private static final String KEY_EMPTY = "";
+    private String login_url = "https://crowd-sourcing-system.herokuapp.com/login.php";
     private EditText inputEmail, inputPassword;
-    private FirebaseAuth auth;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
-*/
+    //private SessionHandler session;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-/*
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
 
-        //To not login every time you close the app.
-        if (auth.getCurrentUser() != null) {
-            //startActivity(new Intent(SignInActivity.this, MainActivity.class));
-            //finish();
-            auth.signOut();
+        //session = new SessionHandler(getApplicationContext());
+        //if(session.isLoggedIn()){
+            //Load timeline
+       // }
 
-        }
 
         // set the view now
         setContentView(R.layout.activity_sign_in);
@@ -57,8 +67,7 @@ public class SignInActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
 
-        //Get Firebase auth instance
-        auth = FirebaseAuth.getInstance();
+
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,32 +101,59 @@ public class SignInActivity extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                //authenticate user
-                auth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
+                JSONObject request = new JSONObject();
+                try {
+                    //Populate the request parameters
+                    request.put(KEY_EMAIL, email);
+                    request.put(KEY_PASSWORD, password);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                        (Request.Method.POST, login_url, request, new Response.Listener<JSONObject>() {
                             @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                progressBar.setVisibility(View.GONE);
-                                if (!task.isSuccessful()) {
-                                    // there was an error
-                                    if (password.length() < 6) {
-                                        inputPassword.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(SignInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                            public void onResponse(JSONObject response) {
+
+                                try {
+                                    //Check if user got logged in successfully
+
+                                    if (response.getInt(KEY_STATUS) == 0) {
+                                       // session.loginUser(username,response.getString(KEY_FULL_NAME));
+                                        //redirect to timeline
+                                        Toast.makeText(getApplicationContext(),
+                                                "Successfully Logged in", Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
+
+                                    }else{
+                                        Toast.makeText(getApplicationContext(),
+                                                response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                                        progressBar.setVisibility(View.GONE);
                                     }
-                                } else {
-                                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    //progressBar.setVisibility(View.GONE);
                                 }
                             }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                                progressBar.setVisibility(View.GONE);
+                                //Display error message whenever an error occurs
+                                Toast.makeText(getApplicationContext(),
+                                        error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
                         });
+
+                // Access the RequestQueue through your singleton class.
+                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsArrayRequest);
+
             }
         });
-        */
+
     }
 
 }
