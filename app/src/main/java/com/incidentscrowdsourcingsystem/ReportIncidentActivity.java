@@ -33,10 +33,9 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     private Button btnChoose;
     private ImageView ImageView1;
-    private CategorySpinnerActivity spinner;
+    private CategorySpinnerActivity Spinner;
 
     private Uri image;
-    byte[] bData ;
 
 
     public static final int PICK_IMAGE = 1;
@@ -71,6 +70,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
+
 
     }
 
