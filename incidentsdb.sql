@@ -53,6 +53,7 @@ DROP TABLE IF EXISTS `department`;
 
 CREATE TABLE `department` (
   `DepartmentId` int(11) NOT NULL,
+  `AreaId` int(11) NOT NULL,
   `Department_name` varchar(100) NOT NULL,
   `Department_type` varchar(100) NOT NULL,
   `Authorization_username` varchar(70) NOT NULL,
@@ -66,34 +67,34 @@ CREATE TABLE `department` (
 
 
 
-INSERT INTO `department` (`DepartmentId`, `Department_name`,`Department_type`, `Authorization_username`, 
+INSERT INTO `department` (`DepartmentId`,`AreaId`, `Department_name`,`Department_type`, `Authorization_username`, 
   `Authorization_password`,`Longitude`,`Latitude`) VALUES
-(1, 'Al Haram Hospital','Hospital','Al-Haram-Hospital','qazxswe', 29.991146,31.150887),
-(2, 'Shagaret El Dor Hospital', 'Hospital','Shagaret-El-Dor-Hospital','WEJ33GA', 30.062993, 31.219095),
-(3, 'Imam Ali hospital charity','Hospital','Imam-Ali-hospital','sajbsde', 29.995174, 31.201739),
+(1, 3, 'Al Haram Hospital','Hospital','Al-Haram-Hospital','qazxswe', 29.991146,31.150887),
+(2, 1, 'Shagaret El Dor Hospital', 'Hospital','Shagaret-El-Dor-Hospital','WEJ33GA', 30.062993, 31.219095),
+(3, 3, 'Imam Ali hospital charity','Hospital','Imam-Ali-hospital','sajbsde', 29.995174, 31.201739),
 
-(4, 'Omraneya Police Station','Police Station','Omraneya-Police-Station','CnwVuegts', 30.004138,31.204976),
-(5, 'El Ahram Police Station','Police Station','Al Haram Hospital','Khsgddq1', 29.983624,31.133367),
-(6, 'El Gezirah Police Station','Police Station','El-Gezirah-Police-Station','lmks7ywY', 30.055572,31.219641),
+(4,3, 'Omraneya Police Station','Police Station','Omraneya-Police-Station','CnwVuegts', 30.004138,31.204976),
+(5,2,'El Ahram Police Station','Police Station','Al Haram-Police-Station','Khsgddq1', 29.983624,31.133367),
+(6,1, 'El Gezirah Police Station','Police Station','El-Gezirah-Police-Station','lmks7ywY', 30.055572,31.219641),
 
-(7, 'Drinking Water and Sanitation Company','Water and Sewer','Water-Sanitation-Company','Qn2sqmgl', 30.114980,31.211010),
-(8, 'Water and Sanitation Company - Great Cairo','Hospital','Water-Great-Cairo','CXFzaf3', 30.058153,31.243545),
+(7,2, 'Drinking Water and Sanitation Company','Water and Sewer','Water-Sanitation-Company','Qn2sqmgl', 30.114980,31.211010),
+(8,2,'Water and Sanitation Company - Greater Cairo','Water and Sewer','Water-Greater-Cairo','CXFzaf3', 30.058153,31.243545),
 
 
-(9, 'veterinary clinic in Giza','Stray Dogs','veterinary-clinic-Giza','rh6Tu6', 30.009460,31.204027),
-(10, 'El Zamalek Veterinary Clinic','Stray Dogs','Zamalek-Veterinary-Clinic','lmkq6ajs', 30.066607,31.216755),
-(11, 'Rakha Veterinary Clinic','Stray Dogs','Rakha-Veterinary-Clinic','pSjq3hd', 30.004273,31.199707),
+(9,3,'veterinary clinic in Giza','Stray Dogs','veterinary-clinic-Giza','rh6Tu6', 30.009460,31.204027),
+(10,1, 'El Zamalek Veterinary Clinic','Stray Dogs','Zamalek-Veterinary-Clinic','lmkq6ajs', 30.066607,31.216755),
+(11,3,'Rakha Veterinary Clinic','Stray Dogs','Rakha-Veterinary-Clinic','pSjq3hd', 30.004273,31.199707),
 
-(12, 'South Cairo Electricity Distribution Co. - El Haram 2','Power','Electricity-Distribution-Co','pcs3hd', 30.005195,31.190817),
-(13, 'South Cairo Electricity Distribution Co. - Zamalek','Power','Elec-Distribution-Zamalek','p18swhd', 30.059797,31.222409),
+(12,3, 'South Cairo Electricity Distribution Co. - El Haram 2','Power','Electricity-Distribution-Co','pcs3hd', 30.005195,31.190817),
+(13,1,'South Cairo Electricity Distribution Co. - Zamalek','Power','Elec-Distribution-Zamalek','p18swhd', 30.059797,31.222409),
 
-(14, 'Central Fire Department','Fire','Central-Fire-Department','CXa8WFz', 30.059082,31.221476),
-(15, 'Al omrania fire department','Fire','Alomraniafiredepartment','FzWOb20d', 29.999531,31.205326),
-(16, 'Giza Fire Station','Fire','Giza-Fire-Station','PE12PJyq', 30.015869,31.214489), 
+(14,1, 'Central Fire Department','Fire','Central-Fire-Department','CXa8WFz', 30.059082,31.221476),
+(15,3,'Al omrania fire department','Fire','Alomraniafiredepartment','FzWOb20d', 29.999531,31.205326),
+(16,3,'Giza Fire Station','Fire','Giza-Fire-Station','PE12PJyq', 30.015869,31.214489), 
 
-(17, 'Gezira Traffic Offices','Traffic','Giza-Fire-Station','PE12PJyq', 30.069041,31.228261),
-(18, 'Hadaeq El Ahram Traffic','Traffic','Hadaeq-ElAhram-Traffic','qsYfJ6Uq4', 30.006280,31.136006),
-(19, 'Faisal Traffic Police Station','Traffic','Faisal-Traffic-Police-Station','Ueaj7wgWn', 30.014646,31.204086);
+(17,2, 'Gezira Traffic Offices','Traffic','Giza-Fire-Station','PE12PJyq', 30.069041,31.228261),
+(18,2, 'Hadaeq El Ahram Traffic','Traffic','Hadaeq-ElAhram-Traffic','qsYfJ6Uq4', 30.006280,31.136006),
+(19,2,'Faisal Traffic Police Station','Traffic','Faisal-Traffic-Police-Station','Ueaj7wgWn', 30.014646,31.204086);
 
 
 -- Table structure for table `incident_warnings`
