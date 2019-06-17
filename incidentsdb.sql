@@ -54,10 +54,88 @@ DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
   `DepartmentId` int(11) NOT NULL,
   `Department_name` varchar(100) NOT NULL,
-  `Photo` blob NOT NULL,
+  `Department_type` varchar(100) NOT NULL,
   `Authorization_username` varchar(70) NOT NULL,
-  `Authorization_password` varchar(70) NOT NULL
+  `Authorization_password` varchar(70) NOT NULL,
+  `Longitude` double NOT NULL,
+  `Latitude` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+  
+
+
+
+INSERT INTO `department` (`DepartmentId`, `Department_name`,`Department_type`, `Authorization_username`, 
+  `Authorization_password`,`Longitude`,`Latitude`) VALUES
+(1, 'Al Haram Hospital','Hospital','Al-Haram-Hospital','qazxswe', 29.991146,31.150887),
+(2, 'Shagaret El Dor Hospital', 'Hospital','Shagaret-El-Dor-Hospital','WEJ33GA', 30.062993, 31.219095),
+(3, 'Imam Ali hospital charity','Hospital','Imam-Ali-hospital','sajbsde', 29.995174, 31.201739),
+
+(4, 'Omraneya Police Station','Police Station','Omraneya-Police-Station','CnwVuegts', 30.004138,31.204976),
+(5, 'El Ahram Police Station','Police Station','Al Haram Hospital','Khsgddq1', 29.983624,31.133367),
+(6, 'El Gezirah Police Station','Police Station','El-Gezirah-Police-Station','lmks7ywY', 30.055572,31.219641),
+
+(7, 'Drinking Water and Sanitation Company','Water and Sewer','Water-Sanitation-Company','Qn2sqmgl', 30.114980,31.211010),
+(8, 'Water and Sanitation Company - Great Cairo','Hospital','Water-Great-Cairo','CXFzaf3', 30.058153,31.243545),
+
+
+(9, 'veterinary clinic in Giza','Stray Dogs','veterinary-clinic-Giza','rh6Tu6', 30.009460,31.204027),
+(10, 'El Zamalek Veterinary Clinic','Stray Dogs','Zamalek-Veterinary-Clinic','lmkq6ajs', 30.066607,31.216755),
+(11, 'Rakha Veterinary Clinic','Stray Dogs','Rakha-Veterinary-Clinic','pSjq3hd', 30.004273,31.199707),
+
+(12, 'South Cairo Electricity Distribution Co. - El Haram 2','Power','Electricity-Distribution-Co','pcs3hd', 30.005195,31.190817),
+(13, 'South Cairo Electricity Distribution Co. - Zamalek','Power','Elec-Distribution-Zamalek','p18swhd', 30.059797,31.222409),
+
+(14, 'Central Fire Department','Fire','Central-Fire-Department','CXa8WFz', 30.059082,31.221476),
+(15, 'Al omrania fire department','Fire','Alomraniafiredepartment','FzWOb20d', 29.999531,31.205326),
+(16, 'Giza Fire Station','Fire','Giza-Fire-Station','PE12PJyq', 30.015869,31.214489), 
+
+(17, 'Gezira Traffic Offices','Traffic','Giza-Fire-Station','PE12PJyq', 30.069041,31.228261),
+(18, 'Hadaeq El Ahram Traffic','Traffic','Hadaeq-ElAhram-Traffic','qsYfJ6Uq4', 30.006280,31.136006),
+(19, 'Faisal Traffic Police Station','Traffic','Faisal-Traffic-Police-Station','Ueaj7wgWn', 30.014646,31.204086);
+
+
+-- Table structure for table `incident_warnings`
+--
+
+DROP TABLE IF EXISTS `incident_warnings`;
+
+
+CREATE TABLE `incident_warnings` (
+  `IncidentWarningId` int(11) NOT NULL,
+  `DepartmentId` int(11) NOT NULL,
+  `IncidentDetails` text NOT NULL,
+  `Category` varchar(70) NOT NULL,
+  `Incident_datetime` datetime NOT NULL,
+  `AreaId` int(11) NOT NULL,
+  `Severity` enum('Urgent','High','Normal','Low') NOT NULL,
+  `Incident_warning_headline` varchar(70) NOT NULL,
+  `Longitude` double NOT NULL,
+  `Latitude` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `incident_warnings` (`IncidentWarningId`, `DepartmentId`,`IncidentDetails`, `Category`, `Incident_datetime`,`AreaId`,`Severity`
+,`Incident_warning_headline`,`Longitude`,`Latitude`) VALUES
+(1, 6,'series of theft incidents be worry','theft','2019-05-02 03:56:39', 1,'Urgent', 'Incident_warning_headline',29.991146,31.150987),
+(2, 5,'Armed Robbery with high level of threat','Robbery','2019-04-11 13:56:39', 2,'Urgent', 'Incident_warning_headline',30.001124,31.172717),
+(3, 4,'Dangerous road blockers','theft','2019-1-24 1:06:09',3, 'High', 'Incident_warning_headline',29.995233, 31.179290),
+(4, 6,'Missing Person whose name is ..... and age is ........','Missing Person','2019-04-02 12:06:49', 1,'Normal', 'Incident_warning_headline', 30.055572,31.219641),
+(5, 7,'Sewer Leakage','Sewer leackage','2019-03-14 15:56:39', 3,'Normal', 'Incident_warning_headline',29.980979, 31.168377),
+(6, 8,'Water Outage','Water Outage','2019-01-29 11:50:09', 1,'Normal', 'Incident_warning_headline',30.041589, 31.223612),
+(7, 9,'Stray Dogs are alot here, be cautious','Stray Dogs','2019-03-4 22:55:00', 3,'High', 'Incident_warning_headline',30.003313, 31.184694),
+(8, 13,'Power Outage in all area for 6 hours','Power Outage','2019-02-11 17:00:30', 1,'Normal', 'Incident_warning_headline',30.058467, 31.222071),
+(9, 15,'Fire in a near building be aware in case of spread','Fire','2019-03-18 21:56:33', 3,'High', 'Incident_warning_headline',29.999560, 31.174012),
+(10, 16,'Fire on a near building be aware in case of spread','Fire','2019-01-01 16:56:20', 2,'Urgent', 'Incident_warning_headline',30.000767, 31.169720),
+(11, 17,'Traffic jam along the road','Road Problems','2019-04-02 15:55:09', 1,'Low', 'Incident_warning_headline',30.059015, 31.218349),
+(12, 18,'Blocked road because of a series of car accidents','Road Problems','2019-03-30 12:04:02', 2,'High', 'Incident_warning_headline',30.004037, 31.124348),
+(13, 19,'Blocked road because of heavy Rain','Road Problems','2019-01-01 06:56:21', 2,'High', 'Incident_warning_headline',29.992200, 31.141469);
+
+
+
+-- --------------------------------------------------------
+
 
 -- --------------------------------------------------------
 
@@ -100,7 +178,8 @@ CREATE TABLE `incidents` (
 -- Dumping data for table `incidents`
 --
 
-INSERT INTO `incidents` (`IncidentId`, `UserId`, `Incident_name`, `Description`, `Category`, `Severity`, `Incident_datetime`, `Longitude`, `Latitude`, `AreaId`, `Incident_photo`, `Number_of_upvotes`, `Number_of_downvotes`) VALUES
+INSERT INTO `incidents` (`IncidentId`, `UserId`, `Incident_name`, `Description`, `Category`, `Severity`, `Incident_datetime`, `Longitude`, `Latitude`,
+ `AreaId`, `Incident_photo`, `Number_of_upvotes`, `Number_of_downvotes`) VALUES
 (1, 32, 'Assault', NULL, 'Assault', 'High', '2019-12-05 12:39:16', 31.21909075986, 30.056582141259, 1, NULL, 7, 3),
 (2, 5, 'Assault', NULL, 'Assault', 'Urgent', '2018-12-03 12:39:16', 31.126242183351, 30.017965481496, 2, NULL, 7, 10),
 (3, 1, 'Dangerous Fogs in Highway', NULL, 'Dangerous Weather', 'Normal', '2019-03-03 07:37:40', 31.119047655478, 30.004672493205, 2, NULL, 5, 4),
@@ -247,27 +326,6 @@ INSERT INTO `incidents` (`IncidentId`, `UserId`, `Incident_name`, `Description`,
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `incident_warnings`
---
-
-DROP TABLE IF EXISTS `incident_warnings`;
-
-
-CREATE TABLE `incident_warnings` (
-  `IncidentWarningId` int(11) NOT NULL,
-  `DepartmentId` int(11) NOT NULL,
-  `IncidentDetails` text NOT NULL,
-  `Category` varchar(70) NOT NULL,
-  `Incident_datetime` datetime NOT NULL,
-  `AreaId` int(11) NOT NULL,
-  `Longitude` double NOT NULL,
-  `Latitiude` double NOT NULL,
-  `Severity` enum('Urgent','High','Normal','Low') NOT NULL,
-  `Incident_warning_headline` varchar(70) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `notifications`
@@ -292,11 +350,11 @@ CREATE TABLE `notifications` (
 DROP TABLE IF EXISTS `organization_in_area`;
 
 
-CREATE TABLE `organization_in_area` (
+CREATE TABLE `Organization_in_area` (
   `OrganizationId` int(11) NOT NULL,
   `Organization_name` varchar(50) NOT NULL,
   `Organization_Description` text NOT NULL,
-  `Help_category` varchar(100) NOT NULL,
+  `category` varchar(100) NOT NULL,
   `Organization_area` varchar(100) NOT NULL,
   `AreaId` int(11) NOT NULL,
   `Organization_longitude` double NOT NULL,
@@ -304,6 +362,7 @@ CREATE TABLE `organization_in_area` (
   `Organization_email` varchar(100) NOT NULL,
   `Organization_phone_contact` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- --------------------------------------------------------
 
