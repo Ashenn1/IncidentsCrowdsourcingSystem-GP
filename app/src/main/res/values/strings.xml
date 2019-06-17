@@ -30,4 +30,30 @@
     <string name="btn_sign_out">Sign Out</string>
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="choose">Choose</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="incidentphoto">Incident Photo</string>
+    <string name="category">Category</string>
+    <string name="severity">Severity</string>
+    <string name="incident_category">Incident Category</string>
+    <string name="urgent">Urgent</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string-array name="category_array">
+        <item>Road Problems</item>
+        <item>Stray Dogs</item>
+        <item>Harassment</item>
+        <item>Assault</item>
+        <item>Theft/Robbery</item>
+        <item>Power Outage</item>
+        <item>Water Outage</item>
+        <item>Missing People</item>
+        <item>Missing Pet</item>
+        <item>Garbage In The Area</item>
+        <item>Sewer Leakage</item>
+        <item>Dangerous Weather</item>
+        <item>Unauthorized Means Of Transport</item>
+    </string-array>
 </resources>

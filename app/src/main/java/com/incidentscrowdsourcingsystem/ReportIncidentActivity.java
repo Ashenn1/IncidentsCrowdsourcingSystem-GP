@@ -7,8 +7,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -31,6 +33,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     private Button btnChoose;
     private ImageView ImageView1;
+    private CategorySpinnerActivity spinner;
 
     private Uri image;
     byte[] bData ;
@@ -43,6 +46,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
 
+//IMAGE PLUS BUTTON
         btnChoose = (Button) findViewById(R.id.btnChoose);
         //TextView1 = (TextView) findViewById(R.id.textView1);
         ImageView1 = (ImageView) findViewById(R.id.imageView);
@@ -53,6 +57,20 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 chooseFile();
             }
         });
+
+//CATEGORY DROPDOWN MENU
+        Spinner spinner = (Spinner) findViewById(R.id.category_spinner);
+        spinner.setOnItemSelectedListener(spinner.getOnItemSelectedListener());
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.category_array, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
     }
 
@@ -66,7 +84,6 @@ public class ReportIncidentActivity extends AppCompatActivity {
         Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
 
-
         // to display the image , make use of a method called onActivityResult.
         startActivityForResult(chooserIntent, PICK_IMAGE);
     }
@@ -75,11 +92,6 @@ public class ReportIncidentActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         if (requestCode == PICK_IMAGE) {
-            //filePath = data.getData();
-
-            //Log.d("FILE DATA" , filePath.toString());
-            //TextView1.setText(filePath.toString());
-
             try {
                 image = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(image);
