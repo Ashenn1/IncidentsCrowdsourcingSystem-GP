@@ -51,7 +51,7 @@
             tools:srcCompat="@tools:sample/avatars[0]" />
 
         <EditText
-            android:id="@+id/TitleBox"
+            android:id="@+id/titleBox"
             android:layout_width="303dp"
             android:layout_height="57dp"
             android:layout_alignParentTop="true"
@@ -77,27 +77,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="472dp"
-            android:layout_marginStart="100dp" />
+            android:layout_marginStart="31dp"
+            android:layout_marginLeft="31dp"
+            android:layout_marginTop="451dp"
+            android:layout_toEndOf="@+id/category"
+            android:layout_toRightOf="@+id/category" />
 
         <TextView
             android:id="@+id/category"
-            android:layout_width="93dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/category_spinner"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="475dp"
+            android:layout_marginTop="452dp"
             android:layout_marginBottom="23dp"
-            android:textSize="17dp"
-            android:text="@string/category" />
+            android:text="@string/category"
+            android:textSize="17sp" />
 
         <RadioGroup
             android:id="@+id/severity_radio_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="528dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="525dp"
             android:layout_alignParentTop="true"
             android:orientation="horizontal">
 
@@ -105,12 +105,12 @@
                 android:id="@+id/severity1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="650dp"
                 android:text="@string/urgent" />
             <RadioButton
                 android:id="@+id/severity2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="@string/low"/>
             <RadioButton
                 android:id="@+id/severity3"
@@ -126,34 +126,44 @@
 
         <TextView
             android:id="@+id/severity"
-            android:layout_width="93dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/severity_radio_group"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="535dp"
+            android:layout_marginTop="496dp"
             android:layout_marginBottom="23dp"
-            android:textSize="17dp"
-            android:text="@string/severity" />
+            android:text="@string/severity"
+            android:textSize="17sp" />
 
         <Spinner
             android:id="@+id/area_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="594dp"
-            android:layout_marginStart="100dp" />
+            android:layout_marginStart="61dp"
+            android:layout_marginLeft="61dp"
+            android:layout_marginTop="583dp"
+            android:layout_toEndOf="@+id/area"
+            android:layout_toRightOf="@+id/area" />
 
         <TextView
             android:id="@+id/area"
-            android:layout_width="93dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/severity_radio_group"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="595dp"
+            android:layout_marginTop="582dp"
             android:layout_marginBottom="23dp"
             android:text="@string/area"
-            android:textSize="17dp" />
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/submitReport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="629dp"
+            android:text="@string/btn_submit" />
 
 
     </RelativeLayout>

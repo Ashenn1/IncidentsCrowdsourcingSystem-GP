@@ -41,6 +41,7 @@
     <string name="medium">Medium</string>
     <string name="high">High</string>
     <string-array name="category_array">
+        <item>None</item>
         <item>Road Problems</item>
         <item>Stray Dogs</item>
         <item>Harassment</item>
@@ -57,8 +58,10 @@
     </string-array>
     <string name="area">Area</string>
     <string-array name="area_array">
+        <item>None</item>
         <item>Zamalek</item>
         <item>Al Haram</item>
         <item>Al Omraneyah</item>
     </string-array>
+    <string name="btn_submit">Submit</string>
 </resources>
