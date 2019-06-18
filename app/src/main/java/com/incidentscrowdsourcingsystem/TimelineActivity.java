@@ -32,7 +32,7 @@ public class TimelineActivity extends AppCompatActivity {
     private ArrayList <Integer> UpVote = new ArrayList <>();
     private ArrayList <Integer >DownVote =new ArrayList <>();
     private  ArrayList<Date> IncidentDateTime= new ArrayList<>();
-    private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
+    private String timeline_url = "http://localhost/ICS-Web/Timeline.php";
     RequestQueue request ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,6 @@ public class TimelineActivity extends AppCompatActivity {
     private void DataBaseHandling ()
 
     {
-
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                 (Request.Method.GET, timeline_url, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -56,7 +55,7 @@ public class TimelineActivity extends AppCompatActivity {
                             Incident_title.add(response.getString("incidentTitle"));
                             IncidentCategory.add(response.getString("incidentCategory"));
                             IncidentSeverity.add(response.getString("incidentSeverity"));
-                            UserName.add(response.getString("UserName"));
+                            UserName.add(response.getString("userName"));
                             UpVote.add(response.getInt("UpVote"));
                             DownVote.add(response.getInt("DownVote"));
                             //IncidentDateTime.add(response.getInt(""))

@@ -117,6 +117,7 @@ public class SignInActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),
                                                 "Successfully Logged in", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
+                                        startActivity(new Intent(SignInActivity.this, TimelineActivity.class));
 
                                     }else{
                                         Toast.makeText(getApplicationContext(),
