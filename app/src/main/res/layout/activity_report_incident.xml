@@ -157,7 +157,7 @@
             android:textSize="17sp" />
 
         <Button
-            android:id="@+id/submitReport"
+            android:id="@+id/btn_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
