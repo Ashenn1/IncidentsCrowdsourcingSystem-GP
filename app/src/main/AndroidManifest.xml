@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".TimelineActivity"></activity>
-        <activity android:name=".SignInActivity">
+        <activity android:name=".ReportIncidentActivity"></activity>
+        <activity android:name=".TimelineActivity" />
+        <activity android:name=".SubscribeToArea">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +23,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ReportIncidentActivity" android:exported="true"/>
+        <activity
+            android:name=".SignInActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
