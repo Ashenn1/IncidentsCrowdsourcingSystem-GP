@@ -58,7 +58,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Get updated InstanceID token.
         Log.d(TAG, "Refreshed token: " + token);
-/*
+
         // now subscribe to `global` topic to receive app wide notifications
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_GLOBAL)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -75,7 +75,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
             }
         });
-*/
+
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.
