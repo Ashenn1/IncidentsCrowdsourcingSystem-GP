@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -51,6 +52,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private Bitmap incidentImage;
     Uri image;
 
+    private ProgressBar progressBar;
+
     private String categoryChosen;
     private String areaChosen;
 
@@ -70,7 +73,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.report_incident_toolbar);
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +92,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 chooseFile();
             }
         });
@@ -367,7 +374,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
 

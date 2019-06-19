@@ -191,6 +191,12 @@
                 android:layout_marginTop="626dp"
                 android:text="@string/btn_submit" />
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
 
         </RelativeLayout>
     </ScrollView>
