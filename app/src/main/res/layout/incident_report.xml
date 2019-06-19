@@ -1,124 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/profileimage"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+       />
+
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="272dp"
         android:layout_height="39dp"
         android:text="UserName"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="19dp" />
+        android:layout_toRightOf="@+id/profileImage"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileimage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@mipmap/profileimage"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="3dp">
-
-    </de.hdodenhof.circleimageview.CircleImageView>
+        />
 
     <TextView
         android:id="@+id/incTitle"
         android:layout_width="392dp"
         android:layout_height="46dp"
         android:text="Title"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="103dp" />
+        android:layout_marginTop="115dp"
+        />
 
     <TextView
         android:id="@+id/incContent"
         android:layout_width="381dp"
         android:layout_height="89dp"
         android:text="Description"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="171dp" />
+        android:layout_marginTop="180dp" />
 
     <ImageView
         android:id="@+id/incidentImage"
         android:layout_width="254dp"
         android:layout_height="96dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="280dp" />
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="70dp"
+         />
 
     <Button
         android:id="@+id/DownVoteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DownVote"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="300dp"
-        tools:layout_editor_absoluteY="630dp" />
+        android:layout_alignTop="@+id/incidentImage"
+        android:layout_marginTop="120dp"
+        android:layout_alignLeft="@id/incidentImage"
+        android:layout_marginLeft="230dp"
+
+       />
 
     <Button
         android:id="@+id/upVoteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UpVote"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="630dp" />
+        android:layout_alignRight="@+id/DownVoteButton"
+        android:layout_alignTop="@id/incidentImage"
+        android:layout_marginRight="120dp"
+        android:layout_marginTop="120dp"
+         />
 
     <TextView
         android:id="@+id/incident-category"
-        android:layout_width="123dp"
-        android:layout_height="35dp"
+        android:layout_width="115dp"
+        android:layout_height="28dp"
+        android:layout_alignTop="@id/category"
         android:text="Category "
         android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="471dp" />
+
+        />
 
     <TextView
         android:id="@+id/category"
-        android:layout_width="173dp"
+        android:layout_width="135dp"
         android:layout_height="28dp"
-        android:text="TextView"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="471dp" />
+        android:text="Incident Type "
+        android:layout_alignTop="@id/upVoteButton"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="140dp"
+         />
 
     <TextView
         android:id="@+id/severity"
-        android:layout_width="123dp"
-        android:layout_height="35dp"
+        android:layout_width="115dp"
+        android:layout_height="28dp"
         android:text="Severity "
         android:textSize="16sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="539dp" />
+        android:layout_alignTop="@id/category"
+        android:layout_marginTop="50dp"
+        />
 
     <TextView
         android:id="@+id/incident-severity"
-        android:layout_width="170dp"
-        android:layout_height="25dp"
+        android:layout_width="135dp"
+        android:layout_height="28dp"
         android:text="Medium"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="539dp" />
+        android:layout_alignTop="@id/severity"
+        android:layout_marginLeft="140dp"
+        />
 
     <EditText
         android:id="@+id/incDate"
-        android:layout_width="222dp"
+        android:layout_width="130dp"
         android:layout_height="34dp"
         android:ems="10"
         android:inputType="date"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="407dp" />
+         android:layout_alignTop="@id/userName"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="100dp"
+        />
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
 

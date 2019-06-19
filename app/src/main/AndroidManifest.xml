@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity android:name=".NotificationListFragement"></activity>
         <activity android:name=".SubscribeToArea" />
         <activity android:name=".SignInActivity" />
@@ -28,6 +29,7 @@
         <activity
             android:name=".SignUpActivity"
             android:exported="true" />
+
     </application>
 
 </manifest>
