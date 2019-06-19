@@ -8,7 +8,7 @@
     tools:context=".ReportIncidentActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar3"
+        android:id="@+id/report_incident_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#2BB499"
@@ -20,6 +20,7 @@
         app:layout_constraintVertical_bias="0.035"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="@string/reportActivityHeader" />
 
     <ScrollView
