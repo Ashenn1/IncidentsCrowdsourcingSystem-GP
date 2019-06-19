@@ -1,57 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp"
+    android:paddingBottom="30dp"
     >
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile-image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@mipmap/profileimage"
-        tools:ignore="MissingConstraints" />
+        android:id="@+id/profileimage"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/profileimage" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_toRightOf="@id/profile-image"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="80dp"
         android:text="Incident title"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="87dp"
-        tools:ignore="MissingConstraints" />
+        />
+
+    <TextView
+        android:id="@+id/Username"
+        android:layout_width="146dp"
+        android:layout_height="23dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@+id/profileimage"
+        android:text="User Name">
+
+    </TextView>
 
     <Button
         android:id="@+id/like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="110dp"
         android:text="UpVote"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="138dp" />
+       />
 
     <Button
         android:id="@+id/dislike"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/like"
+        android:layout_marginTop="110dp"
+        android:layout_toLeftOf="@+id/like"
         android:text="DownVote"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="273dp"
-        tools:layout_editor_absoluteY="139dp" />
 
-    <TextView
-        android:id="@+id/Username"
-        android:layout_width="146dp"
-        android:layout_height="23dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="16dp"
-        tools:ignore="MissingConstraints" />
+        />
 
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

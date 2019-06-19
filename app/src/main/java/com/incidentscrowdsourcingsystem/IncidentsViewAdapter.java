@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,13 +31,13 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
 
     public IncidentsViewAdapter(Context myContext, ArrayList<String> incidentDescription, ArrayList<String> incidentTitle, ArrayList<String> incidentSeverity, ArrayList<String> incidentCategory, ArrayList<String> username,ArrayList<Integer> upvote, ArrayList<Integer> downvote) {
         this.myContext = myContext;
-        IncidentDescription = incidentDescription;
-        Incidenttitle=incidentTitle;
-        IncidentSeverity=incidentSeverity;
-        IncidentCategory=incidentCategory;
-        UserName= username;
-        UpVote=upvote;
-        DownVote=downvote;
+        this.IncidentDescription = incidentDescription;
+        this.Incidenttitle=incidentTitle;
+        this.IncidentSeverity=incidentSeverity;
+        this.IncidentCategory=incidentCategory;
+        this.UserName= username;
+        this.UpVote=upvote;
+        this.DownVote=downvote;
     }
 
 
@@ -44,38 +45,44 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list,viewGroup,false);
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder= new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder,final int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int i) {
 
-
-        holder.Title.setText(Incidenttitle.get(i));
-        holder.username.setText(UserName.get(i));
-       // holder.upvote.setText(UpVote.get(i));
-        //holder.downvote.setText(DownVote.get(i));
-        holder.parent_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+       try {
+           holder.Title.setText(Incidenttitle.get(i));
+           holder.username.setText(UserName.get(i));
+           // holder.upvote.setText(UpVote.get(i));
+           //holder.downvote.setText(DownVote.get(i));
+           holder.parent_layout.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View view) {
                 Intent intent = new Intent(myContext,IncidentReportActivity.class);
-                intent.putExtra("Incident-Title",Incidenttitle.get(i));
-                intent.putExtra("Incident-Description",IncidentDescription.get(i));
-                intent.putExtra("Incident-Category",IncidentCategory.get(i));
-                intent.putExtra("Incident-Severity",IncidentSeverity.get(i));
-                intent.putExtra("UserName",UserName.get(i));
+                intent.putExtra("Incident-Title",Incidenttitle.get(holder.getAdapterPosition())) ;
+                intent.putExtra("Incident-Description",IncidentDescription.get(holder.getAdapterPosition()));
+                intent.putExtra("Incident-Category",IncidentCategory.get(holder.getAdapterPosition()));
+                intent.putExtra("Incident-Severity",IncidentSeverity.get(holder.getAdapterPosition()));
+                intent.putExtra("UserName",UserName.get(holder.getAdapterPosition()));
                // intent.putExtra("UpVote",UpVote.get(i));
                 //intent.putExtra("DownVote",DownVote.get(i));
                 myContext.startActivity(intent);
-            }
-        });
+               }
+           });
+       }
+       catch (NullPointerException e)
+       {
+           e.getMessage();
+       }
+
 
     }
 
     @Override
     public int getItemCount() {
-        return Incidenttitle.size();
+        return Incidenttitle.size()+1 ;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -87,7 +94,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image=itemView.findViewById(R.id.profile_image);
+            image=itemView.findViewById(R.id.profileimage);
             Title=itemView.findViewById(R.id.title);
             username=itemView.findViewById(R.id.Username);
             upvote=itemView.findViewById(R.id.like);
