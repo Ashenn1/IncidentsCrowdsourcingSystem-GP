@@ -46,20 +46,16 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private static final String KEY_IMAGE = "image";
     private static final String KEY_EMPTY = "";
 
-    private Button btnChoose, btnSubmit;
     private ImageView ImageView1;
-    private Uri image;
     private Bitmap incidentImage;
 
-    private Spinner areaSpinner, categorySpinner;
     private String categoryChosen;
     private String areaChosen;
 
     private EditText inputTitle, inputDescription;
 
-    private RadioGroup severity;
-    private RadioButton severityChoiceButton;
-    private int severitySelected;
+    //private RadioButton severityChoiceButton;
+    //private int severitySelected;
     private int severityChoice;
 
     public static final int PICK_IMAGE = 1;
@@ -73,7 +69,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_incident);
 
 //IMAGE PLUS BUTTON
-        btnChoose = (Button) findViewById(R.id.btnChoose);
+        Button btnChoose = (Button) findViewById(R.id.btnChoose);
         ImageView1 = (ImageView) findViewById(R.id.imageView);
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +94,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
         areaDropDownMenu();
 
 //SUBMIT THE FORM
-        btnSubmit = (Button) findViewById(R.id.btn_submit);
+        Button btnSubmit = (Button) findViewById(R.id.btn_submit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +128,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE) {
             try {
-                image = data.getData();
+                Uri image = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(image);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 incidentImage = selectedImage;
@@ -150,7 +146,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
 //SEVERITY RADIO BUTTON LISTENER
     private void addListenerOnButton(){
-        severity = (RadioGroup) findViewById(R.id.severity_radio_group);
+        RadioGroup severity = (RadioGroup) findViewById(R.id.severity_radio_group);
 
 //        severitySelected = severity.getCheckedRadioButtonId();
 
@@ -161,17 +157,17 @@ public class ReportIncidentActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
-                    case R.id.severity1:
-                        severityChoice = 4;
-                        break;
-                    case R.id.severity2:
+                    case R.id.urgent:
                         severityChoice = 1;
                         break;
-                    case R.id.severity3:
+                    case R.id.low:
                         severityChoice = 2;
                         break;
-                    case R.id.severity4:
+                    case R.id.normal:
                         severityChoice = 3;
+                        break;
+                    case R.id.high:
+                        severityChoice = 4;
                         break;
                     default:
                         severityChoice = -1;
@@ -188,7 +184,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
 //CATEGORY DROPDOWN MENU
     private void categoryDropDownMenu(){
-        categorySpinner = (Spinner) findViewById(R.id.category_spinner);
+        Spinner categorySpinner = (Spinner) findViewById(R.id.category_spinner);
 
         // Create an ArrayAdapter using the string array and a default CSspinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -215,7 +211,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
 //AREA DROPDOWN MENU
     private void areaDropDownMenu(){
-        areaSpinner = (Spinner) findViewById(R.id.area_spinner);
+        Spinner areaSpinner = (Spinner) findViewById(R.id.area_spinner);
 
         // Create an ArrayAdapter using the string array and a default CSspinner layout
         ArrayAdapter<CharSequence> areaAdapter = ArrayAdapter.createFromResource(this,
@@ -256,17 +252,21 @@ public class ReportIncidentActivity extends AppCompatActivity {
             return false;
         }
 
+        if(severityChoice == -1){
+            Toast.makeText(getApplicationContext(), "Please choose the incident severity!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 
     private String BitMapToString(Bitmap bitmap){
 
-        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,10, baos);
-        byte [] b=baos.toByteArray();
-        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        byte [] b = baos.toByteArray();
 
-        return temp;
+        return Base64.encodeToString(b, Base64.DEFAULT);
     }
 
     private void uploadToDatabase(){
