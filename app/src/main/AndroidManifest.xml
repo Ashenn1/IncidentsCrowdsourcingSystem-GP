@@ -11,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ReportIncidentActivity"></activity>
+        <activity android:name=".NotificationListFragement"></activity>
+        <activity android:name=".SubscribeToArea" />
+        <activity android:name=".ReportIncidentActivity" />
         <activity android:name=".TimelineActivity" />
-        <activity android:name=".SubscribeToArea">
+        <activity android:name=".NotificationHistoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
