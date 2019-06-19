@@ -76,8 +76,6 @@ public class ReportIncidentActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.report_incident_toolbar);
-
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +90,6 @@ public class ReportIncidentActivity extends AppCompatActivity {
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
                 chooseFile();
             }
         });
@@ -117,6 +114,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+
                 uploadToDatabase();
             }
         });
