@@ -38,7 +38,7 @@
     <string name="severity">Severity</string>
     <string name="urgent">Urgent</string>
     <string name="low">Low</string>
-    <string name="medium">Medium</string>
+    <string name="normal">Normal</string>
     <string name="high">High</string>
     <string-array name="category_array">
         <item>None</item>
@@ -67,5 +67,5 @@
     <string name="subscribeToArea">Subscribe to an area to recieve notifications of incidents happening in it like:\n
     -Road Blocks\n -Power/Water Outages\n -Crimes\n -Traffic jams\n ..and many more
     </string>
-    <string name="report_activity_header">Report an Incident</string>
+    <string name="reportActivityHeader">Report an Incident</string>
 </resources>
