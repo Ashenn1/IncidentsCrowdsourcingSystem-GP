@@ -67,4 +67,5 @@
     <string name="subscribeToArea">Subscribe to an area to recieve notifications of incidents happening in it like:\n
     -Road Blocks\n -Power/Water Outages\n -Crimes\n -Traffic jams\n ..and many more
     </string>
+    <string name="report_activity_header">Report an Incident</string>
 </resources>

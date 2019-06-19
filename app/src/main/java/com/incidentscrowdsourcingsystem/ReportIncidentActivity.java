@@ -38,7 +38,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private static final String KEY_TITLE = "Title";
+    private static final String KEY_TITLE = "title";
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_SEVERITY = "severity";
@@ -58,8 +58,9 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private EditText inputTitle, inputDescription;
 
     private RadioGroup severity;
-    private RadioButton severityChoice;
+    private RadioButton severityChoiceButton;
     private int severitySelected;
+    private int severityChoice;
 
     public static final int PICK_IMAGE = 1;
 
@@ -151,12 +152,39 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private void addListenerOnButton(){
         severity = (RadioGroup) findViewById(R.id.severity_radio_group);
 
-        severitySelected = severity.getCheckedRadioButtonId();
-        severityChoice = (RadioButton) findViewById(severitySelected);
+//        severitySelected = severity.getCheckedRadioButtonId();
 
-        Toast.makeText(getApplicationContext(),
-                severityChoice.getText(), Toast.LENGTH_SHORT).show();
+//        severityChoiceButton = (RadioButton) findViewById(severitySelected);
+
+        severity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.severity1:
+                        severityChoice = 4;
+                        break;
+                    case R.id.severity2:
+                        severityChoice = 1;
+                        break;
+                    case R.id.severity3:
+                        severityChoice = 2;
+                        break;
+                    case R.id.severity4:
+                        severityChoice = 3;
+                        break;
+                    default:
+                        severityChoice = -1;
+                        break;
+                }
+
+            Toast.makeText(getApplicationContext(),
+                    Integer.toString(severityChoice), Toast.LENGTH_SHORT).show();
+            }
+            // do something with value
+        });
     }
+
 
 //CATEGORY DROPDOWN MENU
     private void categoryDropDownMenu(){
@@ -255,7 +283,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 request.put(KEY_TITLE, incidentTitle);
                 request.put(KEY_DESCRIPTION, incidentDescription);
                 request.put(KEY_CATEGORY, categoryChosen);
-                request.put(KEY_SEVERITY, severitySelected);
+                request.put(KEY_SEVERITY, severityChoice);
                 request.put(KEY_AREA, areaChosen);
                 request.put(KEY_IMAGE, incidentPhoto);
 
@@ -300,10 +328,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    Log.d("error",error.getMessage());
                     //Display error message whenever an error occurs
                     Toast.makeText(getApplicationContext(),
-                            error.getMessage(), Toast.LENGTH_SHORT).show();
+                            error.getMessage(), Toast.LENGTH_LONG).show();
 
                 }
             });
