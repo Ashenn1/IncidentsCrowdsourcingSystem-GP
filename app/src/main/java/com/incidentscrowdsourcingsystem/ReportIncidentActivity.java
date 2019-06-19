@@ -49,6 +49,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     private ImageView ImageView1;
     private Bitmap incidentImage;
+    Uri image;
 
     private String categoryChosen;
     private String areaChosen;
@@ -68,6 +69,16 @@ public class ReportIncidentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.report_incident_toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //onBackPressed();
+                startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
+            }
+        });
 
 //IMAGE PLUS BUTTON
         Button btnChoose = (Button) findViewById(R.id.btnChoose);
@@ -103,14 +114,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.report_incident_toolbar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
-            }
-        });
 
     }
 
@@ -118,6 +122,16 @@ public class ReportIncidentActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
         startActivity(intent);
     }*/
+
+    @Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 
     private void chooseFile() {
         Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -137,7 +151,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE) {
             try {
-                Uri image = data.getData();
+                image = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(image);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 incidentImage = selectedImage;
