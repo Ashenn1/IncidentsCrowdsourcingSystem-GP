@@ -35,13 +35,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         // now subscribe to `global` topic to receive app wide notifications
-        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_GLOBAL)
+        FirebaseMessaging.getInstance().subscribeToTopic("global")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "Subscribed Succesfully!";
+                        String msg;
                         if (!task.isSuccessful()) {
                             msg = "Subscription Failed!";
+                        }
+                        else{
+                            msg = "Subscribed Succesfully!";
                         }
                         Log.d(TAG, msg);
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
@@ -55,21 +58,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Get updated InstanceID token.
         Log.d(TAG, "Refreshed token: " + token);
-
+/*
         // now subscribe to `global` topic to receive app wide notifications
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC_GLOBAL)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                String msg = "Subscribed Succesfully!";
+                String msg;
                 if (!task.isSuccessful()) {
                     msg = "Subscription Failed!";
+                }
+                else{
+                    msg = "Subscribed Succesfully!";
                 }
                 Log.d(TAG, msg);
                 Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
         // Instance ID token to your app server.

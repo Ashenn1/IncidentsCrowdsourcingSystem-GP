@@ -13,7 +13,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".NotificationListFragement"></activity>
         <activity android:name=".SubscribeToArea" />
-        <activity android:name=".ReportIncidentActivity" />
+        <activity android:name=".SignInActivity" />
         <activity android:name=".TimelineActivity" />
         <activity android:name=".NotificationHistoryActivity">
             <intent-filter>
@@ -24,9 +24,9 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".ReportIncidentActivity" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".SignUpActivity"
             android:exported="true" />
     </application>
 

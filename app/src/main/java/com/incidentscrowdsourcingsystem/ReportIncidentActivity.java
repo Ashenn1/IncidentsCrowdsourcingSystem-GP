@@ -41,7 +41,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private static final String KEY_TITLE = "Title";
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_CATEGORY = "category";
-    private static final String KEY_SEVERITY = "0";
+    private static final String KEY_SEVERITY = "severity";
     private static final String KEY_AREA = "area";
     private static final String KEY_IMAGE = "image";
     private static final String KEY_EMPTY = "";
@@ -63,7 +63,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     public static final int PICK_IMAGE = 1;
 
-    private String register_url = "localhost/ICS_Web/reporting_incident.php";
+    private String register_url = "https://crowd-sourcing-system.herokuapp.com/reporting_incident.php";
 
 
     @Override
@@ -218,12 +218,12 @@ public class ReportIncidentActivity extends AppCompatActivity {
             return false;
         }
 
-        if (category == "None") {
+        if ( category.equals("None") ) {
             Toast.makeText(getApplicationContext(), "Please choose a category!", Toast.LENGTH_SHORT).show();
             return false ;
         }
 
-        if(area == "None"){
+        if(area.equals("None") ){
             Toast.makeText(getApplicationContext(), "Please enter the area of the incident!", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -246,21 +246,33 @@ public class ReportIncidentActivity extends AppCompatActivity {
         String incidentDescription = inputDescription.getText().toString();
         String incidentPhoto = BitMapToString(incidentImage);
 
+
         if(validateInputs(incidentTitle, categoryChosen, areaChosen)){
+
             JSONObject request = new JSONObject();
             try {
+
                 request.put(KEY_TITLE, incidentTitle);
                 request.put(KEY_DESCRIPTION, incidentDescription);
                 request.put(KEY_CATEGORY, categoryChosen);
-                request.put(KEY_SEVERITY, Integer.toString(severitySelected));
+                request.put(KEY_SEVERITY, severitySelected);
                 request.put(KEY_AREA, areaChosen);
                 request.put(KEY_IMAGE, incidentPhoto);
-            } catch (JSONException e) { e.printStackTrace(); }
+
+            } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(),
+                        "ERROR!", Toast.LENGTH_SHORT).show();
+
+                e.printStackTrace();
+            }
 
             JsonObjectRequest jsArrayRequest = new JsonObjectRequest(Request.Method.POST, register_url, request, new Response.Listener<JSONObject>() {
+
                 @Override
                 public void onResponse(JSONObject response) {
-                    Log.d("PHP response" ,"php respose");
+
+                    Toast.makeText(getApplicationContext(),
+                            "php post", Toast.LENGTH_SHORT).show();
                     try {
                         //Check if user got registered successfully
                         if (response.getInt(KEY_STATUS) == 0) {
@@ -298,6 +310,14 @@ public class ReportIncidentActivity extends AppCompatActivity {
             // Access the RequestQueue through your singleton class.
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsArrayRequest);
         }
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //progressBar.setVisibility(View.GONE);
+    }
+
 
 }
