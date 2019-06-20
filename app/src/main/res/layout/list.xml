@@ -44,16 +44,17 @@
             >
             <Button
                 android:id="@+id/upvote"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="UpVote"
                 android:textSize="10sp"
                 android:layout_marginLeft="130dp"
+                android:shadowColor="@color/white"
                 />
             <Button
                 android:id="@+id/downvote"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="DownVote"
                 android:textSize="10sp"
 

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="120dp"
+     android:orientation="horizontal">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImage"
         android:layout_width="80dp"
@@ -15,25 +19,27 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
        />
+     <TextView
+         android:id="@+id/userName"
+         android:layout_width="272dp"
+         android:layout_height="39dp"
+         android:text="UserName"
+         android:layout_toRightOf="@+id/profileImage"
+         android:layout_marginTop="20dp"
+         android:layout_marginLeft="15dp"
+
+         />
+
+      </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="272dp"
-        android:layout_height="39dp"
-        android:text="UserName"
-        android:layout_toRightOf="@+id/profileImage"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
 
-        />
 
     <TextView
         android:id="@+id/incTitle"
         android:layout_width="392dp"
         android:layout_height="46dp"
         android:text="Title"
-        android:layout_marginTop="115dp"
         />
 
     <TextView
@@ -41,46 +47,32 @@
         android:layout_width="381dp"
         android:layout_height="89dp"
         android:text="Description"
-        android:layout_marginTop="180dp" />
+        android:layout_marginTop="10dp"
+         />
+
 
     <ImageView
         android:id="@+id/incidentImage"
         android:layout_width="254dp"
         android:layout_height="96dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+
          />
 
-    <Button
-        android:id="@+id/DownVoteButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DownVote"
-        android:layout_alignTop="@+id/incidentImage"
-        android:layout_marginTop="120dp"
-        android:layout_alignLeft="@id/incidentImage"
-        android:layout_marginLeft="230dp"
-
-       />
-
-    <Button
-        android:id="@+id/upVoteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UpVote"
-        android:layout_alignRight="@+id/DownVoteButton"
-        android:layout_alignTop="@id/incidentImage"
-        android:layout_marginRight="120dp"
-        android:layout_marginTop="120dp"
-         />
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
     <TextView
         android:id="@+id/incident-category"
         android:layout_width="115dp"
         android:layout_height="28dp"
-        android:layout_alignTop="@id/category"
         android:text="Category "
-        android:textSize="16sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
 
         />
 
@@ -89,29 +81,37 @@
         android:layout_width="135dp"
         android:layout_height="28dp"
         android:text="Incident Type "
-        android:layout_alignTop="@id/upVoteButton"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="140dp"
+        android:textSize="18sp"
+
          />
 
-    <TextView
-        android:id="@+id/severity"
-        android:layout_width="115dp"
-        android:layout_height="28dp"
-        android:text="Severity "
-        android:textSize="16sp"
-        android:layout_alignTop="@id/category"
-        android:layout_marginTop="50dp"
-        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
 
     <TextView
         android:id="@+id/incident-severity"
+        android:layout_width="115dp"
+        android:layout_height="28dp"
+        android:text="Severity "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/severity"
         android:layout_width="135dp"
         android:layout_height="28dp"
+        android:textSize="18sp"
         android:text="Medium"
-        android:layout_alignTop="@id/severity"
-        android:layout_marginLeft="140dp"
+
         />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/incDate"
@@ -119,11 +119,37 @@
         android:layout_height="34dp"
         android:ems="10"
         android:inputType="date"
-         android:layout_alignTop="@id/userName"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+
+
+
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/upVoteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UpVote"
+            android:layout_marginLeft="5dp"
+            />
+        <Button
+            android:id="@+id/DownVoteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DownVote"
+            android:layout_marginLeft="15dp"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
 

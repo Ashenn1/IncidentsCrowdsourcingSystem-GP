@@ -123,7 +123,7 @@ public class SignInActivity extends AppCompatActivity {
                                         progressBar.setVisibility(View.GONE);
                                         Context context ;
                                         Intent i= new Intent(SignInActivity.this,TimelineActivity.class);
-                                        i.putExtra("User-Id",user_id);
+                                        i.putExtra("userId",user_id);
                                         startActivity(i);
 
                                     }else{

@@ -25,12 +25,14 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     List<String>Description;
     List<String>Severity;
     List<String>Category;
+    List<String>Date;
     List<Integer>UpVote;
     List<Integer>DownVote;
+    List<Integer>IncidentId;
 
     private Context MyContext;
 
-    public IncidentsViewAdapter(List<String> titleReport, List<String> userName,List<String>description,List<String>severity,List<String>category,List<Integer>upVote,List<Integer>downVote ,Context myContext) {
+    public IncidentsViewAdapter(List<String> titleReport, List<String> userName,List<String>description,List<String>severity,List<String>category,List<String>date,List<Integer>upVote,List<Integer>downVote,List<Integer>incidentId ,Context myContext) {
         TitleReport = titleReport;
         UserName = userName;
         MyContext = myContext;
@@ -39,16 +41,40 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
         Category=category;
         UpVote=upVote;
         DownVote=downVote;
+        IncidentId= incidentId;
+        Date=date;
     }
 
 
     @NonNull
     @Override
-    public IncidentsViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IncidentsViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int viewType) {
         View view;
         LayoutInflater inflater=  LayoutInflater.from(MyContext) ;
         view =inflater.inflate(R.layout.list,parent,false);
         MyViewHolder ViewHolder = new MyViewHolder(view);
+        ViewHolder.Container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             Intent i=new Intent (MyContext,IncidentReportActivity.class);
+               i.putExtra("IncidentDescription",Description.get(viewType));
+               i.putExtra("IncidentTitle",TitleReport.get(viewType));
+               i.putExtra("IncidentSeverity",Severity.get(viewType));
+               i.putExtra("IncidentCategory",Category.get(viewType));
+               i.putExtra("UserName",UserName.get(viewType));
+                i.putExtra("IncidentDate",Date.get(viewType));
+               i.putExtra("UpVoteNum",UpVote.get(viewType));
+               i.putExtra("DownVoteNum",DownVote.get(viewType));
+                i.putExtra("IncidentId",IncidentId.get(viewType));
+
+
+
+
+
+
+
+            }
+        });
 
 
 
@@ -56,13 +82,45 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IncidentsViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final IncidentsViewAdapter.MyViewHolder holder, final int position) {
         holder.TitleIncident.setText(TitleReport.get(position));
         holder.NameUser.setText(UserName.get(position));
+        final int numOfClick = 0;
+        holder.DownVoteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int vote;
+                String type="DownVote";
+                if( holder.DownVoteBtn.getText()==type)
+                {
+                     vote =DownVote.get(position)+ 1;
+                    holder.DownVoteBtn.setText(vote);
+                }
+                else {
 
+                    vote = DownVote.get(position)-1;
+                    holder.DownVoteBtn.setText(type);
+                }
+            }});
+        holder.UpVoteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                int vote;
+                String type ="UpVote";
+                if( holder.UpVoteBtn.getText()==type)
+                {
+                    vote =UpVote.get(position)+ 1;
+                    holder.UpVoteBtn.setText(vote);
+                }
+                else {
+                    vote = UpVote.get(position)-1;
+                    holder.DownVoteBtn.setText(type);
+                }
+            }});
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -85,4 +143,6 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
             DownVoteBtn=itemView.findViewById(R.id.downvote);
         }
     }
+
 }
+
