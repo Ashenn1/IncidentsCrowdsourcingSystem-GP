@@ -13,16 +13,29 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <activity android:name=".NotificationListFragement"></activity>
+
         <activity android:name=".SubscribeToArea" />
         <activity android:name=".SignInActivity" android:exported="true" />
         <activity android:name=".TimelineActivity" android:exported="true" />
         <activity android:name=".ReportIncidentActivity">
+
+        <activity android:name=".ReportIncidentActivity" android:exported="true"/>
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".TimelineActivity" />
+        <activity android:name=".SubscribeToArea">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".NotificationHistoryActivity" />

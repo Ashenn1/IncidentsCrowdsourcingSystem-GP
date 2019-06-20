@@ -1,182 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true"
-    android:padding="16dp"
     tools:context=".ReportIncidentActivity">
 
-    <RelativeLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/report_incident_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content"
+        android:background="#2BB499"
+        app:layout_constraintBottom_toTopOf="@id/scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="@string/reportActivityHeader" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar3"
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/report_incident_toolbar">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#2BB499"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:title="@string/report_activity_header" />
+            android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:id="@+id/layout_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="180dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-        <LinearLayout
-            android:id="@+id/layout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="180dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+                <Button
+                    android:id="@+id/btnChoose"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/choose" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="347dp"
+                android:layout_height="116dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="-220dp"
+                android:layout_marginLeft="-220dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_toEndOf="@+id/layout_button"
+                android:layout_toRightOf="@+id/layout_button"
+                android:contentDescription="@string/incidentphoto"
+                tools:srcCompat="@tools:sample/avatars[0]" />
+
+            <EditText
+                android:id="@+id/titleBox"
+                android:layout_width="303dp"
+                android:layout_height="57dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="247dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/title"
+                android:inputType="textMultiLine" />
+
+            <EditText
+                android:id="@+id/descriptionBox"
+                android:layout_width="320dp"
+                android:layout_height="125dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="313dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/description"
+                android:inputType="textMultiLine" />
+
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="31dp"
+                android:layout_marginLeft="31dp"
+                android:layout_marginTop="451dp"
+                android:layout_toEndOf="@+id/category"
+                android:layout_toRightOf="@+id/category" />
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="452dp"
+                android:layout_marginBottom="23dp"
+                android:text="@string/category"
+                android:textSize="17sp" />
+
+            <RadioGroup
+                android:id="@+id/severity_radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="525dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/urgent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/urgent" />
+
+                <RadioButton
+                    android:id="@+id/low"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/low" />
+
+                <RadioButton
+                    android:id="@+id/normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/normal" />
+
+                <RadioButton
+                    android:id="@+id/high"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/high" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/severity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/severity_radio_group"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="496dp"
+                android:layout_marginBottom="23dp"
+                android:text="@string/severity"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/area_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="61dp"
+                android:layout_marginLeft="61dp"
+                android:layout_marginTop="583dp"
+                android:layout_toEndOf="@+id/area"
+                android:layout_toRightOf="@+id/area" />
+
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="582dp"
+                android:layout_marginBottom="23dp"
+                android:text="@string/area"
+                android:textSize="17sp" />
 
             <Button
-                android:id="@+id/btnChoose"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/choose" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="347dp"
-            android:layout_height="116dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="-220dp"
-            android:layout_marginLeft="-220dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toEndOf="@+id/layout_button"
-            android:layout_toRightOf="@+id/layout_button"
-            android:contentDescription="@string/incidentphoto"
-            tools:srcCompat="@tools:sample/avatars[0]" />
-
-        <EditText
-            android:id="@+id/titleBox"
-            android:layout_width="303dp"
-            android:layout_height="57dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="233dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:hint="@string/title"/>
-
-        <EditText
-            android:id="@+id/descriptionBox"
-            android:layout_width="320dp"
-            android:layout_height="125dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="308dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:hint="@string/description" />
-
-        <Spinner
-            android:id="@+id/category_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="31dp"
-            android:layout_marginLeft="31dp"
-            android:layout_marginTop="451dp"
-            android:layout_toEndOf="@+id/category"
-            android:layout_toRightOf="@+id/category" />
-
-        <TextView
-            android:id="@+id/category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="452dp"
-            android:layout_marginBottom="23dp"
-            android:text="@string/category"
-            android:textSize="17sp" />
-
-        <RadioGroup
-            android:id="@+id/severity_radio_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="525dp"
-            android:layout_alignParentTop="true"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/severity1"
+                android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/urgent" />
-            <RadioButton
-                android:id="@+id/severity2"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="235dp"
+                android:layout_marginTop="626dp"
+                android:text="@string/btn_submit" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/low"/>
-            <RadioButton
-                android:id="@+id/severity3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/medium"/>
-            <RadioButton
-                android:id="@+id/severity4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/high"/>
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/severity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/severity_radio_group"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="496dp"
-            android:layout_marginBottom="23dp"
-            android:text="@string/severity"
-            android:textSize="17sp" />
-
-        <Spinner
-            android:id="@+id/area_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="61dp"
-            android:layout_marginLeft="61dp"
-            android:layout_marginTop="583dp"
-            android:layout_toEndOf="@+id/area"
-            android:layout_toRightOf="@+id/area" />
-
-        <TextView
-            android:id="@+id/area"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="582dp"
-            android:layout_marginBottom="23dp"
-            android:text="@string/area"
-            android:textSize="17sp" />
-
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="250dp"
-            android:layout_marginTop="629dp"
-            android:text="@string/btn_submit" />
+                android:visibility="gone" />
 
 
-
-    </RelativeLayout>
-</ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
