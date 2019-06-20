@@ -1,7 +1,11 @@
 package com.incidentscrowdsourcingsystem;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.Display;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,39 +23,51 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
     private static final String TOPIC_GLOBAL="global";
+    public SQLiteDatabase icsDB;
+    int dbflag;
+    public final String dbPATH = "app/";
+
+   // LocalDBUtil db;
 
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
-        Log.d(TAG, "Message recieved");
+        icsDB = openOrCreateDatabase("ics_db_local", MODE_PRIVATE,null);
+        icsDB.execSQL(
+                "CREATE TABLE IF NOT EXISTS notification_history (\n" +
+                        "    notificationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n" +
+                        "    title varchar(200),\n" +
+                        "    message varchar(500),\n" +
+                        "    notificationDatetime varchar(200) NOT NULL\n" +
+                        ");"
+        );
+
+        Log.d(TAG, "Message received");
+
         Date date = new Date(remoteMessage.getSentTime());
         Format dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String dateText = dateformat.format(date);
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-
         }
 
-        // now subscribe to `global` topic to receive app wide notifications
-        FirebaseMessaging.getInstance().subscribeToTopic("global")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg;
-                        if (!task.isSuccessful()) {
-                            msg = "Subscription Failed!";
-                        }
-                        else{
-                            msg = "Subscribed Succesfully!";
-                        }
-                        Log.d(TAG, msg);
-                        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
+        // Check if message contains a notification payload.
+        if (remoteMessage.getNotification() != null) {
+            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+
+            String insertSQL = "INSERT INTO notification_history (title,message,notificationDatetime) " +
+                    "values (?,?,?);";
+
+            icsDB.execSQL(insertSQL,new String[]{remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody(),dateText});
+            Log.d(TAG, "Insertion Successful ");
+        }
+
 
     }
+
 
     @Override
     public void onNewToken(String token) {
