@@ -23,7 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-<<<<<<< HEAD
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,51 +35,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".NearbyActivity"
-            android:label="@string/title_activity_nearby">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
         <activity android:name=".NotificationListFragement" />
         <activity
-            android:name=".ReportIncidentActivity"
+            android:name=".IncidentReportActivity"
             android:exported="true" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".TimelineActivity" />
-        <activity android:name=".SubscribeToArea">
-||||||| merged common ancestors
-        <activity android:name=".NotificationListFragement"></activity>
-        <activity android:name=".ReportIncidentActivity" android:exported="true"/>
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".TimelineActivity" />
-        <activity android:name=".SubscribeToArea">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-=======
-        <activity android:name=".NotificationListFragement"></activity>
-<<<<<<< HEAD
->>>>>>> 9354d87dc8102496a03524e061a416f42b1f7d02
 
-<<<<<<< HEAD
-        </activity>
-||||||| merged common ancestors
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-=======
-||||||| merged common ancestors
-
-=======
->>>>>>> de5b90e80aabf8ed426ee4b59875c5db968ee672
         <activity android:name=".SubscribeToArea" />
         <activity android:name=".SignInActivity" android:exported="true" />
         <activity android:name=".TimelineActivity" android:exported="true" />
         <activity android:name=".ReportIncidentActivity" android:exported="true" />
->>>>>>> 9354d87dc8102496a03524e061a416f42b1f7d02
 
         <activity android:name=".NotificationHistoryActivity">
             <intent-filter>
