@@ -1,5 +1,6 @@
 package com.incidentscrowdsourcingsystem;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -26,10 +27,12 @@ public class SignInActivity extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_USERNAME = "Username";
+    private static final String KEY_USERID ="UserId";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
     private static final String KEY_EMPTY = "";
     private String login_url = "https://crowd-sourcing-system.herokuapp.com/login.php";
+    int user_id;
     private EditText inputEmail, inputPassword;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
@@ -114,10 +117,14 @@ public class SignInActivity extends AppCompatActivity {
                                     if (response.getInt(KEY_STATUS) == 0) {
                                        // session.loginUser(username,response.getString(KEY_FULL_NAME));
                                         //redirect to timeline
+                                        user_id=response.getInt(KEY_USERID);
                                         Toast.makeText(getApplicationContext(),
                                                 "Successfully Logged in", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
-                                        startActivity(new Intent(SignInActivity.this, TimelineActivity.class));
+                                        Context context ;
+                                        Intent i= new Intent(SignInActivity.this,TimelineActivity.class);
+                                        i.putExtra("User-Id",user_id);
+                                        startActivity(i);
 
                                     }else{
                                         Toast.makeText(getApplicationContext(),

@@ -14,8 +14,8 @@
 
         <activity android:name=".NotificationListFragement"></activity>
         <activity android:name=".SubscribeToArea" />
-        <activity android:name=".SignInActivity" />
-        <activity android:name=".TimelineActivity" />
+        <activity android:name=".SignInActivity" android:exported="true" />
+        <activity android:name=".TimelineActivity" android:exported="true" />
         <activity android:name=".ReportIncidentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
