@@ -68,4 +68,5 @@
     -Road Blocks\n -Power/Water Outages\n -Crimes\n -Traffic jams\n ..and many more
     </string>
     <string name="reportActivityHeader">Report an Incident</string>
+    <string name="title_activity_nearby">Map</string>
 </resources>
