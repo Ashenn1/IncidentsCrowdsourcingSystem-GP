@@ -3,6 +3,7 @@
     package="com.incidentscrowdsourcingsystem">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +17,7 @@
         <activity android:name=".ReportIncidentActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".TimelineActivity" />
-        <activity android:name=".SubscribeToArea">
+        <activity android:name=".NotificationHistoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +33,7 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
-        <activity android:name=".NotificationHistoryActivity" />
+        <activity android:name=".SubscribeToArea" />
         <activity
             android:name=".SignUpActivity"
             android:exported="true" />
