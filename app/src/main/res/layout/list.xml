@@ -1,60 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parent_layout"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="30dp"
-    >
+    android:layout_height="150dp"
+    android:layout_marginTop="5dp"
+    android:padding="8dp"
+    android:id="@+id/container">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileimage"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:src="@mipmap/profileimage" />
+        android:id="@+id/userImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/profileimage"
 
-    <TextView
-        android:id="@+id/title"
+        />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="80dp"
-        android:text="Incident title"
-        />
-
-    <TextView
-        android:id="@+id/Username"
-        android:layout_width="146dp"
-        android:layout_height="23dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_toRightOf="@+id/profileimage"
-        android:text="User Name">
-
-    </TextView>
-
-    <Button
-        android:id="@+id/like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="110dp"
-        android:text="UpVote"
-       />
-
-    <Button
-        android:id="@+id/dislike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:layout_toLeftOf="@+id/like"
-        android:text="DownVote"
-
-        />
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
 
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="User Name" />
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Incident Title"
+
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:id="@+id/upvote"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="UpVote"
+                android:textSize="10sp"
+                android:layout_marginLeft="130dp"
+                />
+            <Button
+                android:id="@+id/downvote"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="DownVote"
+                android:textSize="10sp"
+
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

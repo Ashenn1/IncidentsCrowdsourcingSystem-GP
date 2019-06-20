@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -49,6 +50,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     private ImageView ImageView1;
     private Bitmap incidentImage;
+    Uri image;
+    boolean imageChosen = false;
+
+    private ProgressBar progressBar;
 
     private String categoryChosen;
     private String areaChosen;
@@ -68,6 +73,17 @@ public class ReportIncidentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.report_incident_toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //onBackPressed();
+                startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
+            }
+        });
 
 //IMAGE PLUS BUTTON
         Button btnChoose = (Button) findViewById(R.id.btnChoose);
@@ -100,17 +116,11 @@ public class ReportIncidentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadToDatabase();
+                //startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.report_incident_toolbar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
-            }
-        });
 
     }
 
@@ -118,6 +128,16 @@ public class ReportIncidentActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
         startActivity(intent);
     }*/
+
+    @Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 
     private void chooseFile() {
         Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -137,11 +157,12 @@ public class ReportIncidentActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE) {
             try {
-                Uri image = data.getData();
+                image = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(image);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 incidentImage = selectedImage;
                 ImageView1.setImageBitmap(selectedImage);
+                imageChosen = true;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -246,6 +267,13 @@ public class ReportIncidentActivity extends AppCompatActivity {
     }
 
     private boolean validateInputs(String title, String category, String area){
+        //Bitmap emptyBitmap = Bitmap.createBitmap(myBitmap.getWidth(), myBitmap.getHeight(), myBitmap.getConfig());
+
+        if(imageChosen == false){
+            Toast.makeText(getApplicationContext(), "Please choose an image for the incident!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         if (TextUtils.isEmpty(title)) {
             Toast.makeText(getApplicationContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
             return false;
@@ -281,10 +309,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private void uploadToDatabase(){
         String incidentTitle = inputTitle.getText().toString();
         String incidentDescription = inputDescription.getText().toString();
-        String incidentPhoto = BitMapToString(incidentImage);
-
 
         if(validateInputs(incidentTitle, categoryChosen, areaChosen)){
+            String incidentPhoto = BitMapToString(incidentImage);
+            progressBar.setVisibility(View.VISIBLE);
 
             JSONObject request = new JSONObject();
             try {
@@ -353,7 +381,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
     }
 
 

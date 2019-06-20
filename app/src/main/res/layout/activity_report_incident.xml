@@ -10,31 +10,36 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/report_incident_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="#2BB499"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toTopOf="@id/scroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.035"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
         app:navigationIcon="?attr/homeAsUpIndicator"
+        android:textSize="35sp"
         app:title="@string/reportActivityHeader" />
 
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:padding="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/report_incident_toolbar">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp">
 
             <LinearLayout
                 android:id="@+id/layout_button"
@@ -42,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginLeft="1dp"
                 android:layout_marginTop="180dp"
                 android:orientation="horizontal"
                 android:weightSum="2">
@@ -118,8 +124,8 @@
                 android:id="@+id/severity_radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="525dp"
                 android:layout_alignParentTop="true"
+                android:layout_marginTop="525dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -127,21 +133,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/urgent" />
+
                 <RadioButton
                     android:id="@+id/low"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/low"/>
+                    android:text="@string/low" />
+
                 <RadioButton
                     android:id="@+id/normal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/normal"/>
+                    android:text="@string/normal" />
+
                 <RadioButton
                     android:id="@+id/high"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/high"/>
+                    android:text="@string/high" />
             </RadioGroup>
 
             <TextView
@@ -181,10 +190,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginLeft="235dp"
-                android:layout_marginTop="626dp"
+                android:layout_marginTop="618dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginRight="80dp"
                 android:text="@string/btn_submit" />
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
 
         </RelativeLayout>
