@@ -51,6 +51,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private ImageView ImageView1;
     private Bitmap incidentImage;
     Uri image;
+    boolean imageChosen = false;
 
     private ProgressBar progressBar;
 
@@ -114,9 +115,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-
                 uploadToDatabase();
+                //startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
             }
         });
 
@@ -162,6 +162,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 incidentImage = selectedImage;
                 ImageView1.setImageBitmap(selectedImage);
+                imageChosen = true;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -266,6 +267,13 @@ public class ReportIncidentActivity extends AppCompatActivity {
     }
 
     private boolean validateInputs(String title, String category, String area){
+        //Bitmap emptyBitmap = Bitmap.createBitmap(myBitmap.getWidth(), myBitmap.getHeight(), myBitmap.getConfig());
+
+        if(imageChosen == false){
+            Toast.makeText(getApplicationContext(), "Please choose an image for the incident!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         if (TextUtils.isEmpty(title)) {
             Toast.makeText(getApplicationContext(), "Please enter a title!", Toast.LENGTH_SHORT).show();
             return false;
@@ -301,10 +309,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private void uploadToDatabase(){
         String incidentTitle = inputTitle.getText().toString();
         String incidentDescription = inputDescription.getText().toString();
-        String incidentPhoto = BitMapToString(incidentImage);
-
 
         if(validateInputs(incidentTitle, categoryChosen, areaChosen)){
+            String incidentPhoto = BitMapToString(incidentImage);
+            progressBar.setVisibility(View.VISIBLE);
 
             JSONObject request = new JSONObject();
             try {
