@@ -115,8 +115,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
                 uploadToDatabase();
+                //startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
             }
         });
 
@@ -312,6 +312,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
         if(validateInputs(incidentTitle, categoryChosen, areaChosen)){
             String incidentPhoto = BitMapToString(incidentImage);
+            progressBar.setVisibility(View.VISIBLE);
 
             JSONObject request = new JSONObject();
             try {
