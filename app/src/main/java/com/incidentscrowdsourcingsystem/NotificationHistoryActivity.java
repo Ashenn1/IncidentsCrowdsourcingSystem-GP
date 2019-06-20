@@ -8,7 +8,11 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class NotificationHistoryActivity extends AppCompatActivity {
 
@@ -21,8 +25,29 @@ public class NotificationHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_history);
 
-        ListView notificationHistoryList = findViewById(R.id.NotificationHistoryList);
         ics_DB = openOrCreateDatabase("ics_db_local",MODE_PRIVATE,null);
+        //get notification data info
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.getString("title")!=null) {
+            //bundle must contain all info sent in "data" field of the notification
+            String title,message;
+            title = bundle.getString("title");
+            message = bundle.getString("message");
+            Date currentTime = Calendar.getInstance().getTime();
+
+            Format dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String dateText = dateformat.format(currentTime);
+
+            String insertSQL = "INSERT INTO notification_history (title,message,notificationDatetime) " +
+                    "values (?,?,?);";
+
+            ics_DB.execSQL(insertSQL,new String[]{title,message,dateText});
+            Log.d("Notification History", "Insertion Successful ");
+
+        }
+
+        ListView notificationHistoryList = findViewById(R.id.NotificationHistoryList);
+
 
         ArrayList<Notification>notif = new ArrayList<Notification>();
 
