@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".TimelineActivity"></activity>
+        <activity android:name=".TimelineActivity" android:exported="true"></activity>
         <activity android:name=".SubscribeToArea" android:exported="true" />
         <activity android:name=".NotificationHistoryActivity" android:exported="true" />
         <activity android:name=".NotificationListFragement" />
