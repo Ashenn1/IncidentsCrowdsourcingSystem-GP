@@ -64,7 +64,7 @@
         <item>Al Omraneyah</item>
     </string-array>
     <string name="btn_submit">Submit</string>
-    <string name="reportActivityHeader">Repoet an Incident</string>
+    <string name="reportActivityHeader">Report an Incident</string>
     <string name="subscribeToArea">Subscribe to an area to recieve notifications of incidents happening in it like:\n
     -Road Blocks\n -Power/Water Outages\n -Crimes\n -Traffic jams\n ..and many more
     </string>
