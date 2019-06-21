@@ -14,7 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".NearbyActivity"></activity>
-        <activity android:name=".PermissionLocationActivity"/>
+        <activity android:name=".PermissionLocationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".TimelineActivity" />
         <activity android:name=".SubscribeToArea" android:exported="true" />
         <activity android:name=".NotificationHistoryActivity" android:exported="true" />
