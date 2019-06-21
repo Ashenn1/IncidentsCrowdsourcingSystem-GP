@@ -43,7 +43,7 @@ public class TimelineActivity extends AppCompatActivity {
     private List<Integer> IncidentUpVote;
     private List<Integer> IncidentDownVote;
     private List<Integer> IncidentID;
-    private static final String KEY_UserId = "ueserId";
+    private static final String KEY_UserId = "userId";
     //private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
     private  String timeline_url="https://crowd-sourcing-system.herokuapp.com/Timeline.php";
 
@@ -153,7 +153,7 @@ public class TimelineActivity extends AppCompatActivity {
         }
 
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, timeline_url, null, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, timeline_url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
