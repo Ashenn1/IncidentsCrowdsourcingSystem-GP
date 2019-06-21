@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,15 +13,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".NearbyActivity"></activity>
+        <activity android:name=".PermissionLocationActivity">
 
+<<<<<<< HEAD
         <activity android:name=".TimelineActivity" android:exported="true"></activity>
         <activity android:name=".SubscribeToArea" android:exported="true" />
         <activity android:name=".NotificationHistoryActivity" android:exported="true" />
         <activity android:name=".NotificationListFragement" />
+=======
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+>>>>>>> c919db071cf719d1492ecb80ac5021e9c186dfe8
+
+        <activity android:name=".TimelineActivity" />
+        <activity
+            android:name=".SubscribeToArea"
+            android:exported="true" />
+        <activity
+            android:name=".NotificationHistoryActivity"
+            android:exported="true" />
+        <activity android:name=".NotificationListFragement" />
         <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,6 +49,7 @@
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </service>
@@ -35,7 +57,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ReportIncidentActivity" android:exported="true"/>
+        <activity
+            android:name=".ReportIncidentActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
