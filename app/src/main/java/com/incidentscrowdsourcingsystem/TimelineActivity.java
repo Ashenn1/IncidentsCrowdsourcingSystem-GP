@@ -44,9 +44,12 @@ public class TimelineActivity extends AppCompatActivity {
     private List<Integer> IncidentUpVote;
     private List<Integer> IncidentDownVote;
     private List<Integer> IncidentID;
+
+    JsonArrayRequest req;
     private static final String KEY_UserId = "userId";
-    //private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
-    private  String timeline_url="https://crowd-sourcing-system.herokuapp.com/Timeline.php";
+    private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
+    //private  String timeline_url="https://localhost/ICS-Web/Timeline.php";
+
 
     private List<String> User_Name;
     private RecyclerView recyclerView;
@@ -66,7 +69,7 @@ public class TimelineActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
         NavigationView nav= findViewById(R.id.navigationId);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setUpDrawerContent(nav);
 
         DataBaseHandling();
@@ -144,7 +147,8 @@ public class TimelineActivity extends AppCompatActivity {
 
     {
         int id = getIntent().getIntExtra("User-Id",1);
-        JSONObject request = new JSONObject();
+
+         JSONObject request = new JSONObject();
         try {
             request.put(KEY_UserId,id);
         }
