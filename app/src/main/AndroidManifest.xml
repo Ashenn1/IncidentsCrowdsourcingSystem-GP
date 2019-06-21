@@ -3,7 +3,6 @@
     package="com.incidentscrowdsourcingsystem">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,47 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-<<<<<<< HEAD
-        <activity android:name=".NotificationListFragement" />
-        <activity android:name=".SubscribeToArea" />
-        <activity
-            android:name=".SignInActivity"
-            android:exported="true" />
-        <activity
-            android:name=".TimelineActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ReportIncidentActivity"
-            android:exported="true" />
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-=======
-
-        <activity android:name=".SubscribeToArea" />
-        <activity android:name=".SignInActivity" android:exported="true" />
-        <activity android:name=".TimelineActivity" android:exported="true" />
-        <activity android:name=".ReportIncidentActivity" android:exported="true" />
-
-        <activity android:name=".NotificationHistoryActivity">
+        <activity android:name=".TimelineActivity"></activity>
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
->>>>>>> 52fa6f25a2cbe69aba1ff668b8a644d33144f6b9
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-        <service android:name=".MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </service>
-
+        </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".ResetPasswordActivity" />
-        <activity
-            android:name=".SignUpActivity"
-            android:exported="true" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".ReportIncidentActivity"/>
     </application>
 
 </manifest>

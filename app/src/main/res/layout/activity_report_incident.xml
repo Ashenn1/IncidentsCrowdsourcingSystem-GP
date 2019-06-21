@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReportIncidentActivity">
+    tools:context="com.incidentscrowdsourcingsystem.ReportIncidentActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/report_incident_toolbar"
@@ -36,6 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/report_incident_toolbar">
 
         <RelativeLayout
+            android:id="@+id/relative_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
@@ -50,7 +51,8 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="180dp"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:layout_marginStart="1dp">
 
                 <Button
                     android:id="@+id/btnChoose"
@@ -185,18 +187,25 @@
                 android:text="@string/area"
                 android:textSize="17sp" />
 
-            <Button
-                android:id="@+id/btn_submit"
+            <LinearLayout
+                android:id="@+id/layout_button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="235dp"
                 android:layout_marginTop="618dp"
-                android:layout_marginEnd="80dp"
-                android:layout_marginRight="80dp"
-                android:text="@string/btn_submit" />
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginStart="1dp">
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/btn_submit" />
+            </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/progressBar"
