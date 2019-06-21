@@ -45,8 +45,8 @@ public class TimelineActivity extends AppCompatActivity {
     private List<Integer> IncidentID;
     JsonArrayRequest req;
     private static final String KEY_UserId = "userId";
-    //private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
-    private  String timeline_url="https://localhost/ICS-Web/Timeline.php";
+    private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
+    //private  String timeline_url="https://localhost/ICS-Web/Timeline.php";
 
     private List<String> User_Name;
     private RecyclerView recyclerView;
