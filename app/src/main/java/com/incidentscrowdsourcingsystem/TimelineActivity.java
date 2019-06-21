@@ -28,6 +28,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.transform.ErrorListener;
@@ -157,7 +158,23 @@ public class TimelineActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            IncidentDescription.add(response.getString("incidentContent"));
+
+                            for(int i=0;i<response.getJSONArray("Incidents").length();i++){
+                                HashMap<String,String> map = new HashMap<>();
+                                map =(HashMap<String, String>) response.getJSONArray("Incidents").get(i);
+                                IncidentDescription.add(map.get("incidentDescription"));
+                                IncidentTitle.add(map.get("incidentTitle"));
+                                IncidentCategory.add(map.get("incidentCategory"));
+                                IncidentSeverity.add(map.get("incidentSeverity"));
+                                User_Name.add(map.get("userName"));
+                                //IncidentDate.add(map.get("incidentDateTime"));
+                                IncidentDownVote.add(Integer.parseInt(map.get("DownVote")));
+                                IncidentUpVote.add(Integer.parseInt(map.get("UpVote")));
+
+                                Log.d("JSON Response",map.get("incidentTitle"));
+                            }
+                            /*
+                            IncidentDescription.add(response.getJSONArray("Incidents").getInt(0));
                             IncidentTitle.add(response.getString("incidentTitle"));
                             IncidentCategory.add(response.getString("incidentCategory"));
                             IncidentSeverity.add(response.getString("incidentSeverity"));
@@ -167,7 +184,7 @@ public class TimelineActivity extends AppCompatActivity {
                             IncidentDownVote.add(response.getInt("DownVote"));
                             IncidentID.add(response.getInt("IncidentID"));
                             //IncidentDateTime.add(response.getInt(""))
-
+                            */
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 20, 2019 at 01:37 PM
+-- Generation Time: Jun 21, 2019 at 09:03 PM
 -- Server version: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `area`
 --
-
+DROP TABLE IF EXISTS `area`;
 CREATE TABLE `area` (
   `AreaId` int(11) NOT NULL,
   `Area_name` varchar(70) NOT NULL
@@ -45,21 +45,49 @@ INSERT INTO `area` (`AreaId`, `Area_name`) VALUES
 --
 -- Table structure for table `department`
 --
-
+DROP TABLE IF EXISTS `department`;
 CREATE TABLE `department` (
   `DepartmentId` int(11) NOT NULL,
+  `AreaId` int(11) NOT NULL,
   `Department_name` varchar(100) NOT NULL,
-  `Photo` blob NOT NULL,
+  `Department_type` varchar(100) NOT NULL,
   `Authorization_username` varchar(70) NOT NULL,
-  `Authorization_password` varchar(70) NOT NULL
+  `Authorization_password` varchar(70) NOT NULL,
+  `Longitude` double NOT NULL,
+  `Latitude` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`DepartmentId`, `AreaId`, `Department_name`, `Department_type`, `Authorization_username`, `Authorization_password`, `Longitude`, `Latitude`) VALUES
+(1, 3, 'Al Haram Hospital', 'Hospital', 'Al-Haram-Hospital', 'qazxswe', 29.991146, 31.150887),
+(2, 1, 'Shagaret El Dor Hospital', 'Hospital', 'Shagaret-El-Dor-Hospital', 'WEJ33GA', 30.062993, 31.219095),
+(3, 3, 'Imam Ali hospital charity', 'Hospital', 'Imam-Ali-hospital', 'sajbsde', 29.995174, 31.201739),
+(4, 3, 'Omraneya Police Station', 'Police Station', 'Omraneya-Police-Station', 'CnwVuegts', 30.004138, 31.204976),
+(5, 2, 'El Ahram Police Station', 'Police Station', 'Al Haram-Police-Station', 'Khsgddq1', 29.983624, 31.133367),
+(6, 1, 'El Gezirah Police Station', 'Police Station', 'El-Gezirah-Police-Station', 'lmks7ywY', 30.055572, 31.219641),
+(7, 2, 'Drinking Water and Sanitation Company', 'Water and Sewer', 'Water-Sanitation-Company', 'Qn2sqmgl', 30.11498, 31.21101),
+(8, 2, 'Water and Sanitation Company - Greater Cairo', 'Water and Sewer', 'Water-Greater-Cairo', 'CXFzaf3', 30.058153, 31.243545),
+(9, 3, 'veterinary clinic in Giza', 'Stray Dogs', 'veterinary-clinic-Giza', 'rh6Tu6', 30.00946, 31.204027),
+(10, 1, 'El Zamalek Veterinary Clinic', 'Stray Dogs', 'Zamalek-Veterinary-Clinic', 'lmkq6ajs', 30.066607, 31.216755),
+(11, 3, 'Rakha Veterinary Clinic', 'Stray Dogs', 'Rakha-Veterinary-Clinic', 'pSjq3hd', 30.004273, 31.199707),
+(12, 3, 'South Cairo Electricity Distribution Co. - El Haram 2', 'Power', 'Electricity-Distribution-Co', 'pcs3hd', 30.005195, 31.190817),
+(13, 1, 'South Cairo Electricity Distribution Co. - Zamalek', 'Power', 'Elec-Distribution-Zamalek', 'p18swhd', 30.059797, 31.222409),
+(14, 1, 'Central Fire Department', 'Fire', 'Central-Fire-Department', 'CXa8WFz', 30.059082, 31.221476),
+(15, 3, 'Al omrania fire department', 'Fire', 'Alomraniafiredepartment', 'FzWOb20d', 29.999531, 31.205326),
+(16, 3, 'Giza Fire Station', 'Fire', 'Giza-Fire-Station', 'PE12PJyq', 30.015869, 31.214489),
+(17, 2, 'Gezira Traffic Offices', 'Traffic', 'Giza-Fire-Station', 'PE12PJyq', 30.069041, 31.228261),
+(18, 2, 'Hadaeq El Ahram Traffic', 'Traffic', 'Hadaeq-ElAhram-Traffic', 'qsYfJ6Uq4', 30.00628, 31.136006),
+(19, 2, 'Faisal Traffic Police Station', 'Traffic', 'Faisal-Traffic-Police-Station', 'Ueaj7wgWn', 30.014646, 31.204086);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `extra_incident_photos`
 --
-
+DROP TABLE IF EXISTS `extra_incident_photos`;
 CREATE TABLE `extra_incident_photos` (
   `IncidentId` int(11) NOT NULL,
   `Incident_photo` blob NOT NULL
@@ -70,7 +98,7 @@ CREATE TABLE `extra_incident_photos` (
 --
 -- Table structure for table `incidents`
 --
-
+DROP TABLE IF EXISTS `incidents`;
 CREATE TABLE `incidents` (
   `IncidentId` int(11) NOT NULL,
   `UserId` int(11) NOT NULL,
@@ -241,7 +269,7 @@ INSERT INTO `incidents` (`IncidentId`, `UserId`, `Incident_name`, `Description`,
 --
 -- Table structure for table `incident_warnings`
 --
-
+DROP TABLE IF EXISTS `incident_warnings`;
 CREATE TABLE `incident_warnings` (
   `IncidentWarningId` int(11) NOT NULL,
   `DepartmentId` int(11) NOT NULL,
@@ -249,18 +277,37 @@ CREATE TABLE `incident_warnings` (
   `Category` varchar(70) NOT NULL,
   `Incident_datetime` datetime NOT NULL,
   `AreaId` int(11) NOT NULL,
-  `Longitude` double NOT NULL,
-  `Latitiude` double NOT NULL,
   `Severity` enum('Urgent','High','Normal','Low') NOT NULL,
-  `Incident_warning_headline` varchar(70) NOT NULL
+  `Incident_warning_headline` varchar(70) NOT NULL,
+  `Longitude` double NOT NULL,
+  `Latitude` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `incident_warnings`
+--
+
+INSERT INTO `incident_warnings` (`IncidentWarningId`, `DepartmentId`, `IncidentDetails`, `Category`, `Incident_datetime`, `AreaId`, `Severity`, `Incident_warning_headline`, `Longitude`, `Latitude`) VALUES
+(1, 6, 'series of theft incidents be worry', 'theft', '2019-05-02 03:56:39', 1, 'Urgent', 'Incident_warning_headline', 29.991146, 31.150987),
+(2, 5, 'Armed Robbery with high level of threat', 'Robbery', '2019-04-11 13:56:39', 2, 'Urgent', 'Incident_warning_headline', 30.001124, 31.172717),
+(3, 4, 'Dangerous road blockers', 'theft', '2019-01-24 01:06:09', 3, 'High', 'Incident_warning_headline', 29.995233, 31.17929),
+(4, 6, 'Missing Person whose name is ..... and age is ........', 'Missing Person', '2019-04-02 12:06:49', 1, 'Normal', 'Incident_warning_headline', 30.055572, 31.219641),
+(5, 7, 'Sewer Leakage', 'Sewer leackage', '2019-03-14 15:56:39', 3, 'Normal', 'Incident_warning_headline', 29.980979, 31.168377),
+(6, 8, 'Water Outage', 'Water Outage', '2019-01-29 11:50:09', 1, 'Normal', 'Incident_warning_headline', 30.042462, 31.225297),
+(7, 9, 'Stray Dogs are alot here be cautious', 'Stray Dogs', '2019-03-04 22:55:00', 3, 'High', 'Incident_warning_headline', 30.003313, 31.184694),
+(8, 13, 'Power Outage in all area for 6 hours', 'Power Outage', '2019-02-11 17:00:30', 1, 'Normal', 'Incident_warning_headline', 30.058467, 31.222071),
+(9, 15, 'Fire in a near building be aware in case of spread', 'Fire', '2019-03-18 21:56:33', 3, 'High', 'Incident_warning_headline', 29.99956, 31.174012),
+(10, 16, 'Fire on a near building be aware in case of spread', 'Fire', '2019-01-01 16:56:20', 2, 'Urgent', 'Incident_warning_headline', 30.000767, 31.16972),
+(11, 17, 'Traffic jam along the road', 'Road Problems', '2019-04-02 15:55:09', 1, 'Low', 'Incident_warning_headline', 30.059015, 31.218349),
+(12, 18, 'Blocked road because of a series of car accidents', 'Road Problems', '2019-03-30 12:04:02', 2, 'High', 'Incident_warning_headline', 30.004037, 31.124348),
+(13, 19, 'Blocked road because of heavy Rain', 'Road Problems', '2019-01-01 06:56:21', 2, 'High', 'Incident_warning_headline', 29.9922, 31.141469);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `notifications`
 --
-
+DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE `notifications` (
   `NotificationId` int(11) NOT NULL,
   `Type` varchar(70) NOT NULL,
@@ -273,12 +320,12 @@ CREATE TABLE `notifications` (
 --
 -- Table structure for table `organization_in_area`
 --
-
+DROP TABLE IF EXISTS `organization_in_area`;
 CREATE TABLE `organization_in_area` (
   `OrganizationId` int(11) NOT NULL,
   `Organization_name` varchar(50) NOT NULL,
   `Organization_Description` text NOT NULL,
-  `Help_category` varchar(100) NOT NULL,
+  `category` varchar(100) NOT NULL,
   `Organization_area` varchar(100) NOT NULL,
   `AreaId` int(11) NOT NULL,
   `Organization_longitude` double NOT NULL,
@@ -292,7 +339,7 @@ CREATE TABLE `organization_in_area` (
 --
 -- Table structure for table `user`
 --
-
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `UserId` int(11) NOT NULL,
   `Username` varchar(30) NOT NULL,
@@ -417,7 +464,7 @@ INSERT INTO `user` (`UserId`, `Username`, `Email`, `Password`, `User_photo`, `Ho
 --
 -- Table structure for table `user_follow_area`
 --
-
+DROP TABLE IF EXISTS `user_follow_area`;
 CREATE TABLE `user_follow_area` (
   `UserId` int(11) NOT NULL,
   `AreaId` int(11) NOT NULL
@@ -428,7 +475,7 @@ CREATE TABLE `user_follow_area` (
 --
 -- Table structure for table `user_follow_incident`
 --
-
+DROP TABLE IF EXISTS `user_follow_incident`;
 CREATE TABLE `user_follow_incident` (
   `UserId` int(11) NOT NULL,
   `IncidentId` int(11) NOT NULL
@@ -439,7 +486,7 @@ CREATE TABLE `user_follow_incident` (
 --
 -- Table structure for table `user_notifications`
 --
-
+DROP TABLE IF EXISTS `user_notifications`;
 CREATE TABLE `user_notifications` (
   `UserId` int(11) NOT NULL,
   `NotificationId` int(11) NOT NULL
@@ -450,7 +497,7 @@ CREATE TABLE `user_notifications` (
 --
 -- Table structure for table `voted_incidents`
 --
-
+DROP TABLE IF EXISTS `voted_incidents`;
 CREATE TABLE `voted_incidents` (
   `UserId` int(11) NOT NULL,
   `IncidentId` int(11) NOT NULL,
@@ -547,7 +594,7 @@ ALTER TABLE `area`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `DepartmentId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `DepartmentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `incidents`
 --
@@ -557,7 +604,7 @@ ALTER TABLE `incidents`
 -- AUTO_INCREMENT for table `incident_warnings`
 --
 ALTER TABLE `incident_warnings`
-  MODIFY `IncidentWarningId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IncidentWarningId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `notifications`
 --
