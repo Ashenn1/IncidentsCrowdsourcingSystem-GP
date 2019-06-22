@@ -119,9 +119,9 @@ public class TimelineActivity extends AppCompatActivity {
               case R.id.home :
                   startActivity(new Intent(TimelineActivity.this,TimelineActivity.class));
                   break;
-              /*case R.id.additem :
-                  startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
-                  break;*/
+              case R.id.additem :
+                  startActivity(new Intent(TimelineActivity.this, NotificationHistoryActivity.class));
+                  break;
               default:
                   startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
 

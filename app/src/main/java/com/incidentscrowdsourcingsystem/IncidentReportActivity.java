@@ -45,7 +45,6 @@ public class IncidentReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.incident_report);
         getIncomingIntent();
-
         upVotebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,11 +87,7 @@ public class IncidentReportActivity extends AppCompatActivity {
 
         if(getIntent().hasExtra("IncidentTitle")&&getIntent().hasExtra("IncidentCategory")&&getIntent().hasExtra("IncidentSeverity")&&getIntent().hasExtra("UserName"))
         {
-            if(getIntent().hasExtra("IncidentDescription"))
-            {
-               String Description =getIntent().getStringExtra("IncidentDescription");
-            }
-            else {
+
                  Severity = getIntent().getStringExtra("IncidentSeverity");
                  Title= getIntent().getStringExtra("IncidentTitle");
                  Category = getIntent().getStringExtra("IncidentCategory");
@@ -113,7 +108,6 @@ public class IncidentReportActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 setData(Title,Category,Severity,Username,incident_date);
-            }
 
 
         }
@@ -124,6 +118,8 @@ public class IncidentReportActivity extends AppCompatActivity {
         TextView Title, Category, Severity,UserName;
         ImageView image ;
         EditText date;
+        upVotebtn = (Button) findViewById(R.id.upVoteButton);
+        downVotebtn = (Button) findViewById(R.id.DownVoteButton);
         Title= findViewById(R.id.incTitle);
         Category= findViewById(R.id.category);
         Severity=findViewById(R.id.severity);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,22 +52,24 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     public IncidentsViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int viewType) {
         View view;
         LayoutInflater inflater=  LayoutInflater.from(MyContext) ;
+        Toast.makeText(MyContext, "Position of Item Clicked !", Toast.LENGTH_SHORT).show();
         view =inflater.inflate(R.layout.list,parent,false);
         final MyViewHolder ViewHolder = new MyViewHolder(view);
         ViewHolder.Container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
              Intent i=new Intent (MyContext,IncidentReportActivity.class);
-                Toast.makeText(MyContext, "Position of Item Clicked !"+ViewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
-               i.putExtra("IncidentDescription",Description.get(ViewHolder.getAdapterPosition()));
-               i.putExtra("IncidentTitle",TitleReport.get(ViewHolder.getAdapterPosition()));
-               i.putExtra("IncidentSeverity",Severity.get(ViewHolder.getAdapterPosition()));
-               i.putExtra("IncidentCategory",Category.get(ViewHolder.getAdapterPosition()));
-               i.putExtra("UserName",UserName.get(ViewHolder.getAdapterPosition()));
-               i.putExtra("IncidentDate",Date.get(ViewHolder.getAdapterPosition()));
-               i.putExtra("UpVoteNum",UpVote.get(ViewHolder.getAdapterPosition()));
-               i.putExtra("DownVoteNum",DownVote.get(ViewHolder.getAdapterPosition()));
-               i.putExtra("IncidentId",IncidentId.get(ViewHolder.getAdapterPosition()));
+             Log.d("7amada","on click error " + ViewHolder.getAdapterPosition());
+//                Toast.makeText(MyContext, "Position of Item Clicked !"+ViewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
+               i.putExtra("IncidentDescription", "Desc");
+               i.putExtra("IncidentTitle",TitleReport.get(0));
+               i.putExtra("IncidentSeverity",Severity.get(0));
+               i.putExtra("IncidentCategory",Category.get(0));
+               i.putExtra("UserName",UserName.get(0));
+               i.putExtra("IncidentDate",Date.get(0));
+               i.putExtra("UpVoteNum",UpVote.get(0));
+               i.putExtra("DownVoteNum",DownVote.get(0));
+               i.putExtra("IncidentId",IncidentId.get(0));
                MyContext.startActivity(i);
 
             }
