@@ -79,7 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray Incident = response.getJSONArray("Incident");
+                            JSONArray Incident = response.getJSONArray("Incidents");
                             Toast.makeText(getApplicationContext(), "Start To get Data !", Toast.LENGTH_SHORT).show();
 
                             if (Incident.length()>0)
