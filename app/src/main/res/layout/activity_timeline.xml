@@ -62,10 +62,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="6dp"
         android:layout_marginBottom="18dp"
-        android:src="@drawable/ic_add_box_black_36dp"
+        android:src="@drawable/ic_add_white_24dp"
         android:scaleType="center"
-        android:background="@color/white"
+        android:background="@color/colorPrimaryDark"
         app:borderWidth="0dp"
-        app:fabSize="normal"
-        app:layout_Gravity="bottom|right|end" />
+        app:fabSize="normal" />
 </RelativeLayout>
