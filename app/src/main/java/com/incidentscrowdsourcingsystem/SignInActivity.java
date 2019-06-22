@@ -118,7 +118,7 @@ public class SignInActivity extends AppCompatActivity {
                                        // session.loginUser(username,response.getString(KEY_FULL_NAME));
                                         //redirect to timeline
                                         user_id=response.getInt(KEY_USERID);
-                                        Toast.makeText(getApplicationContext(),
+                                         Toast.makeText(getApplicationContext(),
                                                 "Successfully Logged in", Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
                                         Context context ;

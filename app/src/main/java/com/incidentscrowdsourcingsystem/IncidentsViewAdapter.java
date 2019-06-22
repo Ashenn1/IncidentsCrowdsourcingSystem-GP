@@ -52,30 +52,23 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
         View view;
         LayoutInflater inflater=  LayoutInflater.from(MyContext) ;
         view =inflater.inflate(R.layout.list,parent,false);
-        MyViewHolder ViewHolder = new MyViewHolder(view);
+        final MyViewHolder ViewHolder = new MyViewHolder(view);
         ViewHolder.Container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
              Intent i=new Intent (MyContext,IncidentReportActivity.class);
-               i.putExtra("IncidentDescription",Description.get(viewType));
-               i.putExtra("IncidentTitle",TitleReport.get(viewType));
-               i.putExtra("IncidentSeverity",Severity.get(viewType));
-               i.putExtra("IncidentCategory",Category.get(viewType));
-               i.putExtra("UserName",UserName.get(viewType));
-                i.putExtra("IncidentDate",Date.get(viewType));
-               i.putExtra("UpVoteNum",UpVote.get(viewType));
-               i.putExtra("DownVoteNum",DownVote.get(viewType));
-                i.putExtra("IncidentId",IncidentId.get(viewType));
-
-
-
-
-
-
+               i.putExtra("IncidentDescription",Description.get(ViewHolder.getAdapterPosition()));
+               i.putExtra("IncidentTitle",TitleReport.get(ViewHolder.getAdapterPosition()));
+               i.putExtra("IncidentSeverity",Severity.get(ViewHolder.getAdapterPosition()));
+               i.putExtra("IncidentCategory",Category.get(ViewHolder.getAdapterPosition()));
+               i.putExtra("UserName",UserName.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("IncidentDate",Date.get(ViewHolder.getAdapterPosition()));
+               i.putExtra("UpVoteNum",UpVote.get(ViewHolder.getAdapterPosition()));
+               i.putExtra("DownVoteNum",DownVote.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("IncidentId",IncidentId.get(ViewHolder.getAdapterPosition()));
 
             }
         });
-
 
 
         return ViewHolder;

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +36,7 @@ import javax.xml.transform.TransformerException;
 
 public class TimelineActivity extends AppCompatActivity {
 
+    private static final String TAG ="Check " ;
     private List<String> IncidentTitle;
     private List<String> IncidentDescription;
     private List<String> IncidentSeverity;
@@ -44,6 +46,7 @@ public class TimelineActivity extends AppCompatActivity {
     private List<Integer> IncidentDownVote;
     private List<Integer> IncidentID;
     JsonArrayRequest req;
+    TextView test;
     private static final String KEY_UserId = "userId";
     private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
     //private  String timeline_url="https://localhost/ICS-Web/Timeline.php";
@@ -60,6 +63,15 @@ public class TimelineActivity extends AppCompatActivity {
 
         IncidentTitle= new ArrayList<String>();
         User_Name= new ArrayList<String>();
+        IncidentDescription= new ArrayList<String>();
+        IncidentSeverity= new ArrayList<String>();
+        IncidentCategory= new ArrayList<String>();
+        IncidentDate = new ArrayList<String>();
+        IncidentUpVote= new ArrayList<Integer>();
+        IncidentDownVote = new ArrayList<Integer>();
+        IncidentID = new ArrayList<Integer>();
+
+
         recyclerView =findViewById(R.id.recyclerviewid);
         mDrawerLayout= findViewById(R.id.drawer);
         Toggle= new ActionBarDrawerToggle(this,mDrawerLayout,R.string.Open,R.string.Close);
@@ -124,30 +136,16 @@ public class TimelineActivity extends AppCompatActivity {
 
 
 
-
-
-
-    /* private  void DataBase ()
-    {
-        IncidentTitle.add("XYZ");
-        IncidentTitle.add("XYZ");
-        IncidentTitle.add("XYZ");
-        IncidentTitle.add("XYZ");
-        User_Name.add("abc");
-        User_Name.add("abc");
-        User_Name.add("abc");
-        User_Name.add("abc");
-        initRecylerView(IncidentTitle,User_Name);
-    }*/
-
     private void DataBaseHandling ()
 
     {
-        int id = getIntent().getIntExtra("User-Id",1);
+        Toast.makeText(getApplicationContext(), "Start DataBase Function !", Toast.LENGTH_SHORT).show();
+        int id = getIntent().getIntExtra("userId",1);
 
          JSONObject request = new JSONObject();
         try {
             request.put(KEY_UserId,id);
+            Toast.makeText(getApplicationContext(), "Put Request is Done!", Toast.LENGTH_SHORT).show();
         }
         catch (JSONException e)
         {
@@ -155,23 +153,38 @@ public class TimelineActivity extends AppCompatActivity {
         }
 
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, timeline_url, null, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, timeline_url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            IncidentDescription.add(response.getString("incidentContent"));
-                            IncidentTitle.add(response.getString("incidentTitle"));
-                            IncidentCategory.add(response.getString("incidentCategory"));
-                            IncidentSeverity.add(response.getString("incidentSeverity"));
-                            User_Name.add(response.getString("userName"));
-                            IncidentDate.add(response.getString("incidentDateTime"));
-                            IncidentUpVote.add(response.getInt("UpVote"));
-                            IncidentDownVote.add(response.getInt("DownVote"));
-                            IncidentID.add(response.getInt("IncidentID"));
-                            //IncidentDateTime.add(response.getInt(""))
+                            JSONArray Incident = response.getJSONArray("Incident");
+                            Toast.makeText(getApplicationContext(), "Start To get Data !", Toast.LENGTH_SHORT).show();
+                            if (Incident.length()>0)
+                               {
+                                   for (int i=0;i<Incident.length()-1;i++) {
+                                       JSONObject IncidentObject = Incident.getJSONObject(i);
+
+                                      // IncidentDescription.add(IncidentObject.getString("incidentDescription"));
+                                       IncidentTitle.add(IncidentObject.getString("incidentTitle"));
+                                       IncidentCategory.add(IncidentObject.getString("incidentCategory"));
+                                       //IncidentSeverity.add(IncidentObject.getString("incidentSeverity"));
+                                       User_Name.add(IncidentObject.getString("userName"));
+                                       //IncidentDate.add(IncidentObject.getString("incidentDateTime"));
+                                       IncidentUpVote.add(IncidentObject.getInt("UpVote"));
+                                       IncidentDownVote.add(IncidentObject.getInt("DownVote"));
+                                       IncidentID.add(IncidentObject.getInt("IncidentID"));
+
+                                   }
+                                   initRecyclerView(IncidentTitle,User_Name,IncidentDescription,IncidentSeverity,IncidentCategory,IncidentDate,IncidentUpVote,IncidentDownVote,IncidentID);
+
+                               }
+                            else{
+                                Toast.makeText(getApplicationContext(), "There is no data !", Toast.LENGTH_SHORT).show();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "There is problem", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -182,7 +195,7 @@ public class TimelineActivity extends AppCompatActivity {
                     }
                 });
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsArrayRequest);
-        initRecyclerView(IncidentTitle,User_Name,IncidentDescription,IncidentSeverity,IncidentCategory,IncidentDate,IncidentUpVote,IncidentDownVote,IncidentID);
+
     }
 
 
