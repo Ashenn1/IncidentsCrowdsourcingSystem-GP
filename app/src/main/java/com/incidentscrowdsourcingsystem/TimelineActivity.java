@@ -87,11 +87,11 @@ public class TimelineActivity extends AppCompatActivity {
     {
         switch (item.getItemId())
           {
-             /* case R.id.maps:
-                  startActivity(new Intent(TimelineActivity.this,));
+             case R.id.maps:
+                  startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
                   break;
               case R.id.shortestPath:
-                  startActivity(new Intent(TimelineActivity.this,));*/
+                  startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
               case R.id.home :
                   startActivity(new Intent(TimelineActivity.this,TimelineActivity.class));
                   break;
