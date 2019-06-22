@@ -44,7 +44,7 @@ public class IncidentReportActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.incident_report);
-        getIncomingIntent();
+         getIncomingIntent();
 
         upVotebtn.setOnClickListener(new View.OnClickListener() {
             @Override
