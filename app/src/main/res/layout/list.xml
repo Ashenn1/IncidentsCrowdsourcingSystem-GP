@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_marginTop="5dp"
-    android:padding="8dp"
-    android:id="@+id/container">
+    android:padding="10dp"
+    android:id="@+id/container"
+    android:elevation="@dimen/cardview_compat_inset_shadow">
 
 
     <de.hdodenhof.circleimageview.CircleImageView

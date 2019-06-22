@@ -44,7 +44,8 @@ public class IncidentReportActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.incident_report);
-        getIncomingIntent();
+         getIncomingIntent();
+
         upVotebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,8 +109,6 @@ public class IncidentReportActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             setData(Title,Category,Severity,Username,incident_date);
-
-
         }
 
     }
@@ -118,8 +117,6 @@ public class IncidentReportActivity extends AppCompatActivity {
         TextView Title, Category, Severity,UserName;
         ImageView image ;
         EditText date;
-        upVotebtn = (Button) findViewById(R.id.upVoteButton);
-        downVotebtn = (Button) findViewById(R.id.DownVoteButton);
         Title= findViewById(R.id.incTitle);
         Category= findViewById(R.id.category);
         Severity=findViewById(R.id.severity);

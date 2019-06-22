@@ -52,7 +52,6 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     public IncidentsViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int viewType) {
         View view;
         LayoutInflater inflater=  LayoutInflater.from(MyContext) ;
-        Toast.makeText(MyContext, "Position of Item Clicked !", Toast.LENGTH_SHORT).show();
         view =inflater.inflate(R.layout.list,parent,false);
         final MyViewHolder ViewHolder = new MyViewHolder(view);
         ViewHolder.Container.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +70,6 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 i.putExtra("DownVoteNum",DownVote.get(0));
                 i.putExtra("IncidentId",IncidentId.get(0));
                 MyContext.startActivity(i);
-
             }
         });
         return ViewHolder;
