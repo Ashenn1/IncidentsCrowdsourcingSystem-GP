@@ -58,19 +58,19 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
         ViewHolder.Container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             Intent i=new Intent (MyContext,IncidentReportActivity.class);
-             Log.d("7amada","on click error " + ViewHolder.getAdapterPosition());
+                Intent i=new Intent (MyContext,IncidentReportActivity.class);
+                Log.d("7amada","on click error " + ViewHolder.getAdapterPosition());
 //                Toast.makeText(MyContext, "Position of Item Clicked !"+ViewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
-               i.putExtra("IncidentDescription", "Desc");
-               i.putExtra("IncidentTitle",TitleReport.get(0));
-               i.putExtra("IncidentSeverity",Severity.get(0));
-               i.putExtra("IncidentCategory",Category.get(0));
-               i.putExtra("UserName",UserName.get(0));
-               i.putExtra("IncidentDate",Date.get(0));
-               i.putExtra("UpVoteNum",UpVote.get(0));
-               i.putExtra("DownVoteNum",DownVote.get(0));
-               i.putExtra("IncidentId",IncidentId.get(0));
-               MyContext.startActivity(i);
+                i.putExtra("IncidentDescription", "Desc");
+                i.putExtra("IncidentTitle",TitleReport.get(0));
+                i.putExtra("IncidentSeverity",Severity.get(0));
+                i.putExtra("IncidentCategory",Category.get(0));
+                i.putExtra("UserName",UserName.get(0));
+                i.putExtra("IncidentDate",Date.get(0));
+                i.putExtra("UpVoteNum",UpVote.get(0));
+                i.putExtra("DownVoteNum",DownVote.get(0));
+                i.putExtra("IncidentId",IncidentId.get(0));
+                MyContext.startActivity(i);
 
             }
         });
@@ -88,7 +88,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 String type="DownVote";
                 if( holder.DownVoteBtn.getText()==type)
                 {
-                     vote =DownVote.get(position)+ 1;
+                    vote =DownVote.get(position)+ 1;
                     holder.DownVoteBtn.setText(vote);
                 }
                 else {

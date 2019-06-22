@@ -88,26 +88,26 @@ public class IncidentReportActivity extends AppCompatActivity {
         if(getIntent().hasExtra("IncidentTitle")&&getIntent().hasExtra("IncidentCategory")&&getIntent().hasExtra("IncidentSeverity")&&getIntent().hasExtra("UserName"))
         {
 
-                 Severity = getIntent().getStringExtra("IncidentSeverity");
-                 Title= getIntent().getStringExtra("IncidentTitle");
-                 Category = getIntent().getStringExtra("IncidentCategory");
+            Severity = getIntent().getStringExtra("IncidentSeverity");
+            Title= getIntent().getStringExtra("IncidentTitle");
+            Category = getIntent().getStringExtra("IncidentCategory");
 
-                 Username=getIntent().getStringExtra("UserName");
-                 Incident_Date=getIntent().getStringExtra("IncidentDate");
-                 UpVote=getIntent().getIntExtra("UpVoteNum",0);
-                 DownVote=getIntent().getIntExtra("DownVoteNum",0);
-                 IncidentId=getIntent().getIntExtra("IncidentId",1);
-                SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-                try {
-                    Date Incident_date =format.parse(Incident_Date);
-                      incident_date= format.format(Incident_date);
+            Username=getIntent().getStringExtra("UserName");
+            Incident_Date=getIntent().getStringExtra("IncidentDate");
+            UpVote=getIntent().getIntExtra("UpVoteNum",0);
+            DownVote=getIntent().getIntExtra("DownVoteNum",0);
+            IncidentId=getIntent().getIntExtra("IncidentId",1);
+            SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            try {
+                Date Incident_date =format.parse(Incident_Date);
+                incident_date= format.format(Incident_date);
 
-                }
-                catch (ParseException e)
-                {
-                    e.printStackTrace();
-                }
-                setData(Title,Category,Severity,Username,incident_date);
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+            }
+            setData(Title,Category,Severity,Username,incident_date);
 
 
         }
