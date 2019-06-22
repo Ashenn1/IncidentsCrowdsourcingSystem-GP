@@ -71,5 +71,6 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="title_activity_permission_location">PermissionLocationActivity</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
