@@ -44,7 +44,8 @@ public class IncidentReportActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.incident_report);
-        getIncomingIntent();
+         getIncomingIntent();
+
         upVotebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,28 +89,26 @@ public class IncidentReportActivity extends AppCompatActivity {
         if(getIntent().hasExtra("IncidentTitle")&&getIntent().hasExtra("IncidentCategory")&&getIntent().hasExtra("IncidentSeverity")&&getIntent().hasExtra("UserName"))
         {
 
-                 Severity = getIntent().getStringExtra("IncidentSeverity");
-                 Title= getIntent().getStringExtra("IncidentTitle");
-                 Category = getIntent().getStringExtra("IncidentCategory");
+            Severity = getIntent().getStringExtra("IncidentSeverity");
+            Title= getIntent().getStringExtra("IncidentTitle");
+            Category = getIntent().getStringExtra("IncidentCategory");
 
-                 Username=getIntent().getStringExtra("UserName");
-                 Incident_Date=getIntent().getStringExtra("IncidentDate");
-                 UpVote=getIntent().getIntExtra("UpVoteNum",0);
-                 DownVote=getIntent().getIntExtra("DownVoteNum",0);
-                 IncidentId=getIntent().getIntExtra("IncidentId",1);
-                SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-                try {
-                    Date Incident_date =format.parse(Incident_Date);
-                      incident_date= format.format(Incident_date);
+            Username=getIntent().getStringExtra("UserName");
+            Incident_Date=getIntent().getStringExtra("IncidentDate");
+            UpVote=getIntent().getIntExtra("UpVoteNum",0);
+            DownVote=getIntent().getIntExtra("DownVoteNum",0);
+            IncidentId=getIntent().getIntExtra("IncidentId",1);
+            SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            try {
+                Date Incident_date =format.parse(Incident_Date);
+                incident_date= format.format(Incident_date);
 
-                }
-                catch (ParseException e)
-                {
-                    e.printStackTrace();
-                }
-                setData(Title,Category,Severity,Username,incident_date);
-
-
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+            }
+            setData(Title,Category,Severity,Username,incident_date);
         }
 
     }
@@ -118,13 +117,13 @@ public class IncidentReportActivity extends AppCompatActivity {
         TextView Title, Category, Severity,UserName;
         ImageView image ;
         EditText date;
-        upVotebtn = (Button) findViewById(R.id.upVoteButton);
-        downVotebtn = (Button) findViewById(R.id.DownVoteButton);
         Title= findViewById(R.id.incTitle);
         Category= findViewById(R.id.category);
         Severity=findViewById(R.id.severity);
         UserName = findViewById(R.id.userName);
         date = findViewById(R.id.incDate);
+        upVotebtn=findViewById(R.id.upVoteButton);
+        downVotebtn= findViewById(R.id.DownVoteButton);
         Title.setText(title);
         Category.setText(category);
         Severity.setText(severity);
