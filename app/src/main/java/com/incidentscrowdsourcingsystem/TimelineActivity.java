@@ -179,7 +179,7 @@ public class TimelineActivity extends AppCompatActivity {
                                       // IncidentDescription.add(IncidentObject.getString("incidentDescription"));
                                        IncidentTitle.add(IncidentObject.getString("incidentTitle"));
                                        IncidentCategory.add(IncidentObject.getString("incidentCategory"));
-                                      // IncidentSeverity.add(IncidentObject.getString("incidentSeverity"));
+                                       IncidentSeverity.add(IncidentObject.getString("incidentSeverity"));
                                        User_Name.add(IncidentObject.getString("userName"));
                                        IncidentDate.add(IncidentObject.getString("incidentDateTime"));
                                        IncidentUpVote.add(IncidentObject.getInt("UpVote"));

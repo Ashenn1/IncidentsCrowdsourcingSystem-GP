@@ -36,7 +36,7 @@ public class IncidentReportActivity extends AppCompatActivity {
     String Severity ;
     String Incident_Date ;
     String incident_date;
-    String VoteUpdatingurl="http//localhost/ICS-Web/updateVotes.php";
+    String VoteUpdatingurl="https://crowd-sourcing-system.herokuapp.com/updateVotes.php";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
 
@@ -86,20 +86,21 @@ public class IncidentReportActivity extends AppCompatActivity {
     }
     private void getIncomingIntent(){
 
-        if(getIntent().hasExtra("Incident-Title")&&getIntent().hasExtra("Incident-Category")&&getIntent().hasExtra("Incident-Severity")&&getIntent().hasExtra("UserName"))
+        if(getIntent().hasExtra("IncidentTitle")&&getIntent().hasExtra("IncidentCategory")&&getIntent().hasExtra("IncidentSeverity")&&getIntent().hasExtra("UserName"))
         {
-            if(getIntent().hasExtra("Incident-Description"))
+            if(getIntent().hasExtra("IncidentDescription"))
             {
-               String Description =getIntent().getStringExtra("Incident-Description");
+               String Description =getIntent().getStringExtra("IncidentDescription");
             }
             else {
-                 Title= getIntent().getStringExtra("Incident-Title");
-                 Category = getIntent().getStringExtra("Incident-Category");
-                 Severity = getIntent().getStringExtra("Incident-Severity");
+                 Severity = getIntent().getStringExtra("IncidentSeverity");
+                 Title= getIntent().getStringExtra("IncidentTitle");
+                 Category = getIntent().getStringExtra("IncidentCategory");
+
                  Username=getIntent().getStringExtra("UserName");
                  Incident_Date=getIntent().getStringExtra("IncidentDate");
-                 UpVote=getIntent().getIntExtra("UpVote",0);
-                 DownVote=getIntent().getIntExtra("DownVote",0);
+                 UpVote=getIntent().getIntExtra("UpVoteNum",0);
+                 DownVote=getIntent().getIntExtra("DownVoteNum",0);
                  IncidentId=getIntent().getIntExtra("IncidentId",1);
                 SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
                 try {
