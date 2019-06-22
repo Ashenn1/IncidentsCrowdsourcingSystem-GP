@@ -57,7 +57,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
             @Override
             public void onClick(View view) {
              Intent i=new Intent (MyContext,IncidentReportActivity.class);
-             Toast.makeText(MyContext, "Position of Item Clicked !"+ViewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyContext, "Position of Item Clicked !"+ViewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
                i.putExtra("IncidentDescription",Description.get(ViewHolder.getAdapterPosition()));
                i.putExtra("IncidentTitle",TitleReport.get(ViewHolder.getAdapterPosition()));
                i.putExtra("IncidentSeverity",Severity.get(ViewHolder.getAdapterPosition()));

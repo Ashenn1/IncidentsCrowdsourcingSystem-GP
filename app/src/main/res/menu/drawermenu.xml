@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/home" android:title="Home" android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/additem" android:title="Report an Incident" android:icon="@drawable/ic_addreport"/>
     <item android:id="@+id/maps" android:title="Maps" android:icon="@drawable/ic_map" />
     <item android:id="@+id/shortestPath"  android:title="Shortest Path" android:icon="@drawable/ic_shortestpath" />
     <item android:id="@+id/setting"  android:title="Setting"/>
