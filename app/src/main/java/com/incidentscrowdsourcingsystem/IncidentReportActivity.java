@@ -122,6 +122,8 @@ public class IncidentReportActivity extends AppCompatActivity {
         Severity=findViewById(R.id.severity);
         UserName = findViewById(R.id.userName);
         date = findViewById(R.id.incDate);
+        upVotebtn=findViewById(R.id.upVoteButton);
+        downVotebtn= findViewById(R.id.DownVoteButton);
         Title.setText(title);
         Category.setText(category);
         Severity.setText(severity);
