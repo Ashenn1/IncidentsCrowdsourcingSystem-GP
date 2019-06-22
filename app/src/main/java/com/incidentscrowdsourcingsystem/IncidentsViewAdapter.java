@@ -57,20 +57,20 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
             @Override
             public void onClick(View view) {
              Intent i=new Intent (MyContext,IncidentReportActivity.class);
+                Toast.makeText(MyContext, "Position of Item Clicked !"+ViewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
                i.putExtra("IncidentDescription",Description.get(ViewHolder.getAdapterPosition()));
                i.putExtra("IncidentTitle",TitleReport.get(ViewHolder.getAdapterPosition()));
                i.putExtra("IncidentSeverity",Severity.get(ViewHolder.getAdapterPosition()));
                i.putExtra("IncidentCategory",Category.get(ViewHolder.getAdapterPosition()));
                i.putExtra("UserName",UserName.get(ViewHolder.getAdapterPosition()));
-                i.putExtra("IncidentDate",Date.get(ViewHolder.getAdapterPosition()));
+               i.putExtra("IncidentDate",Date.get(ViewHolder.getAdapterPosition()));
                i.putExtra("UpVoteNum",UpVote.get(ViewHolder.getAdapterPosition()));
                i.putExtra("DownVoteNum",DownVote.get(ViewHolder.getAdapterPosition()));
-                i.putExtra("IncidentId",IncidentId.get(ViewHolder.getAdapterPosition()));
+               i.putExtra("IncidentId",IncidentId.get(ViewHolder.getAdapterPosition()));
+               MyContext.startActivity(i);
 
             }
         });
-
-
         return ViewHolder;
     }
 
@@ -78,7 +78,6 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     public void onBindViewHolder(@NonNull final IncidentsViewAdapter.MyViewHolder holder, final int position) {
         holder.TitleIncident.setText(TitleReport.get(position));
         holder.NameUser.setText(UserName.get(position));
-        final int numOfClick = 0;
         holder.DownVoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +107,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 }
                 else {
                     vote = UpVote.get(position)-1;
-                    holder.DownVoteBtn.setText(type);
+                    holder.UpVoteBtn.setText(type);
                 }
             }});
 
