@@ -328,21 +328,6 @@ INSERT INTO `incidents` (`IncidentId`, `UserId`, `Incident_name`, `Description`,
 -- --------------------------------------------------------
 
 
---
--- Table structure for table `notifications`
---
-
-DROP TABLE IF EXISTS `notifications`;
-
-
-CREATE TABLE `notifications` (
-  `NotificationId` int(11) NOT NULL,
-  `Type` varchar(70) NOT NULL,
-  `Notifcation_message` text NOT NULL,
-  `Notification_datetime` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `organization_in_area`
@@ -518,6 +503,24 @@ DROP TABLE IF EXISTS `user_follow_incident`;
 CREATE TABLE `user_follow_incident` (
   `UserId` int(11) NOT NULL,
   `IncidentId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+
+--
+-- Table structure for table `notifications`
+--
+
+DROP TABLE IF EXISTS `notifications`;
+
+
+CREATE TABLE `notifications` (
+  `NotificationId` int(11) NOT NULL,
+  `DepartmentId` int(11),
+  `Type` varchar(70) NOT NULL,
+  `Notifcation_message` text NOT NULL,
+  `Notification_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
