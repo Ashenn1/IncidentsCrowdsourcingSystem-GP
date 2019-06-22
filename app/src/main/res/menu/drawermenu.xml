@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/home" android:title="Home" android:icon="@drawable/ic_home"/>
     <item android:id="@+id/maps" android:title="Maps" android:icon="@drawable/ic_map" />
-    <item android:id="@+id/notification" android:title="Notification History" />
+    <item android:id="@+id/notification" android:title="Notifications" android:icon="@drawable/ic_notifications_black_24dp" />
     <item android:id="@+id/shortestPath"  android:title="Shortest Path" android:icon="@drawable/ic_shortestpath" />
-    <item android:id="@+id/setting"  android:title="Setting"/>
+    <item android:id="@+id/setting"  android:title="Setting" android:icon="@drawable/ic_settings_black_24dp"/>
     <item android:id="@+id/logOut"  android:title="Logout"/>
 
 

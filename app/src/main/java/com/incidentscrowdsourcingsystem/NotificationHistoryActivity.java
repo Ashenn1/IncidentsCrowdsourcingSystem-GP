@@ -1,10 +1,13 @@
 package com.incidentscrowdsourcingsystem;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -25,7 +28,27 @@ public class NotificationHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_history);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(getApplicationContext(),TimelineActivity.class);
+                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(a);
+            }
+        });
+
         ics_DB = openOrCreateDatabase("ics_db_local",MODE_PRIVATE,null);
+
+        ics_DB.execSQL(
+                "CREATE TABLE IF NOT EXISTS notification_history (\n" +
+                        "    notificationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n" +
+                        "    title varchar(200),\n" +
+                        "    message varchar(500),\n" +
+                        "    notificationDatetime varchar(200) NOT NULL\n" +
+                        ");"
+        );
+
         //get notification data info
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.getString("title")!=null) {
@@ -67,23 +90,19 @@ public class NotificationHistoryActivity extends AppCompatActivity {
         else{
             Log.d("Notification Activity","Didnt get anything out of the db");
         }
-/*
-        for(int i=0;i<1;i++){
-            String title="Department of Electricity";
-            String Description = "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the " +
-                    "industry's standard dummy text ever since the 1500s, when " +
-                    "an unknown printer took a galley of type and scrambled it to make a type specimen book";
 
-            Notification nf = new Notification(title,Description);
-            notif.add(nf);
-        }
-*/
-        //ArrayAdapter<Notification>arrayAdapter = new ArrayAdapter<Notification>(this,android.R.layout.simple_list_item_1,notif);
-        //notificationHistoryList.setAdapter(arrayAdapter);
         mAdapter = new NotificationAdapter(this , notif);
         notificationHistoryList.setAdapter(mAdapter);
 
     }
+
+    /*@Override
+    public void onBackPressed() {
+        // TODO Auto-generated method stub
+        Intent a = new Intent(getApplicationContext(),TimelineActivity.class);
+        a.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(a);
+    }*/
 
 
 }
