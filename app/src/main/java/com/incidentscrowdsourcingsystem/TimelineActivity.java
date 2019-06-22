@@ -164,10 +164,10 @@ public class TimelineActivity extends AppCompatActivity {
                                    for (int i=0;i<Incident.length()-1;i++) {
                                        JSONObject IncidentObject = Incident.getJSONObject(i);
 
-                                      // IncidentDescription.add(IncidentObject.getString("incidentDescription"));
+                                       IncidentDescription.add(IncidentObject.getString("incidentDescription"));
                                        IncidentTitle.add(IncidentObject.getString("incidentTitle"));
                                        IncidentCategory.add(IncidentObject.getString("incidentCategory"));
-                                       //IncidentSeverity.add(IncidentObject.getString("incidentSeverity"));
+                                       IncidentSeverity.add(IncidentObject.getString("incidentSeverity"));
                                        User_Name.add(IncidentObject.getString("userName"));
                                        //IncidentDate.add(IncidentObject.getString("incidentDateTime"));
                                        IncidentUpVote.add(IncidentObject.getInt("UpVote"));
