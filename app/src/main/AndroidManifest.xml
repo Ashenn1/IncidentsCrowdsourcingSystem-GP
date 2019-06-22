@@ -13,10 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".NearbyActivity"
-            android:label="@string/title_activity_nearby"
-            android:theme="@style/NoActionBar"></activity>
+        <activity android:name=".NearbyActivity"></activity>
         <activity android:name=".PermissionLocationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +22,11 @@
             </intent-filter>
         </activity>
 
+
         <activity android:name=".TimelineActivity" android:exported="true" />
         <activity android:name=".SubscribeToArea" android:exported="true" />
         <activity android:name=".NotificationHistoryActivity" android:exported="true" />
+
 
         <activity android:name=".NotificationListFragement" />
         <activity android:name=".SignInActivity">
@@ -55,3 +54,4 @@
     </application>
 
 </manifest>
+
