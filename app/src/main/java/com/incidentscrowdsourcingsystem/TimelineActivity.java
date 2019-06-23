@@ -2,6 +2,7 @@ package com.incidentscrowdsourcingsystem;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -70,6 +72,17 @@ public class TimelineActivity extends AppCompatActivity {
         setUpDrawerContent(nav);
 
         DataBaseHandling();
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(getApplicationContext(),ReportIncidentActivity.class);
+                a.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(a);
+            }
+        });
+
 
     }
 

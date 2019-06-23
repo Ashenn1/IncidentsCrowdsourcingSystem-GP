@@ -88,33 +88,26 @@ public class IncidentReportActivity extends AppCompatActivity {
 
         if(getIntent().hasExtra("Incident-Title")&&getIntent().hasExtra("Incident-Category")&&getIntent().hasExtra("Incident-Severity")&&getIntent().hasExtra("UserName"))
         {
-            if(getIntent().hasExtra("Incident-Description"))
+            String Description = getIntent().getStringExtra("Incident-Description");
+            Title = getIntent().getStringExtra("Incident-Title");
+            Category = getIntent().getStringExtra("Incident-Category");
+            Severity = getIntent().getStringExtra("Incident-Severity");
+            Username = getIntent().getStringExtra("UserName");
+            Incident_Date = getIntent().getStringExtra("IncidentDate");
+            UpVote = getIntent().getIntExtra("UpVote",0);
+            DownVote = getIntent().getIntExtra("DownVote",0);
+            IncidentId = getIntent().getIntExtra("IncidentId",1);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            try {
+                Date Incident_date =format.parse(Incident_Date);
+                  incident_date= format.format(Incident_date);
+
+            }
+            catch (ParseException e)
             {
-               String Description =getIntent().getStringExtra("Incident-Description");
+                e.printStackTrace();
             }
-            else {
-                 Title= getIntent().getStringExtra("Incident-Title");
-                 Category = getIntent().getStringExtra("Incident-Category");
-                 Severity = getIntent().getStringExtra("Incident-Severity");
-                 Username=getIntent().getStringExtra("UserName");
-                 Incident_Date=getIntent().getStringExtra("IncidentDate");
-                 UpVote=getIntent().getIntExtra("UpVote",0);
-                 DownVote=getIntent().getIntExtra("DownVote",0);
-                 IncidentId=getIntent().getIntExtra("IncidentId",1);
-                SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-                try {
-                    Date Incident_date =format.parse(Incident_Date);
-                      incident_date= format.format(Incident_date);
-
-                }
-                catch (ParseException e)
-                {
-                    e.printStackTrace();
-                }
-                setData(Title,Category,Severity,Username,incident_date);
-            }
-
-
+            setData(Title,Category,Severity,Username,incident_date);
         }
 
     }
