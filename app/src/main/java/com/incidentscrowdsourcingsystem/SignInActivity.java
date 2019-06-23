@@ -1,13 +1,15 @@
 package com.incidentscrowdsourcingsystem;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,26 +23,25 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-/*
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-*/
+
 
 public class SignInActivity extends AppCompatActivity {
 
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_USERNAME = "Username";
+    private static final String KEY_USERID ="UserId";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
+    private static final String KEY_UserPhoto = "UserImage";
     private static final String KEY_EMPTY = "";
     private String login_url = "https://crowd-sourcing-system.herokuapp.com/login.php";
+
+
     private EditText inputEmail, inputPassword;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
-    //private SessionHandler session;
+    private SessionHandler session;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -48,10 +49,10 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        //session = new SessionHandler(getApplicationContext());
-        //if(session.isLoggedIn()){
-            //Load timeline
-       // }
+        session = new SessionHandler(getApplicationContext());
+        if(session.isLoggedIn()){
+            LoadTimeline();
+        }
 
 
         // set the view now
@@ -66,6 +67,7 @@ public class SignInActivity extends AppCompatActivity {
         btnSignup = (Button) findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
+
 
 
 
@@ -121,9 +123,26 @@ public class SignInActivity extends AppCompatActivity {
                                     if (response.getInt(KEY_STATUS) == 0) {
                                        // session.loginUser(username,response.getString(KEY_FULL_NAME));
                                         //redirect to timeline
-                                        Toast.makeText(getApplicationContext(),
+
+                                        //UserData user=  new UserData();
+                                        //user.setName(response.getString(KEY_USERNAME));
+                                        //user.setId(response.getInt(KEY_USERID));
+                                       // user.setEmail(response.getString(KEY_EMAIL));
+                                        //String StringImg = response.getString(KEY_UserPhoto);
+
+                                        session.loginUser(response.getString(KEY_USERNAME),response.getString(KEY_USERID));
+                                        LoadTimeline();
+                                         Toast.makeText(getApplicationContext(),
                                                 "Successfully Logged in", Toast.LENGTH_SHORT).show();
+
                                         progressBar.setVisibility(View.GONE);
+                                        //Context context ;
+                                        //Intent i= new Intent(SignInActivity.this,TimelineActivity.class);
+                                        //i.putExtra("userId",user.getId());
+                                        //i.putExtra(KEY_USERNAME,user.getName());
+                                        //i.putExtra(KEY_EMAIL,user.getEmail());
+                                        //i.putExtra(KEY_UserPhoto,StringImg);
+                                        //startActivity(i);
 
                                     }else{
                                         Toast.makeText(getApplicationContext(),
@@ -153,6 +172,13 @@ public class SignInActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void LoadTimeline() {
+        Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+        startActivity(i);
+        finish();
 
     }
 
