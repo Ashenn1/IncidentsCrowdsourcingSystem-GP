@@ -169,6 +169,7 @@ public class TimelineActivity extends AppCompatActivity {
                   Intent i = new Intent(TimelineActivity.this, SignInActivity.class);
                   startActivity(i);
                   finish();
+                  break;
               default:
                   Toast.makeText(getApplicationContext(), "Invalid Choice!", Toast.LENGTH_SHORT).show();
                   break;
