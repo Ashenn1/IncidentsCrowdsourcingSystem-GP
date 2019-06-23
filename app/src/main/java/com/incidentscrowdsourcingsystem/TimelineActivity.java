@@ -1,6 +1,8 @@
 package com.incidentscrowdsourcingsystem;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +39,8 @@ import java.util.List;
 import javax.xml.transform.ErrorListener;
 import javax.xml.transform.TransformerException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class TimelineActivity extends AppCompatActivity {
 
     private static final String TAG ="Check " ;
@@ -47,13 +52,20 @@ public class TimelineActivity extends AppCompatActivity {
     private List<Integer> IncidentUpVote;
     private List<Integer> IncidentDownVote;
     private List<Integer> IncidentID;
+    private  List<String>IncidentImageStr;
     JsonArrayRequest req;
     TextView test;
     private static final String KEY_UserId = "userId";
     private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
     //private  String timeline_url="https://localhost/ICS-Web/Timeline.php";
+    int id;
+    String UserName;
+    String email;
+    String StringImg;
 
     private List<String> User_Name;
+    private CircleImageView img;
+    TextView name;
     private RecyclerView recyclerView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle Toggle;
@@ -72,7 +84,12 @@ public class TimelineActivity extends AppCompatActivity {
         IncidentUpVote= new ArrayList<Integer>();
         IncidentDownVote = new ArrayList<Integer>();
         IncidentID = new ArrayList<Integer>();
+        IncidentImageStr = new ArrayList<String>();
 
+        id = getIntent().getIntExtra("userId",1);
+        UserName=getIntent().getStringExtra("Username");
+        email=getIntent().getStringExtra("Email");
+        StringImg= getIntent().getStringExtra("UserImage");
 
         recyclerView =findViewById(R.id.recyclerviewid);
         mDrawerLayout= findViewById(R.id.drawer);
@@ -81,9 +98,10 @@ public class TimelineActivity extends AppCompatActivity {
         Toggle.syncState();
         NavigationView nav= findViewById(R.id.navigationId);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setUpDrawerContent(nav);
 
+        setUpDrawerContent(nav);
         DataBaseHandling();
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +127,7 @@ public class TimelineActivity extends AppCompatActivity {
 
     public void selectItemDrawer(MenuItem item)
     {
+
         switch (item.getItemId())
           {
              /* case R.id.maps:
@@ -134,6 +153,12 @@ public class TimelineActivity extends AppCompatActivity {
 
     private void setUpDrawerContent(NavigationView navigationView)
     {
+        img =findViewById(R.id.userImage);
+        name=findViewById(R.id.navUsername);
+        name.setText(UserName);
+        byte [] StringToByte = Base64.decode(StringImg,Base64.DEFAULT);
+        Bitmap image= BitmapFactory.decodeByteArray(StringToByte,0,StringToByte.length);
+        img.setImageBitmap(image);
       navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
           @Override
           public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -144,15 +169,9 @@ public class TimelineActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
     private void DataBaseHandling ()
-
     {
         Toast.makeText(getApplicationContext(), "Start DataBase Function !", Toast.LENGTH_SHORT).show();
-        int id = getIntent().getIntExtra("userId",1);
 
          JSONObject request = new JSONObject();
         try {
@@ -175,8 +194,14 @@ public class TimelineActivity extends AppCompatActivity {
                                {
                                    for (int i=0;i<Incident.length()-1;i++) {
                                        JSONObject IncidentObject = Incident.getJSONObject(i);
+                                       if(IncidentObject.has("incidentDescription"))
+                                       {
+                                           IncidentDescription.add("There's no description for this incident: ");
 
-                                      // IncidentDescription.add(IncidentObject.getString("incidentDescription"));
+                                       }
+                                       else {
+                                           IncidentDescription.add(IncidentObject.getString("incidentDescription"));
+                                       }
                                        IncidentTitle.add(IncidentObject.getString("incidentTitle"));
                                        IncidentCategory.add(IncidentObject.getString("incidentCategory"));
                                        IncidentSeverity.add(IncidentObject.getString("incidentSeverity"));
@@ -185,9 +210,11 @@ public class TimelineActivity extends AppCompatActivity {
                                        IncidentUpVote.add(IncidentObject.getInt("UpVote"));
                                        IncidentDownVote.add(IncidentObject.getInt("DownVote"));
                                        IncidentID.add(IncidentObject.getInt("IncidentID"));
+                                       IncidentImageStr.add(IncidentObject.getString("IncidentImage"));
+
 
                                    }
-                                   initRecyclerView(IncidentTitle,User_Name,IncidentDescription,IncidentSeverity,IncidentCategory,IncidentDate,IncidentUpVote,IncidentDownVote,IncidentID);
+                                   initRecyclerView(IncidentTitle,User_Name,IncidentDescription,IncidentSeverity,IncidentCategory,IncidentDate,IncidentUpVote,IncidentDownVote,IncidentID,IncidentImageStr);
 
                                }
                             else{
@@ -212,9 +239,9 @@ public class TimelineActivity extends AppCompatActivity {
 
 
 
-    private void initRecyclerView(List<String>Incident_Title,List<String>UserNAME,List<String>Incident_Descritpion,List<String>Incident_Severity,List<String>Incident_Category,List<String>Incident_Date,List<Integer>Incident_UpVote,List<Integer>Incident_DownVote,List<Integer>Incident_Id)
+    private void initRecyclerView(List<String>Incident_Title,List<String>UserNAME,List<String>Incident_Descritpion,List<String>Incident_Severity,List<String>Incident_Category,List<String>Incident_Date,List<Integer>Incident_UpVote,List<Integer>Incident_DownVote,List<Integer>Incident_Id,List<String>image)
     {
-        IncidentsViewAdapter MyAdapter = new IncidentsViewAdapter(Incident_Title,UserNAME,Incident_Descritpion,Incident_Severity,Incident_Category,Incident_Date,Incident_UpVote,Incident_DownVote,Incident_Id,this);
+        IncidentsViewAdapter MyAdapter = new IncidentsViewAdapter(Incident_Title,UserNAME,Incident_Descritpion,Incident_Severity,Incident_Category,Incident_Date,Incident_UpVote,Incident_DownVote,Incident_Id,image,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(MyAdapter);
     }

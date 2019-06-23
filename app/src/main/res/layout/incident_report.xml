@@ -1,51 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/incident_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2BB499"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        android:textSize="35sp"
+        app:title="@string/reportActivityHeader" />
 
  <LinearLayout
      android:layout_width="match_parent"
-     android:layout_height="120dp"
-     android:orientation="horizontal">
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:id="@+id/personal_linear"
+     android:layout_below="@+id/incident_toolbar"
+     android:padding="5dp"
+     >
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@mipmap/profileimage"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
+
        />
      <TextView
          android:id="@+id/userName"
-         android:layout_width="272dp"
-         android:layout_height="39dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
          android:text="UserName"
-         android:layout_toRightOf="@+id/profileImage"
-         android:layout_marginTop="20dp"
-         android:layout_marginLeft="15dp"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="5dp"
 
          />
 
       </LinearLayout>
 
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/detailsLinear"
+    android:layout_below="@id/personal_linear"
+    android:padding="5dp"
+    >
 
     <TextView
         android:id="@+id/incTitle"
-        android:layout_width="392dp"
-        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Title"
+        android:textStyle="bold"
+        android:textSize="14sp"
+
         />
 
     <TextView
         android:id="@+id/incContent"
-        android:layout_width="381dp"
-        android:layout_height="89dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Description"
         android:layout_marginTop="10dp"
          />
@@ -53,18 +77,20 @@
 
     <ImageView
         android:id="@+id/incidentImage"
-        android:layout_width="254dp"
+        android:layout_width="match_parent"
         android:layout_height="96dp"
-        android:layout_marginLeft="60dp"
         android:layout_marginTop="10dp"
 
          />
-
+</LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+         android:layout_below="@+id/detailsLinear"
+        android:id="@+id/categoryLinear"
+        android:padding="5dp"
+        >
 
     <TextView
         android:id="@+id/incident-category"
@@ -91,7 +117,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/categoryLinear"
+        android:id="@+id/severityLinear"
+        android:padding="5dp"
         >
 
     <TextView
@@ -119,9 +147,8 @@
         android:layout_height="34dp"
         android:ems="10"
         android:inputType="date"
-        android:layout_marginTop="10dp"
-
-
+        android:padding="5dp"
+        android:layout_below="@+id/severityLinear"
 
         />
 
@@ -129,7 +156,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:layout_below="@id/incDate"
         >
 
         <Button
@@ -151,5 +179,5 @@
 
 
 
-</LinearLayout>
+</RelativeLayout>
 
