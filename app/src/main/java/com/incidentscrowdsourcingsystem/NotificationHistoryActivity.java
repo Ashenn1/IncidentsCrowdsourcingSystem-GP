@@ -1,10 +1,13 @@
 package com.incidentscrowdsourcingsystem;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -25,7 +28,27 @@ public class NotificationHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_history);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), TimelineActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
         ics_DB = openOrCreateDatabase("ics_db_local",MODE_PRIVATE,null);
+        ics_DB.execSQL(
+                "CREATE TABLE IF NOT EXISTS notification_history (\n" +
+                        "    notificationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n" +
+                        "    title varchar(200),\n" +
+                        "    message varchar(500),\n" +
+                        "    notificationDatetime varchar(200) NOT NULL\n" +
+                        ");"
+        );
+
         //get notification data info
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.getString("title")!=null) {

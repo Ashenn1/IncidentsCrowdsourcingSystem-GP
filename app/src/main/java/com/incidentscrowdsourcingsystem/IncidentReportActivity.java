@@ -98,6 +98,9 @@ public class IncidentReportActivity extends AppCompatActivity {
             setData(Title,Category,Severity,Description,Username,Incident_Date,imageExist);
 
     }
+
+
+
     private void setData(String title, String category, String severity,String description ,String username,String incidentDate,Boolean imgExist)
     {
         TextView Title, Category, Severity,UserName, Description;

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,7 +106,8 @@ public class TimelineActivity extends AppCompatActivity {
         DataBaseHandling();
 
 
-        /*FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +115,8 @@ public class TimelineActivity extends AppCompatActivity {
                 a.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(a);
             }
-        });*/
+        });
+
 
     }
 
@@ -131,17 +135,17 @@ public class TimelineActivity extends AppCompatActivity {
 
         switch (item.getItemId())
           {
-             case R.id.maps:
+              case R.id.home :
+                  startActivity(new Intent(TimelineActivity.this,TimelineActivity.class));
+                  break;
+              case R.id.notification_history :
+                  startActivity(new Intent(TimelineActivity.this, NotificationHistoryActivity.class));
+                  break;
+              case R.id.maps:
                   startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
                   break;
               case R.id.shortestPath:
                   startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
-              case R.id.home :
-                  startActivity(new Intent(TimelineActivity.this,TimelineActivity.class));
-                  break;
-              case R.id.additem :
-                  startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
-                  break;
               default:
                   startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
 

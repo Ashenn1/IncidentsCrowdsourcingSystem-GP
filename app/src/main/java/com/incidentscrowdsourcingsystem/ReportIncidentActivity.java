@@ -81,7 +81,9 @@ public class ReportIncidentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //onBackPressed();
-                startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
+                Intent intent = new Intent(getApplicationContext(), TimelineActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 
@@ -129,14 +131,14 @@ public class ReportIncidentActivity extends AppCompatActivity {
         startActivity(intent);
     }*/
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
+    }*/
 
 
     private void chooseFile() {
@@ -155,19 +157,21 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PICK_IMAGE) {
-            try {
-                image = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(image);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                incidentImage = selectedImage;
-                ImageView1.setImageBitmap(selectedImage);
-                imageChosen = true;
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
-            }
+        if(resultCode != RESULT_CANCELED || data != null){
 
+            if (requestCode == PICK_IMAGE) {
+                try {
+                    image = data.getData();
+                    final InputStream imageStream = getContentResolver().openInputStream(image);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    incidentImage = selectedImage;
+                    ImageView1.setImageBitmap(selectedImage);
+                    imageChosen = true;
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+                }
+            }
         }else {
             Toast.makeText(getApplicationContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
