@@ -63,15 +63,20 @@ public class TimelineActivity extends AppCompatActivity {
 
     private List<String> User_Name;
     private CircleImageView img;
-    TextView name;
+
     private RecyclerView recyclerView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle Toggle;
+    //UserData user;
+
+    //private SessionHandler session;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
+        //session = new SessionHandler(getApplicationContext());
+        //user = session.getUserDetails();
 
         IncidentTitle= new ArrayList<String>();
         User_Name= new ArrayList<String>();
@@ -87,10 +92,9 @@ public class TimelineActivity extends AppCompatActivity {
 
 //Fetching User Data from Sign in Page:
         id = getIntent().getIntExtra("userId",0);
-       // UserName=getIntent().getStringExtra("Username");
-        UserName="Menna Mohamed";
-        email=getIntent().getStringExtra("Email");
-        StringImg= getIntent().getStringExtra("UserImage");
+        UserName=getIntent().getStringExtra("Username");
+        //email=getIntent().getStringExtra("Email");
+        //StringImg= getIntent().getStringExtra("UserImage");
 
 
 
@@ -100,6 +104,10 @@ public class TimelineActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
         NavigationView nav= findViewById(R.id.navigationId);
+        View header = nav.getHeaderView(0);
+
+        TextView name = header.findViewById(R.id.navUsername);
+        name.setText(UserName);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setUpDrawerContent(nav);
@@ -113,6 +121,7 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(getApplicationContext(),ReportIncidentActivity.class);
+                a.putExtra("user_id", id);
                 a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(a);
             }
@@ -136,23 +145,33 @@ public class TimelineActivity extends AppCompatActivity {
 
         switch (item.getItemId())
           {
-              case R.id.home :
-                  startActivity(new Intent(TimelineActivity.this,TimelineActivity.class));
+              case R.id.logOut :
+                  Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                  startActivity(intent);
                   break;
               case R.id.notification_history :
-                  startActivity(new Intent(TimelineActivity.this, NotificationHistoryActivity.class));
+                  Intent intent2 = new Intent(getApplicationContext(), NotificationHistoryActivity.class);
+                  intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  startActivity(intent2);
                   break;
               case R.id.maps:
-                  startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
+                  Intent intent3 = new Intent(getApplicationContext(), MapsActivity.class);
+                  intent3.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  startActivity(intent3);
                   break;
               case R.id.shortestPath:
-                  startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
+                  Intent intent4 = new Intent(getApplicationContext(), NearbyActivity.class);
+                  intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  startActivity(intent4);
                   break;
-              case R.id.setting:
-                  startActivity(new Intent(TimelineActivity.this, SubscribeToArea.class));
+              case R.id.subscribe:
+                  Intent intent5 = new Intent(getApplicationContext(), SubscribeToArea.class);
+                  intent5.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  startActivity(intent5);
                   break;
               default:
-                  startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
+                  Toast.makeText(getApplicationContext(), "Invalid Choice!", Toast.LENGTH_SHORT).show();
                   break;
 
           }

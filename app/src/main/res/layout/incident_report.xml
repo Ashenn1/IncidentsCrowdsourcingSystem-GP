@@ -40,6 +40,8 @@
          android:text="UserName"
          android:layout_marginTop="10dp"
          android:layout_marginLeft="5dp"
+         android:textSize="18sp"
+         android:textStyle="bold"
 
          />
 
@@ -61,16 +63,17 @@
         android:layout_height="wrap_content"
         android:text="Title"
         android:textStyle="bold"
-        android:textSize="14sp"
+        android:textSize="18sp"
 
         />
 
     <TextView
         android:id="@+id/incContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="Description"
         android:layout_marginTop="10dp"
+        android:textSize="18sp"
          />
 
 
@@ -88,6 +91,7 @@
         android:orientation="horizontal"
          android:layout_below="@+id/detailsLinear"
         android:id="@+id/categoryLinear"
+        android:layout_margin="20dp"
         android:padding="5dp"
         >
 
@@ -103,8 +107,8 @@
 
     <TextView
         android:id="@+id/category"
-        android:layout_width="135dp"
-        android:layout_height="28dp"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
         android:text="Incident Type "
         android:textSize="18sp"
 
@@ -113,37 +117,39 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/severityLinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_below="@+id/categoryLinear"
-        android:id="@+id/severityLinear"
-        android:padding="5dp"
-        >
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
-    <TextView
-        android:id="@+id/incident-severity"
-        android:layout_width="115dp"
-        android:layout_height="28dp"
-        android:text="Severity "
-        android:textSize="18sp"
-        android:textStyle="bold"
-        />
+        <TextView
+            android:id="@+id/incident-severity"
+            android:layout_width="115dp"
+            android:layout_height="28dp"
+            android:text="Severity "
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/severity"
-        android:layout_width="135dp"
-        android:layout_height="28dp"
-        android:textSize="18sp"
+        <TextView
+            android:id="@+id/severity"
+            android:layout_width="200dp"
+            android:layout_height="28dp"
+            android:textSize="18sp"
 
-        />
+            />
     </LinearLayout>
 
     <TextView
         android:id="@+id/incDate"
-        android:layout_width="130dp"
-        android:layout_height="34dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:padding="5dp"
+        android:layout_margin="20dp"
         android:layout_below="@+id/severityLinear"
 
         />
@@ -151,25 +157,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp"
         android:layout_below="@id/incDate"
-        >
+        android:layout_margin="20dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <Button
             android:id="@+id/upVoteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UpVote"
             android:layout_marginLeft="5dp"
-            />
+            android:text="UpVote" />
+
         <Button
             android:id="@+id/DownVoteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DownVote"
             android:layout_marginLeft="15dp"
-            />
+            android:text="DownVote" />
 
     </LinearLayout>
 

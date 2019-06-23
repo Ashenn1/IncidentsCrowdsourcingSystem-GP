@@ -73,7 +73,7 @@
         <activity android:name=".ResetPasswordActivity" />
 
         <activity android:name=".SignUpActivity" />
-        
+
         <activity android:name=".ReportIncidentActivity" android:exported="true" />
 
         <activity android:name=".UserProfileActivity"/>

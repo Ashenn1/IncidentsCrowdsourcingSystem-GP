@@ -1,11 +1,24 @@
 package com.incidentscrowdsourcingsystem;
 
+import java.util.Date;
+
 public class UserData
 {
 
-    String Name;
-    int id;
-    String Email;
+    private String Name;
+    private int id;
+    private String Email;
+    private Date sessionExpiryDate;
+
+    public void setSessionExpiryDate(Date sessionExpiryDate) {
+        this.sessionExpiryDate = sessionExpiryDate;
+    }
+
+
+    public Date getSessionExpiryDate() {
+        return sessionExpiryDate;
+    }
+
 
     public UserData() {
     }

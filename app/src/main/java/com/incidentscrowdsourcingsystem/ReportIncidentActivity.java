@@ -46,6 +46,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
     private static final String KEY_SEVERITY = "severity";
     private static final String KEY_AREA = "area";
     private static final String KEY_IMAGE = "image";
+    private static final String KEY_USERID = "user_id";
     private static final String KEY_EMPTY = "";
 
     private ImageView ImageView1;
@@ -63,6 +64,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
     //private RadioButton severityChoiceButton;
     //private int severitySelected;
     private int severityChoice;
+    private int userid;
 
     public static final int PICK_IMAGE = 1;
 
@@ -74,6 +76,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
 
+        userid = getIntent().getIntExtra("user_id", 0);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.report_incident_toolbar);
@@ -83,6 +87,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 //onBackPressed();
                 Intent intent = new Intent(getApplicationContext(), TimelineActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("userId", userid);
                 startActivity(intent);
             }
         });
@@ -327,6 +332,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 request.put(KEY_SEVERITY, severityChoice);
                 request.put(KEY_AREA, areaChosen);
                 request.put(KEY_IMAGE, incidentPhoto);
+                request.put(KEY_USERID, userid);
 
             } catch (JSONException e) {
                 Toast.makeText(getApplicationContext(),
@@ -383,6 +389,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
             // Access the RequestQueue through your singleton class.
             MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsArrayRequest);
         }
+        Intent intent = new Intent(getApplicationContext(), TimelineActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("userId", userid);
+        startActivity(intent);
 
     }
 
