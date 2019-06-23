@@ -31,49 +31,27 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".MapsActivity"
+            android:label="@string/title_activity_maps">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBWw6vl3rVXJmakYghEsagauHcnIyk03JY" />
+        </activity>
 
-        <activity
-            android:name=".NearbyActivity"
-            android:theme="@style/NoActionBar">
-        </activity>
-        <activity android:name=".PermissionLocationActivity">
-        </activity>
+        <activity android:name=".NearbyActivity" />
+
+        <activity android:name=".PermissionLocationActivity"></activity>
 
         <activity android:name=".TimelineActivity" android:exported="true" />
 
-        <activity
-            android:name=".SubscribeToArea"
-            android:exported="true" />
-        <activity
-            android:name=".NotificationHistoryActivity"
-            android:exported="true" />
+        <activity android:name=".SubscribeToArea" android:exported="true" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".NearbyActivity" />
-        <activity android:name=".PermissionLocationActivity"></activity>
-        <activity
-            android:name=".TimelineActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SubscribeToArea"
-            android:exported="true" />
-        <activity
-            android:name=".NotificationHistoryActivity"
-            android:exported="true" />
-        <activity
-            android:name=".IncidentReportActivity"
-            android:exported="true" />
+        <activity android:name=".NotificationHistoryActivity" android:exported="true" />
+
+        <activity android:name=".IncidentReportActivity" android:exported="true" />
+
         <activity android:name=".NotificationListFragement" />
+
         <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -91,12 +69,13 @@
         </service>
 
         <activity android:name=".MainActivity" />
+
         <activity android:name=".ResetPasswordActivity" />
+
         <activity android:name=".SignUpActivity" />
-        <activity
-            android:name=".ReportIncidentActivity"
-            android:exported="true" />
-        <activity android:name=".IncidentReportActivity"/>
+        
+        <activity android:name=".ReportIncidentActivity" android:exported="true" />
+
         <activity android:name=".UserProfileActivity"/>
     </application>
 
