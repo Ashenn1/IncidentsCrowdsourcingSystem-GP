@@ -115,6 +115,9 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 MyContext.startActivity(i);
             }
         });
+
+
+
         return ViewHolder;
     }
 
@@ -122,6 +125,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     public void onBindViewHolder(@NonNull final IncidentsViewAdapter.MyViewHolder holder, final int position) {
         holder.TitleIncident.setText(TitleReport.get(position));
         holder.NameUser.setText(UserName.get(position));
+        final int numOfClick = 0;
         holder.DownVoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,7 +133,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 String type="DownVote";
                 if( holder.DownVoteBtn.getText()==type)
                 {
-                    vote =DownVote.get(position)+ 1;
+                     vote =DownVote.get(position)+ 1;
                     holder.DownVoteBtn.setText(vote);
                 }
                 else {
@@ -151,7 +155,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 }
                 else {
                     vote = UpVote.get(position)-1;
-                    holder.UpVoteBtn.setText(type);
+                    holder.DownVoteBtn.setText(type);
                 }
             }});
 

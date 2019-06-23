@@ -13,21 +13,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".UserProfileActivity"></activity>
-        <activity android:name=".NearbyActivity" />
-        <activity android:name=".PermissionLocationActivity"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBWw6vl3rVXJmakYghEsagauHcnIyk03JY" />
+
         <activity
-            android:name=".TimelineActivity"
-            android:exported="true" />
+            android:name=".NearbyActivity"
+            android:label="@string/title_activity_nearby"
+            android:theme="@style/NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".PermissionLocationActivity">
+        </activity>
+
+        <activity android:name=".TimelineActivity" android:exported="true"/>
+
         <activity
             android:name=".SubscribeToArea"
             android:exported="true" />
         <activity
             android:name=".NotificationHistoryActivity"
             android:exported="true" />
-        <activity
-            android:name=".IncidentReportActivity"
-            android:exported="true" />
+
         <activity android:name=".NotificationListFragement" />
         <activity android:name=".SignInActivity">
             <intent-filter>
@@ -51,6 +63,8 @@
         <activity
             android:name=".ReportIncidentActivity"
             android:exported="true" />
+        <activity android:name=".IncidentReportActivity"/>
+        <activity android:name=".UserProfileActivity"/>
     </application>
 
 </manifest>

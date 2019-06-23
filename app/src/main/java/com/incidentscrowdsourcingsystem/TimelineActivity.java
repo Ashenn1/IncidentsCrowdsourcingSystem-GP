@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +41,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TimelineActivity extends AppCompatActivity {
 
-    private static final String TAG ="Check " ;
     private List<String> IncidentTitle;
     private List<String> IncidentDescription;
     private List<String> IncidentSeverity;
@@ -54,7 +51,6 @@ public class TimelineActivity extends AppCompatActivity {
     private List<Integer> IncidentID;
     private  List<String>IncidentImageStr;
     JsonArrayRequest req;
-    TextView test;
     private static final String KEY_UserId = "userId";
     private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
     //private  String timeline_url="https://localhost/ICS-Web/Timeline.php";
@@ -86,10 +82,15 @@ public class TimelineActivity extends AppCompatActivity {
         IncidentID = new ArrayList<Integer>();
         IncidentImageStr = new ArrayList<String>();
 
+
+//Fetching User Data from Sign in Page:
         id = getIntent().getIntExtra("userId",1);
-        UserName=getIntent().getStringExtra("Username");
+       // UserName=getIntent().getStringExtra("Username");
+        UserName="Menna Mohamed";
         email=getIntent().getStringExtra("Email");
         StringImg= getIntent().getStringExtra("UserImage");
+
+
 
         recyclerView =findViewById(R.id.recyclerviewid);
         mDrawerLayout= findViewById(R.id.drawer);
@@ -103,7 +104,7 @@ public class TimelineActivity extends AppCompatActivity {
         DataBaseHandling();
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        /*FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +112,7 @@ public class TimelineActivity extends AppCompatActivity {
                 a.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(a);
             }
-        });
+        });*/
 
     }
 
@@ -130,16 +131,16 @@ public class TimelineActivity extends AppCompatActivity {
 
         switch (item.getItemId())
           {
-             /* case R.id.maps:
-                  startActivity(new Intent(TimelineActivity.this,));
+             case R.id.maps:
+                  startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
                   break;
               case R.id.shortestPath:
-                  startActivity(new Intent(TimelineActivity.this,));*/
+                  startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
               case R.id.home :
                   startActivity(new Intent(TimelineActivity.this,TimelineActivity.class));
                   break;
-              case R.id.notification:
-                  startActivity(new Intent(TimelineActivity.this, NotificationHistoryActivity.class));
+              case R.id.additem :
+                  startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
                   break;
               default:
                   startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
@@ -173,10 +174,12 @@ public class TimelineActivity extends AppCompatActivity {
     {
         Toast.makeText(getApplicationContext(), "Start DataBase Function !", Toast.LENGTH_SHORT).show();
 
+        int id = getIntent().getIntExtra("User-Id",1);
+
+
          JSONObject request = new JSONObject();
         try {
             request.put(KEY_UserId,id);
-            Toast.makeText(getApplicationContext(), "Put Request is Done!", Toast.LENGTH_SHORT).show();
         }
         catch (JSONException e)
         {
@@ -184,7 +187,7 @@ public class TimelineActivity extends AppCompatActivity {
         }
 
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, timeline_url, request, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, timeline_url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
@@ -223,7 +226,6 @@ public class TimelineActivity extends AppCompatActivity {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "There is problem", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -234,7 +236,7 @@ public class TimelineActivity extends AppCompatActivity {
                     }
                 });
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsArrayRequest);
-
+        initRecyclerView(IncidentTitle,User_Name,IncidentDescription,IncidentSeverity,IncidentCategory,IncidentDate,IncidentUpVote,IncidentDownVote,IncidentID,IncidentImageStr);
     }
 
 

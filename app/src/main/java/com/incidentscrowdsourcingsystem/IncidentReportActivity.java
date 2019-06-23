@@ -40,9 +40,11 @@ public class IncidentReportActivity extends AppCompatActivity {
     String Description;
     String Incident_Date ;
     String incident_date;
+
     String incidentImageStr;
     Bitmap IncidentImage;
     String VoteUpdatingurl="https://crowd-sourcing-system.herokuapp.com/updateVotes.php";
+
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
 
@@ -50,25 +52,18 @@ public class IncidentReportActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.incident_report);
-         getIncomingIntent();
+        getIncomingIntent();
 
 
     }
     private void getIncomingIntent(){
 
-        if(getIntent().hasExtra("IncidentTitle")&&getIntent().hasExtra("IncidentCategory")&&getIntent().hasExtra("IncidentSeverity")&&getIntent().hasExtra("UserName"))
+        boolean imageExist=false;
+
+
+        if(getIntent().hasExtra("Incident-Title")&&getIntent().hasExtra("Incident-Category")&&getIntent().hasExtra("Incident-Severity")&&getIntent().hasExtra("UserName"))
         {
 
-            Severity = getIntent().getStringExtra("IncidentSeverity");
-            Title= getIntent().getStringExtra("IncidentTitle");
-            Category = getIntent().getStringExtra("IncidentCategory");
-             Description=getIntent().getStringExtra("IncidentDescription");
-            Username=getIntent().getStringExtra("UserName");
-            Incident_Date=getIntent().getStringExtra("IncidentDate");
-            UpVote=getIntent().getIntExtra("UpVoteNum",0);
-            DownVote=getIntent().getIntExtra("DownVoteNum",0);
-            IncidentId=getIntent().getIntExtra("IncidentId",1);
-            boolean imageExist  ;
             if(getIntent().hasExtra("IncidentImage"))
             {
                 incidentImageStr=getIntent().getStringExtra("IncidentImage");
@@ -76,12 +71,20 @@ public class IncidentReportActivity extends AppCompatActivity {
                 IncidentImage = BitmapFactory.decodeByteArray(StringToByte,0,StringToByte.length);
                 imageExist=true;
             }
-            else
-            {
-                imageExist = false ;
-            }
 
-
+            Title = getIntent().getStringExtra("Incident-Title");
+            Category = getIntent().getStringExtra("Incident-Category");
+            Severity = getIntent().getStringExtra("IncidentSeverity");
+            Title = getIntent().getStringExtra("IncidentTitle");
+            Category = getIntent().getStringExtra("IncidentCategory");
+            Description = getIntent().getStringExtra("IncidentDescription");
+            Username = getIntent().getStringExtra("UserName");
+            Incident_Date = getIntent().getStringExtra("IncidentDate");
+            UpVote = getIntent().getIntExtra("UpVoteNum", 0);
+            DownVote = getIntent().getIntExtra("DownVoteNum", 0);
+            IncidentId = getIntent().getIntExtra("IncidentId", 1);
+            String Description =getIntent().getStringExtra("Incident-Description");
+        }
            /* SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
             try {
                 Date Incident_date =format.parse(Incident_Date);
@@ -93,10 +96,9 @@ public class IncidentReportActivity extends AppCompatActivity {
                 e.printStackTrace();
             }*/
             setData(Title,Category,Severity,Description,Username,Incident_Date,imageExist);
-        }
 
     }
-    private void setData(String title, String category, String severity,String description ,String username,String incidentDate,Boolean imgExis)
+    private void setData(String title, String category, String severity,String description ,String username,String incidentDate,Boolean imgExist)
     {
         TextView Title, Category, Severity,UserName, Description;
         ImageView image ;
@@ -116,11 +118,14 @@ public class IncidentReportActivity extends AppCompatActivity {
         UserName.setText(username);
         date.setText(incidentDate);
         Description.setText(description);
-        if(imgExis==true)
+
+        if(imgExist==true)
         {
             image.setImageBitmap(IncidentImage);
         }
         else image.setVisibility(View.GONE);
+
+
         upVotebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,6 +165,8 @@ public class IncidentReportActivity extends AppCompatActivity {
 
 
     }
+
+
     private void UpdateDataBase(int vote,int id,String type)
     {
         JSONObject request = new JSONObject();

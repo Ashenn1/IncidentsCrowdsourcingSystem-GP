@@ -80,9 +80,8 @@ public class ReportIncidentActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(getApplicationContext(),TimelineActivity.class);
-                a.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(a);
+                //onBackPressed();
+                startActivity(new Intent(ReportIncidentActivity.this, TimelineActivity.class));
             }
         });
 
@@ -125,12 +124,18 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     }
 
+    /*public void goToNext(View view){
+        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+        startActivity(intent);
+    }*/
+
     @Override
     public void onBackPressed() {
         // TODO Auto-generated method stub
-        Intent a = new Intent(getApplicationContext(),TimelineActivity.class);
-        a.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(a);
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 

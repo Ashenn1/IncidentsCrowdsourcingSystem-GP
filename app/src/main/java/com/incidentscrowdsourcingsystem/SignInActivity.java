@@ -123,6 +123,7 @@ public class SignInActivity extends AppCompatActivity {
                                     if (response.getInt(KEY_STATUS) == 0) {
                                        // session.loginUser(username,response.getString(KEY_FULL_NAME));
                                         //redirect to timeline
+
                                         UserData user=  new UserData();
                                         user.setName(response.getString(KEY_USERNAME));
                                         user.setId(response.getInt(KEY_USERID));
@@ -130,6 +131,7 @@ public class SignInActivity extends AppCompatActivity {
                                         String StringImg = response.getString(KEY_UserPhoto);
                                          Toast.makeText(getApplicationContext(),
                                                 "Successfully Logged in", Toast.LENGTH_SHORT).show();
+
                                         progressBar.setVisibility(View.GONE);
                                         Context context ;
                                         Intent i= new Intent(SignInActivity.this,TimelineActivity.class);
