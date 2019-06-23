@@ -56,6 +56,28 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="foregroundClipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="696969" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="foregroundClipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/social/ic_person_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundImage">
                                         <value>
                                           <PersistentState>
@@ -73,13 +95,13 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
                                       <entry key="backgroundImage" value="M:\fci\Graduation Project\IncidentsCrowdsourcingSystem-GP\app\src\main\res\drawable\ic_launcher_background.xml" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="M:\fci\Graduation Project\IncidentsCrowdsourcingSystem-GP\app\src\main\res\mipmap-anydpi-v26\icslogo.png" />
-                                      <entry key="foregroundLayerName" value="ic_launcher_foreground" />
-                                      <entry key="legacyIconShape" value="CIRCLE" />
-                                      <entry key="outputName" value="ics_launcher_icon" />
-                                      <entry key="webIconShape" value="CIRCLE" />
+                                      <entry key="foregroundAssetType" value="CLIP_ART" />
+                                      <entry key="foregroundImage" value="M:\fci\Graduation Project\IncidentsCrowdsourcingSystem-GP\app\src\main\res\mipmap-anydpi-v26\ics_profileimage.xml" />
+                                      <entry key="foregroundLayerName" value="profileimage" />
+                                      <entry key="outputName" value="ics_profileimage" />
                                     </map>
                                   </option>
                                 </PersistentState>

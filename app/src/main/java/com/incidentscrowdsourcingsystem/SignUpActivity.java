@@ -80,6 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -186,13 +187,6 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return true;
-    }
-
-    private void LoadTimeline() {
-        Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
-        startActivity(i);
-        finish();
-
     }
 
     @Override

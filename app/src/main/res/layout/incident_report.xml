@@ -39,7 +39,7 @@
                         android:id="@+id/profileImage"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@mipmap/profileimage" />
+                        android:src="@mipmap/ics_profileimage" />
                      <TextView
                          android:id="@+id/userName"
                          android:layout_width="match_parent"

@@ -10,7 +10,7 @@
         android:id="@+id/userImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@mipmap/profileimage"
+        android:src="@mipmap/ics_profileimage"
 
         />
     <TextView
