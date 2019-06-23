@@ -126,7 +126,7 @@ public class SignInActivity extends AppCompatActivity {
 
                                         UserData user=  new UserData();
                                         user.setName(response.getString(KEY_USERNAME));
-                                        user.setId(response.getInt("userId"));
+                                        user.setId(response.getInt(KEY_USERID));
                                        // user.setEmail(response.getString(KEY_EMAIL));
                                         //String StringImg = response.getString(KEY_UserPhoto);
                                          Toast.makeText(getApplicationContext(),

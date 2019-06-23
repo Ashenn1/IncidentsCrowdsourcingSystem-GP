@@ -25,11 +25,7 @@
         </activity>
 
         <activity android:name=".TimelineActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
@@ -41,6 +37,11 @@
 
         <activity android:name=".NotificationListFragement" />
         <activity android:name=".SignInActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <service android:name=".MyFirebaseMessagingService">
