@@ -87,17 +87,17 @@ public class TimelineActivity extends AppCompatActivity {
     {
         switch (item.getItemId())
           {
-             case R.id.maps:
+              case R.id.home :
+                  startActivity(new Intent(TimelineActivity.this,TimelineActivity.class));
+                  break;
+              case R.id.notification_history :
+                  startActivity(new Intent(TimelineActivity.this, NotificationHistoryActivity.class));
+                  break;
+              case R.id.maps:
                   startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
                   break;
               case R.id.shortestPath:
                   startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
-              case R.id.home :
-                  startActivity(new Intent(TimelineActivity.this,TimelineActivity.class));
-                  break;
-              case R.id.additem :
-                  startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
-                  break;
               default:
                   startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
 
@@ -119,26 +119,6 @@ public class TimelineActivity extends AppCompatActivity {
       });
 
     }
-
-
-
-
-
-
-
-
-    /* private  void DataBase ()
-    {
-        IncidentTitle.add("XYZ");
-        IncidentTitle.add("XYZ");
-        IncidentTitle.add("XYZ");
-        IncidentTitle.add("XYZ");
-        User_Name.add("abc");
-        User_Name.add("abc");
-        User_Name.add("abc");
-        User_Name.add("abc");
-        initRecylerView(IncidentTitle,User_Name);
-    }*/
 
     private void DataBaseHandling ()
 
