@@ -24,9 +24,7 @@
         <activity android:name=".PermissionLocationActivity">
         </activity>
 
-        <activity android:name=".TimelineActivity" >
-
-        </activity>
+        <activity android:name=".TimelineActivity" android:exported="true" />
 
         <activity
             android:name=".SubscribeToArea"

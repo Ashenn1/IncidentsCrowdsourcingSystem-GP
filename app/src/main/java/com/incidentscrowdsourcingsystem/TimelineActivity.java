@@ -86,7 +86,7 @@ public class TimelineActivity extends AppCompatActivity {
 
 
 //Fetching User Data from Sign in Page:
-        id = getIntent().getIntExtra("userId",1);
+        id = getIntent().getIntExtra("userId",0);
        // UserName=getIntent().getStringExtra("Username");
         UserName="Menna Mohamed";
         email=getIntent().getStringExtra("Email");
@@ -113,7 +113,7 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(getApplicationContext(),ReportIncidentActivity.class);
-                a.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(a);
             }
         });
@@ -183,14 +183,14 @@ public class TimelineActivity extends AppCompatActivity {
 
     private void DataBaseHandling ()
     {
-        Toast.makeText(getApplicationContext(), "Start DataBase Function !", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Start DataBase Function !", Toast.LENGTH_SHORT).show();
 
-        int id = getIntent().getIntExtra("userId",1);
+        //int id = getIntent().getIntExtra("userId",1);
 
 
          JSONObject request = new JSONObject();
         try {
-            request.put(KEY_UserId,id);
+            request.put(KEY_UserId, id);
         }
         catch (JSONException e)
         {
@@ -203,7 +203,7 @@ public class TimelineActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray Incident = response.getJSONArray("Incident");
-                            Toast.makeText(getApplicationContext(), "Start To get Data !", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Start To get Data !", Toast.LENGTH_SHORT).show();
                             if (Incident.length() > 0)
                                {
                                    for (int i = 0; i < Incident.length() - 1; i++) {

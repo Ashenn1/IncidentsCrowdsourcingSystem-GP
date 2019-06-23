@@ -349,6 +349,10 @@ public class ReportIncidentActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Incident is reported successfully", Toast.LENGTH_LONG).show();
                             Log.d("DEBUG" ,"Sign up Successful");
 
+                            Intent intent = new Intent(getApplicationContext(), TimelineActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+
                         } else if (response.getInt(KEY_STATUS) == 1) {
                             //Display error message if username or email already exists
 
