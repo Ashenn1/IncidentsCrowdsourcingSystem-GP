@@ -72,5 +72,6 @@
     <string name="Close">Close</string>
     <string name="title_activity_permission_location">PermissionLocationActivity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_nearby">NearbyActivity</string>
 
 </resources>

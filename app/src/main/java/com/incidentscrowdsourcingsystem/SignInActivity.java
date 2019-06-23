@@ -2,11 +2,14 @@ package com.incidentscrowdsourcingsystem;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,9 +33,11 @@ public class SignInActivity extends AppCompatActivity {
     private static final String KEY_USERID ="UserId";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
+    private static final String KEY_UserPhoto = "UserImage";
     private static final String KEY_EMPTY = "";
     private String login_url = "https://crowd-sourcing-system.herokuapp.com/login.php";
-    int user_id;
+
+
     private EditText inputEmail, inputPassword;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
@@ -62,6 +67,7 @@ public class SignInActivity extends AppCompatActivity {
         btnSignup = (Button) findViewById(R.id.btn_signup);
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
+
 
 
 
@@ -117,13 +123,22 @@ public class SignInActivity extends AppCompatActivity {
                                     if (response.getInt(KEY_STATUS) == 0) {
                                        // session.loginUser(username,response.getString(KEY_FULL_NAME));
                                         //redirect to timeline
-                                        user_id=response.getInt(KEY_USERID);
+
+                                        UserData user=  new UserData();
+                                        user.setName(response.getString(KEY_USERNAME));
+                                        user.setId(response.getInt(KEY_USERID));
+                                       // user.setEmail(response.getString(KEY_EMAIL));
+                                        //String StringImg = response.getString(KEY_UserPhoto);
                                          Toast.makeText(getApplicationContext(),
                                                 "Successfully Logged in", Toast.LENGTH_SHORT).show();
+
                                         progressBar.setVisibility(View.GONE);
                                         Context context ;
                                         Intent i= new Intent(SignInActivity.this,TimelineActivity.class);
-                                        i.putExtra("userId",user_id);
+                                        i.putExtra("userId",user.getId());
+                                        i.putExtra(KEY_USERNAME,user.getName());
+                                        //i.putExtra(KEY_EMAIL,user.getEmail());
+                                        //i.putExtra(KEY_UserPhoto,StringImg);
                                         startActivity(i);
 
                                     }else{

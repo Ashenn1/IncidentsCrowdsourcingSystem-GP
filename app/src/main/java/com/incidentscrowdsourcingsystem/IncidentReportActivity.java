@@ -2,9 +2,13 @@ package com.incidentscrowdsourcingsystem;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,9 +38,13 @@ public class IncidentReportActivity extends AppCompatActivity {
     String Title;
     String Category ;
     String Severity ;
+    String Description;
     String Incident_Date ;
-    String incident_date;
+
+    String incidentImageStr;
+    Bitmap IncidentImage;
     String VoteUpdatingurl="https://crowd-sourcing-system.herokuapp.com/updateVotes.php";
+
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
 
@@ -44,7 +52,89 @@ public class IncidentReportActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.incident_report);
-         getIncomingIntent();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.incident_toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), TimelineActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+        getIncomingIntent();
+
+
+    }
+    private void getIncomingIntent(){
+
+        boolean imageExist=false;
+
+
+        if(getIntent().hasExtra("IncidentTitle")&&getIntent().hasExtra("IncidentCategory")&&getIntent().hasExtra("IncidentSeverity")&&getIntent().hasExtra("UserName"))
+        {
+
+            if(getIntent().hasExtra("IncidentImage"))
+            {
+                incidentImageStr=getIntent().getStringExtra("IncidentImage");
+                byte [] StringToByte = Base64.decode(incidentImageStr,Base64.DEFAULT);
+                IncidentImage = BitmapFactory.decodeByteArray(StringToByte,0,StringToByte.length);
+                imageExist=true;
+            }
+
+            Title = getIntent().getStringExtra("IncidentTitle");
+            Category = getIntent().getStringExtra("IncidentCategory");
+            Severity = getIntent().getStringExtra("IncidentSeverity");
+            Description = getIntent().getStringExtra("IncidentDescription");
+            Username = getIntent().getStringExtra("UserName");
+            Incident_Date = getIntent().getStringExtra("IncidentDate");
+            UpVote = getIntent().getIntExtra("UpVoteNum", 0);
+            DownVote = getIntent().getIntExtra("DownVoteNum", 0);
+            IncidentId = getIntent().getIntExtra("IncidentId", 1);
+
+        }
+           /* SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+            try {
+                Date Incident_date =format.parse(Incident_Date);
+                incident_date= format.format(Incident_date);
+
+            }
+            catch (ParseException e)
+            {
+                e.printStackTrace();
+            }*/
+            setData(Title,Category,Severity,Description,Username,Incident_Date,imageExist);
+
+    }
+
+
+
+    private void setData(String title, String category, String severity,String description ,String username,String incidentDate,Boolean imgExist)
+    {
+        TextView Title, Category, Severity,UserName, Description, date;
+        ImageView image;
+        image =findViewById(R.id.incidentImage);
+        Title= findViewById(R.id.incTitle);
+        Category= findViewById(R.id.category);
+        Severity=findViewById(R.id.severity);
+        UserName = findViewById(R.id.userName);
+        date = findViewById(R.id.incDate);
+        Description=findViewById(R.id.incContent);
+        upVotebtn=findViewById(R.id.upVoteButton);
+        downVotebtn= findViewById(R.id.DownVoteButton);
+        Title.setText(title);
+        Category.setText(category);
+        Severity.setText(severity);
+        UserName.setText(username);
+        date.setText(incidentDate);
+        Description.setText(description);
+
+        if(imgExist==true)
+        {
+            image.setImageBitmap(IncidentImage);
+        }
+        else image.setVisibility(View.GONE);
+
 
         upVotebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,55 +173,10 @@ public class IncidentReportActivity extends AppCompatActivity {
 
         });
 
-    }
-    private void getIncomingIntent(){
-
-        if(getIntent().hasExtra("IncidentTitle")&&getIntent().hasExtra("IncidentCategory")&&getIntent().hasExtra("IncidentSeverity")&&getIntent().hasExtra("UserName"))
-        {
-
-            Severity = getIntent().getStringExtra("IncidentSeverity");
-            Title= getIntent().getStringExtra("IncidentTitle");
-            Category = getIntent().getStringExtra("IncidentCategory");
-
-            Username=getIntent().getStringExtra("UserName");
-            Incident_Date=getIntent().getStringExtra("IncidentDate");
-            UpVote=getIntent().getIntExtra("UpVoteNum",0);
-            DownVote=getIntent().getIntExtra("DownVoteNum",0);
-            IncidentId=getIntent().getIntExtra("IncidentId",1);
-            SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-            try {
-                Date Incident_date =format.parse(Incident_Date);
-                incident_date= format.format(Incident_date);
-
-            }
-            catch (ParseException e)
-            {
-                e.printStackTrace();
-            }
-            setData(Title,Category,Severity,Username,incident_date);
-        }
 
     }
-    private void setData(String title, String category, String severity, String username,String incidentDate)
-    {
-        TextView Title, Category, Severity,UserName;
-        ImageView image ;
-        EditText date;
-        Title= findViewById(R.id.incTitle);
-        Category= findViewById(R.id.category);
-        Severity=findViewById(R.id.severity);
-        UserName = findViewById(R.id.userName);
-        date = findViewById(R.id.incDate);
-        upVotebtn=findViewById(R.id.upVoteButton);
-        downVotebtn= findViewById(R.id.DownVoteButton);
-        Title.setText(title);
-        Category.setText(category);
-        Severity.setText(severity);
-        UserName.setText(username);
-        date.setText(incidentDate);
 
 
-    }
     private void UpdateDataBase(int vote,int id,String type)
     {
         JSONObject request = new JSONObject();

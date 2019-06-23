@@ -36,6 +36,27 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"><intent-filter>
             <action android:name="android.intent.action.MAIN" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBWw6vl3rVXJmakYghEsagauHcnIyk03JY" />
+
+        <activity
+            android:name=".NearbyActivity"
+            android:theme="@style/NoActionBar">
+        </activity>
+        <activity android:name=".PermissionLocationActivity">
+        </activity>
+
+        <activity android:name=".TimelineActivity" >
+
+        </activity>
+
+        <activity
+            android:name=".SubscribeToArea"
+            android:exported="true" />
+        <activity
+            android:name=".NotificationHistoryActivity"
+            android:exported="true" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
@@ -77,6 +98,8 @@
         <activity
             android:name=".ReportIncidentActivity"
             android:exported="true" />
+        <activity android:name=".IncidentReportActivity"/>
+        <activity android:name=".UserProfileActivity"/>
     </application>
 
 </manifest>

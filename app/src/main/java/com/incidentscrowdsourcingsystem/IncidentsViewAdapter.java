@@ -2,6 +2,7 @@ package com.incidentscrowdsourcingsystem;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,17 +24,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdapter.MyViewHolder> {
     private List<String> TitleReport;
     private List<String>UserName;
-    List<String>Description;
-    List<String>Severity;
-    List<String>Category;
-    List<String>Date;
-    List<Integer>UpVote;
-    List<Integer>DownVote;
-    List<Integer>IncidentId;
+    private  List<String>Description;
+    private  List<String>Severity;
+    private  List<String>Category;
+    private  List<String>Date;
+    private  List<Integer>UpVote;
+    private  List<Integer>DownVote;
+    private  List<Integer>IncidentId;
+    private  List<String>IncidentImage ;
 
     private Context MyContext;
 
-    public IncidentsViewAdapter(List<String> titleReport, List<String> userName,List<String>description,List<String>severity,List<String>category,List<String>date,List<Integer>upVote,List<Integer>downVote,List<Integer>incidentId ,Context myContext) {
+    public IncidentsViewAdapter(List<String> titleReport, List<String> userName, List<String>description, List<String>severity, List<String>category, List<String>date, List<Integer>upVote, List<Integer>downVote, List<Integer>incidentId, List<String>incidentImage , Context myContext) {
         TitleReport = titleReport;
         UserName = userName;
         MyContext = myContext;
@@ -44,6 +46,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
         DownVote=downVote;
         IncidentId= incidentId;
         Date=date;
+        IncidentImage = incidentImage;
     }
 
 
@@ -54,24 +57,67 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
         LayoutInflater inflater=  LayoutInflater.from(MyContext) ;
         view =inflater.inflate(R.layout.list,parent,false);
         final MyViewHolder ViewHolder = new MyViewHolder(view);
+        final int position= ViewHolder.getAdapterPosition();
+
+        ViewHolder.DownVoteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int vote;
+                String type="DownVote";
+                if(  ViewHolder.DownVoteBtn.getText()==type)
+                {
+                    vote =DownVote.get(position)+ 1;
+                    ViewHolder.DownVoteBtn.setText(vote);
+                }
+                else {
+
+                    vote = DownVote.get(position)-1;
+                    ViewHolder.DownVoteBtn.setText(type);
+                }
+            }});
+        ViewHolder.UpVoteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int vote;
+                String type ="UpVote";
+                if(  ViewHolder.UpVoteBtn.getText()==type)
+                {
+                    vote =UpVote.get(position)+ 1;
+                    ViewHolder.UpVoteBtn.setText(vote);
+                }
+                else {
+                    vote = UpVote.get(position)-1;
+                    ViewHolder.UpVoteBtn.setText(type);
+                }
+            }});
+
+
+
+
+
+
         ViewHolder.Container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent (MyContext,IncidentReportActivity.class);
                 Log.d("7amada","on click error " + ViewHolder.getAdapterPosition());
-//                Toast.makeText(MyContext, "Position of Item Clicked !"+ViewHolder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
-                i.putExtra("IncidentDescription", "Desc");
-                i.putExtra("IncidentTitle",TitleReport.get(0));
-                i.putExtra("IncidentSeverity",Severity.get(0));
-                i.putExtra("IncidentCategory",Category.get(0));
-                i.putExtra("UserName",UserName.get(0));
-                i.putExtra("IncidentDate",Date.get(0));
-                i.putExtra("UpVoteNum",UpVote.get(0));
-                i.putExtra("DownVoteNum",DownVote.get(0));
-                i.putExtra("IncidentId",IncidentId.get(0));
+                i.putExtra("IncidentDescription", Description.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("IncidentTitle",TitleReport.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("IncidentSeverity",Severity.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("IncidentCategory",Category.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("UserName",UserName.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("IncidentDate",Date.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("UpVoteNum",UpVote.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("DownVoteNum",DownVote.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("IncidentId",IncidentId.get(ViewHolder.getAdapterPosition()));
+                //i.putExtra("IncidentImage",IncidentImage.get(ViewHolder.getAdapterPosition()));
                 MyContext.startActivity(i);
             }
         });
+
+
+
         return ViewHolder;
     }
 
@@ -79,6 +125,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     public void onBindViewHolder(@NonNull final IncidentsViewAdapter.MyViewHolder holder, final int position) {
         holder.TitleIncident.setText(TitleReport.get(position));
         holder.NameUser.setText(UserName.get(position));
+        final int numOfClick = 0;
         holder.DownVoteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +133,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 String type="DownVote";
                 if( holder.DownVoteBtn.getText()==type)
                 {
-                    vote =DownVote.get(position)+ 1;
+                     vote =DownVote.get(position)+ 1;
                     holder.DownVoteBtn.setText(vote);
                 }
                 else {
@@ -108,7 +155,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 }
                 else {
                     vote = UpVote.get(position)-1;
-                    holder.UpVoteBtn.setText(type);
+                    holder.DownVoteBtn.setText(type);
                 }
             }});
 
@@ -119,6 +166,8 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
     public int getItemCount() {
         return TitleReport.size() ;
     }
+
+
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView TitleIncident;
