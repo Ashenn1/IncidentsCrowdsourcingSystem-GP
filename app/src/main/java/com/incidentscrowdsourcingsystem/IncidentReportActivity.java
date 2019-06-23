@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
@@ -39,7 +40,6 @@ public class IncidentReportActivity extends AppCompatActivity {
     String Severity ;
     String Description;
     String Incident_Date ;
-    String incident_date;
 
     String incidentImageStr;
     Bitmap IncidentImage;
@@ -52,6 +52,16 @@ public class IncidentReportActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.incident_report);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.incident_toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), TimelineActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
         getIncomingIntent();
 
 
@@ -61,7 +71,7 @@ public class IncidentReportActivity extends AppCompatActivity {
         boolean imageExist=false;
 
 
-        if(getIntent().hasExtra("Incident-Title")&&getIntent().hasExtra("Incident-Category")&&getIntent().hasExtra("Incident-Severity")&&getIntent().hasExtra("UserName"))
+        if(getIntent().hasExtra("IncidentTitle")&&getIntent().hasExtra("IncidentCategory")&&getIntent().hasExtra("IncidentSeverity")&&getIntent().hasExtra("UserName"))
         {
 
             if(getIntent().hasExtra("IncidentImage"))
@@ -72,18 +82,16 @@ public class IncidentReportActivity extends AppCompatActivity {
                 imageExist=true;
             }
 
-            Title = getIntent().getStringExtra("Incident-Title");
-            Category = getIntent().getStringExtra("Incident-Category");
-            Severity = getIntent().getStringExtra("IncidentSeverity");
             Title = getIntent().getStringExtra("IncidentTitle");
             Category = getIntent().getStringExtra("IncidentCategory");
+            Severity = getIntent().getStringExtra("IncidentSeverity");
             Description = getIntent().getStringExtra("IncidentDescription");
             Username = getIntent().getStringExtra("UserName");
             Incident_Date = getIntent().getStringExtra("IncidentDate");
             UpVote = getIntent().getIntExtra("UpVoteNum", 0);
             DownVote = getIntent().getIntExtra("DownVoteNum", 0);
             IncidentId = getIntent().getIntExtra("IncidentId", 1);
-            String Description =getIntent().getStringExtra("Incident-Description");
+
         }
            /* SimpleDateFormat format =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
             try {
@@ -103,9 +111,8 @@ public class IncidentReportActivity extends AppCompatActivity {
 
     private void setData(String title, String category, String severity,String description ,String username,String incidentDate,Boolean imgExist)
     {
-        TextView Title, Category, Severity,UserName, Description;
-        ImageView image ;
-        EditText date;
+        TextView Title, Category, Severity,UserName, Description, date;
+        ImageView image;
         image =findViewById(R.id.incidentImage);
         Title= findViewById(R.id.incTitle);
         Category= findViewById(R.id.category);

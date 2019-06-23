@@ -15,8 +15,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        android:textSize="35sp"
-        app:title="@string/reportActivityHeader" />
+        android:textSize="35sp" />
 
  <LinearLayout
      android:layout_width="match_parent"
@@ -136,17 +135,14 @@
         android:layout_width="135dp"
         android:layout_height="28dp"
         android:textSize="18sp"
-        android:text="Medium"
 
         />
     </LinearLayout>
 
-    <EditText
+    <TextView
         android:id="@+id/incDate"
         android:layout_width="130dp"
         android:layout_height="34dp"
-        android:ems="10"
-        android:inputType="date"
         android:padding="5dp"
         android:layout_below="@+id/severityLinear"
 

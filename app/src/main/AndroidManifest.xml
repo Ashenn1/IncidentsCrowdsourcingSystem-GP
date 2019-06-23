@@ -24,7 +24,13 @@
         <activity android:name=".PermissionLocationActivity">
         </activity>
 
-        <activity android:name=".TimelineActivity" android:exported="true"/>
+        <activity android:name=".TimelineActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".SubscribeToArea"
@@ -35,11 +41,6 @@
 
         <activity android:name=".NotificationListFragement" />
         <activity android:name=".SignInActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name=".MyFirebaseMessagingService">

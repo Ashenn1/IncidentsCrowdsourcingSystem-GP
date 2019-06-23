@@ -126,9 +126,9 @@ public class SignInActivity extends AppCompatActivity {
 
                                         UserData user=  new UserData();
                                         user.setName(response.getString(KEY_USERNAME));
-                                        user.setId(response.getInt(KEY_USERID));
-                                        user.setEmail(response.getString(KEY_EMAIL));
-                                        String StringImg = response.getString(KEY_UserPhoto);
+                                        user.setId(response.getInt("userId"));
+                                       // user.setEmail(response.getString(KEY_EMAIL));
+                                        //String StringImg = response.getString(KEY_UserPhoto);
                                          Toast.makeText(getApplicationContext(),
                                                 "Successfully Logged in", Toast.LENGTH_SHORT).show();
 
@@ -137,8 +137,8 @@ public class SignInActivity extends AppCompatActivity {
                                         Intent i= new Intent(SignInActivity.this,TimelineActivity.class);
                                         i.putExtra("userId",user.getId());
                                         i.putExtra(KEY_USERNAME,user.getName());
-                                        i.putExtra(KEY_EMAIL,user.getEmail());
-                                        i.putExtra(KEY_UserPhoto,StringImg);
+                                        //i.putExtra(KEY_EMAIL,user.getEmail());
+                                        //i.putExtra(KEY_UserPhoto,StringImg);
                                         startActivity(i);
 
                                     }else{

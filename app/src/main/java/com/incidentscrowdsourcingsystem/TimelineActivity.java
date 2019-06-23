@@ -103,6 +103,7 @@ public class TimelineActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setUpDrawerContent(nav);
+
         DataBaseHandling();
 
 
@@ -146,8 +147,13 @@ public class TimelineActivity extends AppCompatActivity {
                   break;
               case R.id.shortestPath:
                   startActivity(new Intent(TimelineActivity.this, PermissionLocationActivity.class));
+                  break;
+              case R.id.setting:
+                  startActivity(new Intent(TimelineActivity.this, SubscribeToArea.class));
+                  break;
               default:
                   startActivity(new Intent(TimelineActivity.this, ReportIncidentActivity.class));
+                  break;
 
           }
           item.setChecked(true);
@@ -158,12 +164,13 @@ public class TimelineActivity extends AppCompatActivity {
 
     private void setUpDrawerContent(NavigationView navigationView)
     {
-        img =findViewById(R.id.userImage);
-        name=findViewById(R.id.navUsername);
-        name.setText(UserName);
+        /*img =findViewById(R.id.userImage);
+       // name=findViewById(R.id.navUsername);
+        //name.setText(UserName);
         byte [] StringToByte = Base64.decode(StringImg,Base64.DEFAULT);
         Bitmap image= BitmapFactory.decodeByteArray(StringToByte,0,StringToByte.length);
-        img.setImageBitmap(image);
+        img.setImageBitmap(image);*/
+
       navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
           @Override
           public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -178,7 +185,7 @@ public class TimelineActivity extends AppCompatActivity {
     {
         Toast.makeText(getApplicationContext(), "Start DataBase Function !", Toast.LENGTH_SHORT).show();
 
-        int id = getIntent().getIntExtra("User-Id",1);
+        int id = getIntent().getIntExtra("userId",1);
 
 
          JSONObject request = new JSONObject();
@@ -191,15 +198,15 @@ public class TimelineActivity extends AppCompatActivity {
         }
 
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, timeline_url, null, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, timeline_url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray Incident = response.getJSONArray("Incident");
                             Toast.makeText(getApplicationContext(), "Start To get Data !", Toast.LENGTH_SHORT).show();
-                            if (Incident.length()>0)
+                            if (Incident.length() > 0)
                                {
-                                   for (int i=0;i<Incident.length()-1;i++) {
+                                   for (int i = 0; i < Incident.length() - 1; i++) {
                                        JSONObject IncidentObject = Incident.getJSONObject(i);
                                        if(IncidentObject.has("incidentDescription"))
                                        {
@@ -217,7 +224,7 @@ public class TimelineActivity extends AppCompatActivity {
                                        IncidentUpVote.add(IncidentObject.getInt("UpVote"));
                                        IncidentDownVote.add(IncidentObject.getInt("DownVote"));
                                        IncidentID.add(IncidentObject.getInt("IncidentID"));
-                                       IncidentImageStr.add(IncidentObject.getString("IncidentImage"));
+                                       //IncidentImageStr.add(IncidentObject.getString("IncidentImage"));
 
 
                                    }
