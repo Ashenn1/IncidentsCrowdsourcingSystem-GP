@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,9 +31,12 @@ public class SignUpActivity extends AppCompatActivity {
     private static final String KEY_USERNAME = "Username";
     private static final String KEY_EMAIL = "Email";
     private static final String KEY_PASSWORD = "Password";
+    private static final String KEY_AREA_NAME = "AreaName";
     private static final String KEY_EMPTY = "";
 
     private EditText inputEmail, inputPassword , inputUsername , inputConfirmPass;
+    private Spinner chooseAreaDropdown;
+    private String areaChosen;
     private Button btnSignIn, btnSignUp;
     private ProgressBar progressBar;
     private String register_url = "https://crowd-sourcing-system.herokuapp.com/register.php";
@@ -50,6 +56,24 @@ public class SignUpActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
         inputConfirmPass  = (EditText) findViewById(R.id.confirm_password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        chooseAreaDropdown = (Spinner) findViewById(R.id.ChooseAreaDropDown);
+
+        String Areas[] = new String[]{"Choose an Area", "Zamalek", "Al Haram", "Al Omraneyah"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Areas);
+
+        chooseAreaDropdown.setAdapter(adapter);
+
+        chooseAreaDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
+                areaChosen = adapterView.getItemAtPosition(pos).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                areaChosen = "Choose an Area";
+            }
+        });
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,12 +95,13 @@ public class SignUpActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
 
-                if (validateInputs(username, email, password, confirm_pass)) {
+                if (validateInputs(username, email,areaChosen , password, confirm_pass)) {
 
                     JSONObject request = new JSONObject();
                     try {
                         request.put(KEY_USERNAME, username);
                         request.put(KEY_EMAIL, email);
+                        request.put(KEY_AREA_NAME, areaChosen);
                         request.put(KEY_PASSWORD, password);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -131,7 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private boolean validateInputs(String username ,String email , String password , String confirm_pass){
+    private boolean validateInputs(String username ,String email ,String chosenArea, String password , String confirm_pass){
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(getApplicationContext(), "Enter a username!", Toast.LENGTH_SHORT).show();
             return false;
@@ -153,6 +178,10 @@ public class SignUpActivity extends AppCompatActivity {
         }
         if(!password.equals(confirm_pass)){
             Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(chosenArea.equals("Choose an Area")){
+            Toast.makeText(getApplicationContext(), "Please choose an area!", Toast.LENGTH_SHORT).show();
             return false;
         }
 
