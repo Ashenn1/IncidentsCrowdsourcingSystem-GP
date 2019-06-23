@@ -59,44 +59,6 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
         final MyViewHolder ViewHolder = new MyViewHolder(view);
         final int position= ViewHolder.getAdapterPosition();
 
-        ViewHolder.DownVoteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int vote;
-                String type="DownVote";
-                if(  ViewHolder.DownVoteBtn.getText()==type)
-                {
-                    vote =DownVote.get(position)+ 1;
-                    ViewHolder.DownVoteBtn.setText(vote);
-                }
-                else {
-
-                    vote = DownVote.get(position)-1;
-                    ViewHolder.DownVoteBtn.setText(type);
-                }
-            }});
-        ViewHolder.UpVoteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                int vote;
-                String type ="UpVote";
-                if(  ViewHolder.UpVoteBtn.getText()==type)
-                {
-                    vote =UpVote.get(position)+ 1;
-                    ViewHolder.UpVoteBtn.setText(vote);
-                }
-                else {
-                    vote = UpVote.get(position)-1;
-                    ViewHolder.UpVoteBtn.setText(type);
-                }
-            }});
-
-
-
-
-
-
         ViewHolder.Container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,38 +88,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
         holder.TitleIncident.setText(TitleReport.get(position));
         holder.NameUser.setText(UserName.get(position));
         final int numOfClick = 0;
-        holder.DownVoteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int vote;
-                String type="DownVote";
-                if( holder.DownVoteBtn.getText()==type)
-                {
-                     vote =DownVote.get(position)+ 1;
-                    holder.DownVoteBtn.setText(vote);
-                }
-                else {
 
-                    vote = DownVote.get(position)-1;
-                    holder.DownVoteBtn.setText(type);
-                }
-            }});
-        holder.UpVoteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                int vote;
-                String type ="UpVote";
-                if( holder.UpVoteBtn.getText()==type)
-                {
-                    vote =UpVote.get(position)+ 1;
-                    holder.UpVoteBtn.setText(vote);
-                }
-                else {
-                    vote = UpVote.get(position)-1;
-                    holder.DownVoteBtn.setText(type);
-                }
-            }});
 
     }
 
@@ -173,16 +104,14 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
         TextView TitleIncident;
         TextView NameUser;
         LinearLayout Container;
-        Button UpVoteBtn;
-        Button DownVoteBtn;
+        //Button UpVoteBtn;
+        //Button DownVoteBtn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             TitleIncident = itemView.findViewById(R.id.Title);
             NameUser = itemView.findViewById(R.id.userName);
             Container = itemView.findViewById(R.id.container);
-            UpVoteBtn= itemView.findViewById(R.id.upvote);
-            DownVoteBtn=itemView.findViewById(R.id.downvote);
         }
     }
 

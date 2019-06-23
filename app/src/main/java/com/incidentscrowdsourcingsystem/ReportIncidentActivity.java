@@ -70,13 +70,16 @@ public class ReportIncidentActivity extends AppCompatActivity {
 
     private String register_url = "https://crowd-sourcing-system.herokuapp.com/reporting_incident.php";
 
+    private SessionHandler session;
+    private UserData user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_incident);
 
-        userid = getIntent().getIntExtra("user_id", 0);
+        session = new SessionHandler(getApplicationContext());
+        user = session.getUserDetails();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -332,7 +335,7 @@ public class ReportIncidentActivity extends AppCompatActivity {
                 request.put(KEY_SEVERITY, severityChoice);
                 request.put(KEY_AREA, areaChosen);
                 request.put(KEY_IMAGE, incidentPhoto);
-                request.put(KEY_USERID, userid);
+                request.put(KEY_USERID, user.getId());
 
             } catch (JSONException e) {
                 Toast.makeText(getApplicationContext(),

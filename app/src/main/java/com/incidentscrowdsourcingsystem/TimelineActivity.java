@@ -56,7 +56,6 @@ public class TimelineActivity extends AppCompatActivity {
     private static final String KEY_UserId = "userId";
     private String timeline_url = "https://crowd-sourcing-system.herokuapp.com/Timeline.php";
     //private  String timeline_url="https://localhost/ICS-Web/Timeline.php";
-    int id;
     String UserName;
     String email;
     String StringImg;
@@ -67,16 +66,16 @@ public class TimelineActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle Toggle;
-    //UserData user;
+    UserData user;
 
-    //private SessionHandler session;
+    private SessionHandler session;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
-        //session = new SessionHandler(getApplicationContext());
-        //user = session.getUserDetails();
+        session = new SessionHandler(getApplicationContext());
+        user = session.getUserDetails();
 
         IncidentTitle= new ArrayList<String>();
         User_Name= new ArrayList<String>();
@@ -91,8 +90,8 @@ public class TimelineActivity extends AppCompatActivity {
 
 
 //Fetching User Data from Sign in Page:
-        id = getIntent().getIntExtra("userId",0);
-        UserName=getIntent().getStringExtra("Username");
+        //id = getIntent().getIntExtra("userId",0);
+        //UserName=getIntent().getStringExtra("Username");
         //email=getIntent().getStringExtra("Email");
         //StringImg= getIntent().getStringExtra("UserImage");
 
@@ -107,7 +106,7 @@ public class TimelineActivity extends AppCompatActivity {
         View header = nav.getHeaderView(0);
 
         TextView name = header.findViewById(R.id.navUsername);
-        name.setText(UserName);
+        name.setText(user.getName());
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setUpDrawerContent(nav);
@@ -121,7 +120,7 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(getApplicationContext(),ReportIncidentActivity.class);
-                a.putExtra("user_id", id);
+                //a.putExtra("user_id", id);
                 a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(a);
             }
@@ -145,11 +144,6 @@ public class TimelineActivity extends AppCompatActivity {
 
         switch (item.getItemId())
           {
-              case R.id.logOut :
-                  Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                  startActivity(intent);
-                  break;
               case R.id.notification_history :
                   Intent intent2 = new Intent(getApplicationContext(), NotificationHistoryActivity.class);
                   intent2.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -161,7 +155,7 @@ public class TimelineActivity extends AppCompatActivity {
                   startActivity(intent3);
                   break;
               case R.id.shortestPath:
-                  Intent intent4 = new Intent(getApplicationContext(), NearbyActivity.class);
+                  Intent intent4 = new Intent(getApplicationContext(), PermissionLocationActivity.class);
                   intent4.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                   startActivity(intent4);
                   break;
@@ -170,6 +164,11 @@ public class TimelineActivity extends AppCompatActivity {
                   intent5.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                   startActivity(intent5);
                   break;
+              case R.id.logOut:
+                  session.logoutUser();
+                  Intent i = new Intent(TimelineActivity.this, SignInActivity.class);
+                  startActivity(i);
+                  finish();
               default:
                   Toast.makeText(getApplicationContext(), "Invalid Choice!", Toast.LENGTH_SHORT).show();
                   break;
@@ -209,7 +208,7 @@ public class TimelineActivity extends AppCompatActivity {
 
          JSONObject request = new JSONObject();
         try {
-            request.put(KEY_UserId, id);
+            request.put(KEY_UserId, user.getId());
         }
         catch (JSONException e)
         {

@@ -34,14 +34,14 @@ public class SignUpActivity extends AppCompatActivity {
     private Button btnSignIn, btnSignUp;
     private ProgressBar progressBar;
     private String register_url = "https://crowd-sourcing-system.herokuapp.com/register.php";
-
+    //private SessionHandler session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
+        //session = new SessionHandler(getApplicationContext());
 
         btnSignIn = (Button) findViewById(R.id.sign_in_button);
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
@@ -90,6 +90,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 //Check if user got registered successfully
                                 if (response.getInt(KEY_STATUS) == 0) {
                                     //start dashboad/Timeline activity
+                                    //session.loginUser(response.getString(KEY_USERNAME),response.getInt(Ke));
+                                    //LoadTimeline();
                                     Toast.makeText(getApplicationContext(), "SignUp Successful", Toast.LENGTH_LONG).show();
                                     Log.d("DEBUG" ,"Sign up Successful");
 
@@ -155,6 +157,13 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    private void LoadTimeline() {
+        Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+        startActivity(i);
+        finish();
+
     }
 
     @Override

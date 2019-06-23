@@ -54,9 +54,8 @@
 
         <activity android:name=".SignInActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
@@ -76,7 +75,7 @@
 
         <activity android:name=".ReportIncidentActivity" android:exported="true" />
 
-        <activity android:name=".UserProfileActivity"/>
+        <activity android:name=".UserProfileActivity" android:exported="true"/>
     </application>
 
 </manifest>

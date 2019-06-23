@@ -41,7 +41,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private ProgressBar progressBar;
     private Button btnSignup, btnLogin, btnReset;
-    //private SessionHandler session;
+    private SessionHandler session;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -49,10 +49,10 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        //session = new SessionHandler(getApplicationContext());
-        //if(session.isLoggedIn()){
-            //Load timeline
-       // }
+        session = new SessionHandler(getApplicationContext());
+        if(session.isLoggedIn()){
+            LoadTimeline();
+        }
 
 
         // set the view now
@@ -124,22 +124,25 @@ public class SignInActivity extends AppCompatActivity {
                                        // session.loginUser(username,response.getString(KEY_FULL_NAME));
                                         //redirect to timeline
 
-                                        UserData user=  new UserData();
-                                        user.setName(response.getString(KEY_USERNAME));
-                                        user.setId(response.getInt(KEY_USERID));
+                                        //UserData user=  new UserData();
+                                        //user.setName(response.getString(KEY_USERNAME));
+                                        //user.setId(response.getInt(KEY_USERID));
                                        // user.setEmail(response.getString(KEY_EMAIL));
                                         //String StringImg = response.getString(KEY_UserPhoto);
+
+                                        session.loginUser(response.getString(KEY_USERNAME),response.getString(KEY_USERID));
+                                        LoadTimeline();
                                          Toast.makeText(getApplicationContext(),
                                                 "Successfully Logged in", Toast.LENGTH_SHORT).show();
 
                                         progressBar.setVisibility(View.GONE);
-                                        Context context ;
-                                        Intent i= new Intent(SignInActivity.this,TimelineActivity.class);
-                                        i.putExtra("userId",user.getId());
-                                        i.putExtra(KEY_USERNAME,user.getName());
+                                        //Context context ;
+                                        //Intent i= new Intent(SignInActivity.this,TimelineActivity.class);
+                                        //i.putExtra("userId",user.getId());
+                                        //i.putExtra(KEY_USERNAME,user.getName());
                                         //i.putExtra(KEY_EMAIL,user.getEmail());
                                         //i.putExtra(KEY_UserPhoto,StringImg);
-                                        startActivity(i);
+                                        //startActivity(i);
 
                                     }else{
                                         Toast.makeText(getApplicationContext(),
@@ -169,6 +172,13 @@ public class SignInActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void LoadTimeline() {
+        Intent i = new Intent(getApplicationContext(), TimelineActivity.class);
+        startActivity(i);
+        finish();
 
     }
 
