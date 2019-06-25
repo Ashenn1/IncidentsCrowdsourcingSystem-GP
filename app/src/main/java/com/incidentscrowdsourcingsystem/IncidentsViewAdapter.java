@@ -73,7 +73,7 @@ public class IncidentsViewAdapter extends RecyclerView.Adapter<IncidentsViewAdap
                 i.putExtra("UpVoteNum",UpVote.get(ViewHolder.getAdapterPosition()));
                 i.putExtra("DownVoteNum",DownVote.get(ViewHolder.getAdapterPosition()));
                 i.putExtra("IncidentId",IncidentId.get(ViewHolder.getAdapterPosition()));
-                //i.putExtra("IncidentImage",IncidentImage.get(ViewHolder.getAdapterPosition()));
+                i.putExtra("IncidentImage",IncidentImage.get(ViewHolder.getAdapterPosition()));
                 MyContext.startActivity(i);
             }
         });
