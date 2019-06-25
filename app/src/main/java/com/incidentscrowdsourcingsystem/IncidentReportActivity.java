@@ -28,28 +28,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static com.incidentscrowdsourcingsystem.R.drawable.ic_verified_user_black_24dp;
-
 public class IncidentReportActivity extends AppCompatActivity {
     Button upVotebtn;
     Button downVotebtn ;
-
-    public Integer getDownVote() {
-        return DownVote;
-    }
-
-    public void setDownVote(Integer downVote) {
-        DownVote = downVote;
-    }
-
-    public Integer getUpVote() {
-        return UpVote;
-    }
-
-    public void setUpVote(Integer upVote) {
-        UpVote = upVote;
-    }
-
     Integer DownVote;
     Integer UpVote;
     Integer IncidentId;
@@ -60,18 +41,7 @@ public class IncidentReportActivity extends AppCompatActivity {
     String Description;
     String Incident_Date ;
 
-
-
     String incidentImageStr;
-
-    public Bitmap getIncidentImage() {
-        return IncidentImage;
-    }
-
-    public void setIncidentImage(Bitmap incidentImage) {
-        IncidentImage = incidentImage;
-    }
-
     Bitmap IncidentImage;
     String VoteUpdatingurl="https://crowd-sourcing-system.herokuapp.com/updateVotes.php";
 
@@ -109,7 +79,6 @@ public class IncidentReportActivity extends AppCompatActivity {
                 incidentImageStr=getIntent().getStringExtra("IncidentImage");
                 byte [] StringToByte = Base64.decode(incidentImageStr,Base64.DEFAULT);
                 IncidentImage = BitmapFactory.decodeByteArray(StringToByte,0,StringToByte.length);
-                setIncidentImage(IncidentImage);
                 imageExist=true;
             }
 
@@ -134,13 +103,13 @@ public class IncidentReportActivity extends AppCompatActivity {
             {
                 e.printStackTrace();
             }*/
-            setData(Title,Category,Severity,Description,Username,Incident_Date,UpVote,DownVote,imageExist);
+            setData(Title,Category,Severity,Description,Username,Incident_Date,imageExist);
 
     }
 
 
 
-    private void setData(String title, String category, String severity,String description ,String username,String incidentDate,int up_vote, int down_vote,Boolean imgExist)
+    private void setData(String title, String category, String severity,String description ,String username,String incidentDate,Boolean imgExist)
     {
         TextView Title, Category, Severity,UserName, Description, date;
         ImageView image;
@@ -159,17 +128,10 @@ public class IncidentReportActivity extends AppCompatActivity {
         UserName.setText(username);
         date.setText(incidentDate);
         Description.setText(description);
-       // int vote= increase(up_vote);
-        setUpVote(up_vote);
-        if(up_vote>7&&down_vote<4)
-        {
-            Title.setCompoundDrawablesWithIntrinsicBounds(ic_verified_user_black_24dp,0,0,0);
-        }
 
         if(imgExist==true)
         {
-            Bitmap img= getIncidentImage();
-            image.setImageBitmap(img);
+            image.setImageBitmap(IncidentImage);
         }
         else image.setVisibility(View.GONE);
 
@@ -178,20 +140,17 @@ public class IncidentReportActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String type ="UpVote";
-                int vote=getUpVote();
                 if(upVotebtn.getText()==type)
                 {
-                     vote++;
-                     upVotebtn.setText(vote);
-                     setUpVote(vote);
+                    UpVote+=1;
+                    upVotebtn.setText(UpVote);
                 }
                 else {
 
                     upVotebtn.setText(type);
-                    vote--;
-                    setUpVote(vote);
+                    UpVote-=1;
                 }
-                UpdateDataBase(vote,IncidentId,type);
+                UpdateDataBase(UpVote,IncidentId,type);
             }
 
         });
@@ -199,26 +158,24 @@ public class IncidentReportActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String type ="DownVote";
-                int vote=getUpVote();
 
                 if(downVotebtn.getText()==type)
                 {
-                    vote++;
-                    downVotebtn.setText(vote);
-                    setDownVote(vote);
+                    DownVote+=1;
+                    downVotebtn.setText(DownVote);
                 }
                 else {
-                    vote--;
+                    DownVote-=1;
                     downVotebtn.setText(type);
-                    setDownVote(vote);
                 }
-                UpdateDataBase(vote,IncidentId,type);
+                UpdateDataBase(DownVote,IncidentId,type);
             }
 
         });
 
 
     }
+
 
     private void UpdateDataBase(int vote,int id,String type)
     {
